@@ -1,14 +1,20 @@
 package jwang.example.tutorfinder
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.HandlerCompat.postDelayed
+
 
 class MainActivity : AppCompatActivity() {
+
+    private val SPLASH_SCREEN = 5000L
 
     //Variables
     lateinit var topAnim: Animation
@@ -32,6 +38,12 @@ class MainActivity : AppCompatActivity() {
         image.animation = topAnim
         logo.animation = bottomAnim
         slogan.animation = bottomAnim
+
+        Handler().postDelayed({
+           val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, SPLASH_SCREEN)
 
     }
 }
