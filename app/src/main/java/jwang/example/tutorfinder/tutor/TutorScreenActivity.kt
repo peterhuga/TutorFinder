@@ -16,7 +16,10 @@ class TutorScreenActivity : AppCompatActivity() {
         val students: ArrayList<Student> = arrayListOf(
             Student(101, "Sampath", 21, "sampath@email.com"),
             Student(102, "Jianwei", 22, "jianwei@email.com"),
-            Student(103,"Sunny", 19, "Sunny@email.com")
+            Student(103,"Sunny", 19, "Sunny@email.com"),
+                    Student(101, "Sampath", 21, "sampath@email.com"),
+        Student(102, "Jianwei", 22, "jianwei@email.com"),
+        Student(103,"Sunny", 19, "Sunny@email.com")
         )
 
 

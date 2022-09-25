@@ -48,7 +48,7 @@ class MyStudentsRvAdapter(private val dataset: ArrayList<Student>): RecyclerView
         holder.ageTextView.text = "Age: ${item.age}"
         holder.emailTextView.text = "Email: ${item.email}"
         //Hardcoded for now. Include image resource id property in data model later.
-        holder.imageView.setImageResource(R.drawable.ic_launcher_foreground)
+        //holder.imageView.setImageResource(R.drawable.ic_launcher_foreground)
 
 //        onItemClick?.invoke(item)
 
