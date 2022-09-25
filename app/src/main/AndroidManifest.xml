@@ -14,13 +14,13 @@
         android:theme="@style/Theme.TutorFinder"
         tools:targetApi="31">
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".tutor.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".StudentRequestActivity"
+            android:name=".tutor.StudentRequestActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorScreenActivity"
+            android:name=".tutor.TutorScreenActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

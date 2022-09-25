@@ -1,7 +1,8 @@
-package jwang.example.tutorfinder
+package jwang.example.tutorfinder.tutor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import jwang.example.tutorfinder.R
 
 class StudentRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

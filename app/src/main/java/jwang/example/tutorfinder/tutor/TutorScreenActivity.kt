@@ -1,9 +1,10 @@
-package jwang.example.tutorfinder
+package jwang.example.tutorfinder.tutor
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import jwang.example.tutorfinder.R
 
 class TutorScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,8 +14,8 @@ class TutorScreenActivity : AppCompatActivity() {
 
     fun onButtonClick(view: View) {
         when(view.id) {
-            R.id.buttonEditProfile -> startActivity(Intent(this,EditProfileActivity::class.java))
-            R.id.buttonShowStudentRequest -> startActivity(Intent(this,StudentRequestActivity::class.java))
+            R.id.buttonEditProfile -> startActivity(Intent(this, EditProfileActivity::class.java))
+            R.id.buttonShowStudentRequest -> startActivity(Intent(this, StudentRequestActivity::class.java))
         }
     }
 }
