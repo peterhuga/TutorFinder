@@ -23,3 +23,8 @@
 
 ### :hammer_and_wrench: Languages and Tools :
 
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
