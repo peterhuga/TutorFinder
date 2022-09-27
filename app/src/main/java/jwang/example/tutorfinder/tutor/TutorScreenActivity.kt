@@ -53,12 +53,7 @@ class TutorScreenActivity : AppCompatActivity() {
         return true
     }
 
-//    fun onButtonClick(view: View) {
-//        when(view.id) {
-//            id.buttonEditProfile -> startActivity(Intent(this, EditProfileActivity::class.java))
-//            id.buttonShowStudentRequest -> startActivity(Intent(this, StudentRequestActivity::class.java))
-//        }
-//    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
