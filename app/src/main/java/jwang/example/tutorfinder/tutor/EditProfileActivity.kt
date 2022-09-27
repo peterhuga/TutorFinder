@@ -2,6 +2,7 @@ package jwang.example.tutorfinder.tutor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 import jwang.example.tutorfinder.R
 
@@ -20,4 +21,6 @@ class EditProfileActivity : AppCompatActivity() {
 
 
     }
+
+    fun onSAveButtonClick(view: View) {}
 }
