@@ -16,6 +16,7 @@ class MyStudentProfileActivity : AppCompatActivity() {
 
         studentId = intent.getIntExtra(TutorScreenActivity.STUDENT_ID, 0)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Student Profile"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
