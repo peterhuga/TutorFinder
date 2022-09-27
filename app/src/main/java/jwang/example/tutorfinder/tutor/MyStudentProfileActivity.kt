@@ -15,7 +15,6 @@ class MyStudentProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_student_profile)
 
         studentId = intent.getIntExtra(TutorScreenActivity.STUDENT_ID, 0)
-        findViewById<TextView>(R.id.textViewStudentId).text = studentId.toString()
 
     }
 }
