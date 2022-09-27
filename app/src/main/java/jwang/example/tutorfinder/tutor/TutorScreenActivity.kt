@@ -49,7 +49,7 @@ class TutorScreenActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menuInflater.inflate(jwang.example.tutorfinder.R.menu.menu_tutor_screen, menu)
+        menuInflater.inflate(R.menu.menu_tutor_screen, menu)
         return true
     }
 
@@ -62,9 +62,9 @@ class TutorScreenActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_bar -> {startActivity(Intent(this, EditProfileActivity::class.java))
+            id.action_bar -> {startActivity(Intent(this, EditProfileActivity::class.java))
                 return true}
-            R.id.action_settings -> {startActivity(Intent(this, StudentRequestActivity::class.java))
+            id.action_settings -> {startActivity(Intent(this, StudentRequestActivity::class.java))
                 return true}
         }
         return super.onOptionsItemSelected(item)
