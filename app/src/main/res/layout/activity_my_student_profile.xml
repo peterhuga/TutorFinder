@@ -162,16 +162,19 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textViewGrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textSize="20sp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/imageButtonGrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_baseline_edit_24" />
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_baseline_edit_24"
+                    android:onClick="onButtonClick" />
             </LinearLayout>
 
         </LinearLayout>
@@ -197,16 +200,20 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textViewCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textSize="20sp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/imageButtonCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_baseline_edit_24" />
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_baseline_edit_24"
+                    android:onClick="onButtonClick"
+                    android:src="@drawable/ic_baseline_edit_24" />
             </LinearLayout>
 
         </LinearLayout>
