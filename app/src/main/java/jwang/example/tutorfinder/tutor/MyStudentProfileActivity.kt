@@ -16,6 +16,7 @@ import jwang.example.tutorfinder.R
 class MyStudentProfileActivity : AppCompatActivity() {
 
     var studentId = 0
+    var position = -1
     lateinit var tvGrade: TextView
     lateinit var tvCourse: TextView
 
@@ -23,6 +24,8 @@ class MyStudentProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_student_profile)
         studentId = intent.getIntExtra(TutorScreenActivity.STUDENT_ID, 0)
+        position = intent.getIntExtra("position", -1)
+        Log.d("Student", "RcvedID, $studentId")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Student Profile"
         tvCourse = findViewById(R.id.textViewCourse)
@@ -47,10 +50,13 @@ class MyStudentProfileActivity : AppCompatActivity() {
                 builder.setTitle("Are you sure to delete this student?")
                 builder.setCancelable(false)
                 builder.setPositiveButton("Confirm"){
+                    //send student id back to parent to delete it
                         dialog, which ->
-                            val intent = Intent(this, TutorScreenActivity::class.java)
-                            Log.d("Student", "RcvedID, $studentId")
+                            val intent = Intent()
+
                             intent.putExtra(TutorScreenActivity.STUDENT_ID, studentId)
+                            intent.putExtra("position", position)
+                            setResult(RESULT_OK, intent)
                             finish()
                     }
                 builder.setNegativeButton("Cancel"){

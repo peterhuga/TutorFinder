@@ -17,29 +17,28 @@ import java.lang.System.exit
 class TutorScreenActivity : AppCompatActivity() {
 
     var deletedId = 0
+    lateinit var adapter: MyStudentsRvAdapter
+    lateinit var recyclerView:RecyclerView
 
     //Dummy data for populating UI
     companion object {
-        val students: ArrayList<Student> = arrayListOf(
-            Student(101, "Sampath", 21, "sampath@email.com"),
-            Student(102, "Jianwei", 22, "jianwei@email.com"),
-            Student(103,"Sunny", 19, "Sunny@email.com"),
-            Student(104, "Sampath", 23, "sampath@email.com"),
-            Student(105, "Jianwei", 24, "jianwei@email.com"),
-            Student(106,"Sunny", 25, "Sunny@email.com")
-        )
-
-
             const val STUDENT_ID = "student id"
-
     }
+    var students: MutableList<Student> = mutableListOf(
+        Student(101, "Sampath", 21, "sampath@email.com"),
+        Student(102, "Jianwei", 22, "jianwei@email.com"),
+        Student(103,"Sunny", 19, "Sunny@email.com"),
+        Student(104, "Sampath", 23, "sampath@email.com"),
+        Student(105, "Jianwei", 24, "jianwei@email.com"),
+        Student(106,"Sunny", 25, "Sunny@email.com")
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_tutor_screen)
 
 
-        val recyclerView = findViewById<RecyclerView>(id.recyclerViewMyStudents)
-        val adapter = MyStudentsRvAdapter(students)
+        recyclerView = findViewById<RecyclerView>(id.recyclerViewMyStudents)
+        adapter = MyStudentsRvAdapter(this, students)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 //        adapter.onItemClick = {
@@ -51,11 +50,27 @@ class TutorScreenActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        deletedId = intent.getIntExtra(STUDENT_ID,0)
-        Log.d("Student", "DeleteID, $deletedId")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if(resultCode == RESULT_OK){
+
+            if(requestCode==1){
+
+                if (data != null) {
+                    val deleteId = data.getIntExtra(STUDENT_ID,0)
+                    val position = data.getIntExtra("position", -1)
+                    Log.d("Student", "DltID, $deleteId")
+                    val students2 = students.filter { student -> student.id != deleteId } as MutableList<Student>
+                    students.clear()
+                    students.addAll(students2)
+                    Log.d("Student", "size: ${students.size}")
+                    adapter.notifyItemRemoved(position)
+
+
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
