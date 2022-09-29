@@ -3,6 +3,7 @@ package jwang.example.tutorfinder.tutor
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -15,15 +16,17 @@ import java.lang.System.exit
 
 class TutorScreenActivity : AppCompatActivity() {
 
+    var deletedId = 0
+
     //Dummy data for populating UI
     companion object {
         val students: ArrayList<Student> = arrayListOf(
             Student(101, "Sampath", 21, "sampath@email.com"),
             Student(102, "Jianwei", 22, "jianwei@email.com"),
             Student(103,"Sunny", 19, "Sunny@email.com"),
-                    Student(101, "Sampath", 21, "sampath@email.com"),
-        Student(102, "Jianwei", 22, "jianwei@email.com"),
-        Student(103,"Sunny", 19, "Sunny@email.com")
+            Student(104, "Sampath", 23, "sampath@email.com"),
+            Student(105, "Jianwei", 24, "jianwei@email.com"),
+            Student(106,"Sunny", 25, "Sunny@email.com")
         )
 
 
@@ -47,6 +50,14 @@ class TutorScreenActivity : AppCompatActivity() {
         supportActionBar?.title = "Tutor Portal"
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        deletedId = intent.getIntExtra(STUDENT_ID,0)
+        Log.d("Student", "DeleteID, $deletedId")
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.menu_tutor_screen, menu)

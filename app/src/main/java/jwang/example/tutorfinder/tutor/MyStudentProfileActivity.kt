@@ -16,26 +16,20 @@ import jwang.example.tutorfinder.R
 class MyStudentProfileActivity : AppCompatActivity() {
 
     var studentId = 0
-    //lateinit var editTextDialog: EditText
     lateinit var tvGrade: TextView
     lateinit var tvCourse: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_student_profile)
-
-
         studentId = intent.getIntExtra(TutorScreenActivity.STUDENT_ID, 0)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Student Profile"
         tvCourse = findViewById(R.id.textViewCourse)
         tvGrade = findViewById(R.id.textViewGrade)
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
         menuInflater.inflate(R.menu.menu_student_profile, menu)
         return true
     }
@@ -53,7 +47,11 @@ class MyStudentProfileActivity : AppCompatActivity() {
                 builder.setTitle("Are you sure to delete this student?")
                 builder.setCancelable(false)
                 builder.setPositiveButton("Confirm"){
-                        dialog, which -> finish()
+                        dialog, which ->
+                            val intent = Intent(this, TutorScreenActivity::class.java)
+                            Log.d("Student", "RcvedID, $studentId")
+                            intent.putExtra(TutorScreenActivity.STUDENT_ID, studentId)
+                            finish()
                     }
                 builder.setNegativeButton("Cancel"){
                         dialog, which -> dialog.cancel()
@@ -67,12 +65,8 @@ class MyStudentProfileActivity : AppCompatActivity() {
     fun onButtonClick(view: View) {
         when(view.id){
             R.id.imageButtonGrade -> setDialog("Grade")
-
             R.id.imageButtonCourse -> setDialog("Course")
-
         }
-
-
     }
 
     private fun setDialog(title:String) {
@@ -102,9 +96,5 @@ class MyStudentProfileActivity : AppCompatActivity() {
 
         }
         builder.show()
-
     }
-
-
-
 }
