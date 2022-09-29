@@ -1,8 +1,10 @@
 package jwang.example.tutorfinder.tutor
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -22,6 +24,7 @@ class MyStudentProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_student_profile)
 
+
         studentId = intent.getIntExtra(TutorScreenActivity.STUDENT_ID, 0)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Student Profile"
@@ -31,12 +34,32 @@ class MyStudentProfileActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.menu_student_profile, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
                 finish()
                 return true
             }
+            R.id.action_bar -> {
+                Log.d("Student", "action bar clicked")
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Alert")
+                builder.setTitle("Are you sure to delete this student?")
+                builder.setCancelable(false)
+                builder.setPositiveButton("Confirm"){
+                        dialog, which -> finish()
+                    }
+                builder.setNegativeButton("Cancel"){
+                        dialog, which -> dialog.cancel()
+                }
+                builder.show()
+                return true}
         }
         return super.onOptionsItemSelected(item)
     }
