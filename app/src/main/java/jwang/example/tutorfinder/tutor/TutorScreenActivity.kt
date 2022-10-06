@@ -1,6 +1,7 @@
 package jwang.example.tutorfinder.tutor
 
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -83,9 +84,9 @@ class TutorScreenActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            id.action_bar -> {startActivity(Intent(this, EditProfileActivity::class.java))
+            id.action_bar -> {startActivity(Intent(this, EditProfileActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
-            id.action_settings -> {startActivity(Intent(this, StudentRequestActivity::class.java))
+            id.action_settings -> {startActivity(Intent(this, StudentRequestActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
         }
         return super.onOptionsItemSelected(item)
