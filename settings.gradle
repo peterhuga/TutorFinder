@@ -3,6 +3,10 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"}
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +14,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        gradlePluginPortal()
+        maven {
+            url "https://plugins.gradle.org/m2/"}
     }
 }
-rootProject.name = "Tutor Finder"
+rootProject.name = "MyTutorApp"
 include ':app'
