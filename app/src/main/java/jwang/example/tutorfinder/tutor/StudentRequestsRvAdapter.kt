@@ -29,8 +29,6 @@ class StudentRequestsRvAdapter(private val dataset: ArrayList<Student>): Recycle
             val ageTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemAge)
             val emailTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemEmail)
             val imageView = itemView.findViewById<ImageView>(R.id.imageViewMyStudentItem)
-            val acceptButton = itemView.findViewById<ImageView>(R.id.imageViewAccept)
-            val rejectButton = itemView.findViewById<ImageView>(R.id.imageViewReject)
 
     }
 
@@ -59,7 +57,7 @@ class StudentRequestsRvAdapter(private val dataset: ArrayList<Student>): Recycle
             Log.d(TAG,"item clicked")
 
                 val studentID = item.id
-                val intent = Intent(it.context, MyStudentProfileActivity::class.java)
+                val intent = Intent(it.context, RequestedStudentProfileActivity::class.java)
                 intent.putExtra(STUDENT_ID, studentID)
                 it.context.startActivity(intent)
 
