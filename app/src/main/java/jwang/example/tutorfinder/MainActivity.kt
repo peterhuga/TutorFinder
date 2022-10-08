@@ -14,7 +14,7 @@ import androidx.core.os.HandlerCompat.postDelayed
 
 class MainActivity : AppCompatActivity() {
 
-    private val SPLASH_SCREEN = 5000L
+    private val SPLASH_SCREEN = 1000L
 
     //Variables
     lateinit var topAnim: Animation
