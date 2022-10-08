@@ -1,4 +1,4 @@
-package pradipkhatri.example.mytutorapp
+package com.example.tutorfinder
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-
     private val SPLASH_SCREEN = 1000L
 
     //Variables
@@ -36,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         image.animation = topAnim
         logo.animation = bottomAnim
         slogan.animation = bottomAnim
-
         Handler().postDelayed({
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

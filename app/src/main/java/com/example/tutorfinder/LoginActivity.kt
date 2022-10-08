@@ -1,4 +1,4 @@
-package pradipkhatri.example.mytutorapp
+package com.example.tutorfinder
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var loginBtn:Button
+    lateinit var loginBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

@@ -1,4 +1,4 @@
-package pradipkhatri.example.mytutorapp
+package com.example.tutorfinder
 
 import org.junit.Test
 
