@@ -23,6 +23,7 @@ class MyStudentProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_student_profile)
+
         studentId = intent.getIntExtra(TutorScreenActivity.STUDENT_ID, 0)
         position = intent.getIntExtra("position", -1)
         Log.d("Student", "RcvedID, $studentId")

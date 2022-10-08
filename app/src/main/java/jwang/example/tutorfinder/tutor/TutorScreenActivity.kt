@@ -1,6 +1,5 @@
 package jwang.example.tutorfinder.tutor
 
-
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
@@ -47,6 +46,7 @@ class TutorScreenActivity : AppCompatActivity() {
 //            intent.putExtra(MyStudentsRvAdapter.STUDENT_ID, it.id)
 //            startActivity(intent)
 //        }
+
         supportActionBar?.title = "Tutor Portal"
 
     }
