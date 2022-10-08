@@ -31,7 +31,7 @@ class StudentRequestActivity : AppCompatActivity() , OnClickListener{
 
         buttonBack = findViewById(R.id.buttonBack)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewStudentRequests)
-        val adapter = MyStudentsRvAdapter(TutorScreenActivity.students)
+        val adapter = StudentRequestsRvAdapter( students)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
