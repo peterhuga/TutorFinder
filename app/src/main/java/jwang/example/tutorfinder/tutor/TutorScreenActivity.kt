@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
 import jwang.example.tutorfinder.R.*
+import jwang.example.tutorfinder.tutor.StudentRequestActivity.Companion.students
 import java.lang.System.exit
 
 
@@ -23,15 +24,16 @@ class TutorScreenActivity : AppCompatActivity() {
     //Dummy data for populating UI
     companion object {
             const val STUDENT_ID = "student id"
+        var students: MutableList<Student> = mutableListOf(
+            Student(101, "Sampath", 21, "sampath@email.com"),
+            Student(102, "Jianwei", 22, "jianwei@email.com"),
+            Student(103,"Sunny", 19, "Sunny@email.com"),
+            Student(104, "Sampath", 23, "sampath@email.com"),
+            Student(105, "Jianwei", 24, "jianwei@email.com"),
+            Student(106,"Sunny", 25, "Sunny@email.com")
+        )
     }
-    var students: MutableList<Student> = mutableListOf(
-        Student(101, "Sampath", 21, "sampath@email.com"),
-        Student(102, "Jianwei", 22, "jianwei@email.com"),
-        Student(103,"Sunny", 19, "Sunny@email.com"),
-        Student(104, "Sampath", 23, "sampath@email.com"),
-        Student(105, "Jianwei", 24, "jianwei@email.com"),
-        Student(106,"Sunny", 25, "Sunny@email.com")
-    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_tutor_screen)
