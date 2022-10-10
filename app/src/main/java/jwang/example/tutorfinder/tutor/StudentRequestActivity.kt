@@ -13,7 +13,7 @@ class StudentRequestActivity : AppCompatActivity() , OnClickListener{
 
     //Dummy data for populating UI
     companion object {
-        val students: ArrayList<Student> = arrayListOf(
+        val requestedStudents: ArrayList<Student> = arrayListOf(
             Student(101, "Sampath", 21, "sampath@email.com"),
             Student(102, "Jianwei", 22, "jianwei@email.com"),
             Student(103,"Sunny", 19, "Sunny@email.com")
@@ -25,13 +25,16 @@ class StudentRequestActivity : AppCompatActivity() , OnClickListener{
     }
 
     lateinit var buttonBack: Button
+    lateinit var adapter: StudentRequestsRvAdapter
+    lateinit var recyclerView:RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_request)
 
         buttonBack = findViewById(R.id.buttonBack)
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewStudentRequests)
-        val adapter = StudentRequestsRvAdapter( students)
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerViewStudentRequests)
+        adapter = StudentRequestsRvAdapter( this,requestedStudents)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
