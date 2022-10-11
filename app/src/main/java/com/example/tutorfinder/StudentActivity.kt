@@ -15,6 +15,7 @@ class StudentActivity : AppCompatActivity() {
         startActivity(Intent(this,FilterTutorActivity::class.java))
     }
     fun onEditProfileclicked(view: View) {
-        startActivity((Intent(this,EditStudentProfileActivity::class.java)))
+        startActivity((Intent(this, EditStudentProfileActivity::class.java)))
+
     }
 }

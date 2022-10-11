@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1085441637678",
+    "project_id": "tutorf-12d71",
+    "storage_bucket": "tutorf-12d71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085441637678:android:2ea09d3552d41189230ebf",
+        "android_client_info": {
+          "package_name": "com.example.tutorfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085441637678-48oqqilhtlnuh9e1nqjnpmpt39buvntp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgTp3x0VeEyf4OTMvbQxab2gTrXsBdpK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085441637678-48oqqilhtlnuh9e1nqjnpmpt39buvntp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
