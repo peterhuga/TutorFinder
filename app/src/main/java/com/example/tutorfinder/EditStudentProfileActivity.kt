@@ -51,7 +51,13 @@ class EditStudentProfileActivity : AppCompatActivity() {
                 val displayEmail = dataSnapshot.child("email").getValue(String::class.java)
                 //val displayPhone = dataSnapshot.child("phone").getValue(String::class.java)
 
-
+                // TODO: handle the post
+                studentName.setText(displayName)
+                studentAddress.setText(displayAddress)
+                studentEmail.setText(displayEmail)
+                studentGender.setText(displayGender)
+                studentAge.setText(displayAge)
+                studentCourse.setText(displayCourse)
 
             }
         }
@@ -62,7 +68,7 @@ class EditStudentProfileActivity : AppCompatActivity() {
             // ...
         }
     })
-    database.goOffline()
+    //database.goOffline()
 
 
     }
