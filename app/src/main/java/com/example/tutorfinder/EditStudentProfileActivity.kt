@@ -68,7 +68,7 @@ class EditStudentProfileActivity : AppCompatActivity() {
             // ...
         }
     })
-    //database.goOffline()
+    database.goOffline()
 
 
     }

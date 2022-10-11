@@ -11,11 +11,24 @@ class StudentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_student)
     }
 
-    fun onFilterTutorBtnPressed(view: View) {
-        startActivity(Intent(this,FilterTutorActivity::class.java))
-    }
-    fun onEditProfileclicked(view: View) {
+//    fun onFilterTutorBtnPressed(view: View) {
+//        startActivity(Intent(this,FilterTutorActivity::class.java))
+//    }
+//    fun onEditProfileclicked(view: View) {
+//        startActivity((Intent(this, EditStudentProfileActivity::class.java)))
+//
+//    }
+
+    fun onClick(view: View) {
+        when(view.id){
+            R.id.editStudentProfileBtn -> {
         startActivity((Intent(this, EditStudentProfileActivity::class.java)))
 
+            }
+            R.id.filterTutorBtn->{
+                       startActivity(Intent(this,TutorFilterActivity::class.java))
+
+            }
+        }
     }
 }
