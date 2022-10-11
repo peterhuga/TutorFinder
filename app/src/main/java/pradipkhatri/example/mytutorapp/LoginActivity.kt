@@ -30,19 +30,19 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        val currentUser = auth.currentUser
-//        if(currentUser != null){
-//            reload();
-//        }
-//    }
-//
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            reload();
+        }
+    }
 
-//    private fun reload() {
-//        startActivity(Intent(this,StudentActivity::class.java))
-//
-//    }
+
+    private fun reload() {
+        startActivity(Intent(this,StudentActivity::class.java))
+
+    }
 
     fun onLoginClicked(view: View) {
 
