@@ -28,7 +28,21 @@ class SignUpActivity : AppCompatActivity() {
     fun signupNewUserBtn(view: View) {
 
 
-
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("signup", "createUserWithEmail:success")
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("signupfail", "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
 }
