@@ -1,5 +1,6 @@
 package jwang.example.tutorfinder.tutor
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -8,12 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
 import jwang.example.tutorfinder.tutor.TutorScreenActivity.Companion.STUDENT_ID
 
 
-class StudentRequestsRvAdapter(private val dataset: ArrayList<Student>): RecyclerView.Adapter<StudentRequestsRvAdapter.ViewHolder>() {
+class StudentRequestsRvAdapter(val context: Context, private val dataset: List<Student>): RecyclerView.Adapter<StudentRequestsRvAdapter.ViewHolder>() {
 
     val TAG = "Tutor"
 
@@ -48,7 +50,7 @@ class StudentRequestsRvAdapter(private val dataset: ArrayList<Student>): Recycle
         holder.ageTextView.text = "Age: ${item.age}"
         holder.emailTextView.text = "Email: ${item.email}"
         //Hardcoded for now. Include image resource id property in data model later.
-        holder.imageView.setImageResource(R.drawable.ic_launcher_foreground)
+        holder.imageView.setImageResource(R.drawable.student_male)
 
 //        onItemClick?.invoke(item)
 
@@ -56,10 +58,13 @@ class StudentRequestsRvAdapter(private val dataset: ArrayList<Student>): Recycle
         holder.itemView.setOnClickListener{
             Log.d(TAG,"item clicked")
 
-                val studentID = item.id
+                /*val studentID = item.id
                 val intent = Intent(it.context, RequestedStudentProfileActivity::class.java)
                 intent.putExtra(STUDENT_ID, studentID)
-                it.context.startActivity(intent)
+                it.context.startActivity(intent)*/
+
+            val intent = Intent(context,RequestedStudentProfileActivity::class.java)
+            (context as Activity).startActivity(intent)
 
         }
 

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="STUDENT REQUESTS"
         android:textSize="20sp"
+        android:textColor="@color/black"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
