@@ -7,6 +7,7 @@ import android.widget.Button
 import jwang.example.tutorfinder.tutor.TutorScreenActivity
 
 class LoginActivity : AppCompatActivity() {
+    lateinit var fir:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
