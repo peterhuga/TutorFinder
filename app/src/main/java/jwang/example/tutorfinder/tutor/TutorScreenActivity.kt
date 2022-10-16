@@ -84,7 +84,7 @@ class TutorScreenActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            id.action_bar -> {startActivity(Intent(this, EditProfileActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            id.action_bar -> {startActivity(Intent(this, EditTutorProfileActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
             id.action_settings -> {startActivity(Intent(this, StudentRequestActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
