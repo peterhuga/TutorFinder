@@ -13,7 +13,59 @@
         android:theme="@style/Theme.TutorFinder"
         tools:targetApi="31">
         <activity
-            android:name=".RequestedStudentProfileActivity"
+            android:name=".student.TutorProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.MyTutorProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".tutor.EditTutorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".student.FilterTutorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.EditStudentProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.StudentDashboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".tutor.TutorScreenActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".tutor.RequestedStudentProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -23,13 +75,7 @@
             android:name=".tutor.MyStudentProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".tutor.EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".tutor.StudentRequestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".tutor.TutorScreenActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
