@@ -47,7 +47,7 @@ class MyStudentProfileActivity : AppCompatActivity() {
             R.id.action_bar -> {
                 Log.d("Student", "action bar clicked")
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Alert")
+
                 builder.setTitle("Are you sure to delete this student?")
                 builder.setCancelable(false)
                 builder.setPositiveButton("Confirm"){
