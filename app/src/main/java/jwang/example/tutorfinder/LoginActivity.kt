@@ -54,6 +54,8 @@ class LoginActivity : AppCompatActivity() {
 
     fun onLoginClicked(view: View) {
 
+
+
 //        val email = emailEditText.text.toString()
 //        val password = passwordEditText.text.toString()
 //        if (email.isNotEmpty() || password.isNotEmpty()) {
@@ -93,6 +95,9 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    fun onToTutorClicked(view: View) {
+        startActivity(Intent(this,TutorScreenActivity::class.java))
+    }
 
 
 //    fun signUpNewUser(view: View) {

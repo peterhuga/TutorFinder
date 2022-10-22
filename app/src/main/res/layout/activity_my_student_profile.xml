@@ -88,12 +88,28 @@
                 android:text="Email"
                 android:textSize="20sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="TextView"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_email"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -110,12 +126,35 @@
                 android:text="Phone"
                 android:textSize="20sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="TextView"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_phone"
+                    app:srcCompat="@drawable/ic_phone" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_sms"
+                    app:srcCompat="@drawable/ic_sms" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -165,6 +204,7 @@
                     android:id="@+id/textViewGrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="TextView"
                     android:textSize="20sp" />
 
@@ -174,7 +214,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/ic_baseline_edit_24"
-                    android:onClick="onButtonClick" />
+                    android:onClick="onButtonClick"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </LinearLayout>
 
         </LinearLayout>
@@ -203,6 +244,7 @@
                     android:id="@+id/textViewCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="TextView"
                     android:textSize="20sp" />
 
@@ -213,7 +255,8 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/ic_baseline_edit_24"
                     android:onClick="onButtonClick"
-                    android:src="@drawable/ic_baseline_edit_24" />
+                    android:src="@drawable/ic_baseline_edit_24"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </LinearLayout>
 
         </LinearLayout>

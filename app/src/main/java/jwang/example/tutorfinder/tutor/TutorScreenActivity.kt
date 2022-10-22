@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
 import jwang.example.tutorfinder.R.*
-import jwang.example.tutorfinder.tutor.StudentRequestActivity.Companion.students
+import jwang.example.tutorfinder.tutor.StudentRequestActivity.Companion.requestedStudents
 import java.lang.System.exit
 
 
@@ -68,7 +68,7 @@ class TutorScreenActivity : AppCompatActivity() {
                     students.clear()
                     students.addAll(students2)
                     Log.d("Student", "size: ${students.size}")
-                    adapter.notifyItemRemoved(position)
+                    adapter.notifyDataSetChanged()
 
 
                 }
@@ -80,6 +80,11 @@ class TutorScreenActivity : AppCompatActivity() {
 
         menuInflater.inflate(R.menu.menu_tutor_screen, menu)
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
     }
 
 
