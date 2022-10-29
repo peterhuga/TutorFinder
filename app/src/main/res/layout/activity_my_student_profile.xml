@@ -45,10 +45,11 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/textViewStudentName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="TextView"
+                android:text="Jianwei Wang"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -67,10 +68,11 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/textViewStudentAge"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="TextView"
+                android:text="20"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -177,10 +179,11 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/textViewStudentAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="TextView"
+                android:text="123 Main St, London, ON, Canada"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -210,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="6"
                     android:textSize="20sp" />
 
                 <ImageButton
@@ -250,7 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="Math"
                     android:textSize="20sp" />
 
                 <ImageButton
