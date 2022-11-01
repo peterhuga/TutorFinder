@@ -17,7 +17,7 @@ class MyTutorsRvAdapter(val context: Context, private val dataset: MutableList<T
             val nameTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemName)
             val genderTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemGender)
             val addressTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemAddress)
-            val courseTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemCourse)
+            val experienceTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemExperience)
 
     }
 
@@ -38,7 +38,7 @@ class MyTutorsRvAdapter(val context: Context, private val dataset: MutableList<T
         holder.nameTextView.text = "Name: ${item.name}"
         holder.addressTextView.text = "Address: ${item.address}"
         holder.genderTextView.text = "Gender: ${item.gender}"
-        holder.courseTextView.text = "Course: ${item.course}"
+        holder.experienceTextView.text = "Course: ${item.experience}"
 
 
         holder.itemView.setOnClickListener{

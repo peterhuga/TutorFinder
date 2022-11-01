@@ -16,20 +16,20 @@ import jwang.example.tutorfinder.tutor.Student
 import jwang.example.tutorfinder.tutor.TutorScreenActivity
 
 class StudentDashboard : AppCompatActivity() {
-    lateinit var adapter: MyStudentsRvAdapter
+    lateinit var adapter: MyTutorsRvAdapter
     lateinit var recyclerView: RecyclerView
     companion object {
         const val TUTOR_ID = "tutor id"
     }
-    var tutors: MutableList<Student> = mutableListOf(
-        Student(101, "Sampath", 21, "sampath@email.com"),
-        Student(102, "Jianwei", 22, "jianwei@email.com"))
-
+    var tutors: MutableList<Tutor> = mutableListOf(
+        Tutor(101, "John", "35","Male","London","5555555555","12","5", "John@gmail.com"),
+        Tutor(101, "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com"),
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMyTutor)
-        adapter = MyStudentsRvAdapter(this, tutors)
+        adapter = MyTutorsRvAdapter(this, tutors)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
