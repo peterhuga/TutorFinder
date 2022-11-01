@@ -63,6 +63,8 @@ class StudentRequestsRvAdapter(val context: Context, private val dataset: List<S
                 intent.putExtra(STUDENT_ID, studentID)
                 it.context.startActivity(intent)*/
 
+            StudentRequestActivity.STUDENT_ID = item.id
+
             val intent = Intent(context,RequestedStudentProfileActivity::class.java)
             (context as Activity).startActivity(intent)
 

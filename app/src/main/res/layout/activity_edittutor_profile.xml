@@ -56,7 +56,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editTextName"
+                    android:id="@+id/editTextTutorName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -71,15 +71,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textViewTutorGender"
+                    android:id="@+id/textViewTutorAge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="GENDER:"
+                    android:text="AGE:"
                     android:layout_weight="1"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editTextTutorGender"
+                    android:id="@+id/editTextTutorAge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -172,29 +172,6 @@
 
                 <EditText
                     android:id="@+id/editTextTutorEducation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:layout_weight="2"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/textViewTutorCourses"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="COURSES:"
-                    android:layout_weight="1"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editTextTutorCourses"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
