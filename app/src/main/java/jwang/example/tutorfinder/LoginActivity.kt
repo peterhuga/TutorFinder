@@ -99,4 +99,8 @@ class LoginActivity : AppCompatActivity() {
 //
 //        startActivity(Intent(this, SignUpActivity::class.java))
 //    }
+
+    fun onToTutorClicked(view: View) {
+        startActivity(Intent(this,TutorScreenActivity::class.java))
+    }
 }
