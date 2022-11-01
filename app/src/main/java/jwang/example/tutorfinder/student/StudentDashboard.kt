@@ -20,11 +20,16 @@ class StudentDashboard : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     companion object {
         const val TUTOR_ID = "tutor id"
+        var tutors: MutableList<Tutor> = mutableListOf(
+            Tutor(101, "John", "35","Male","London","5555555555","12","5", "John@gmail.com"),
+            Tutor(101, "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com"),
+        )
+
     }
-    var tutors: MutableList<Tutor> = mutableListOf(
-        Tutor(101, "John", "35","Male","London","5555555555","12","5", "John@gmail.com"),
-        Tutor(101, "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com"),
-    )
+//    var tutors: MutableList<Tutor> = mutableListOf(
+//        Tutor(101, "John", "35","Male","London","5555555555","12","5", "John@gmail.com"),
+//        Tutor(101, "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com"),
+//    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard)

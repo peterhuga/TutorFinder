@@ -17,6 +17,7 @@
     <string name="editProfile">Edit Profile</string>
     <string name="save">Save</string>
     <string name="name">Name</string>
+
     <string name="address">Address</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
@@ -27,7 +28,7 @@
     <string name="phone">Phone</string>
     <string name="degree">Academic Degree</string>
     <string name="teachingCourse">Courses taught</string>
-    <string name="experience">Experience</string>
+    <string name="experience">Experience(Years)</string>
     <string name="back">Back</string>
     <string name="sendrequest">Send Request</string>
     <string name="cancelRequest">Cancel Request</string>
