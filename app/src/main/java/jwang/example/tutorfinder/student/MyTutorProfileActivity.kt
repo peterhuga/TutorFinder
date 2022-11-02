@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +24,7 @@ class MyTutorProfileActivity : AppCompatActivity() {
     lateinit var myTutorphoneredirect: ImageButton
     lateinit var myTutorsmsredirect: ImageButton
     lateinit var myTutoremailredirect: ImageButton
+    lateinit var backToDashboard:Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,18 @@ class MyTutorProfileActivity : AppCompatActivity() {
         myTutorphoneredirect = findViewById(R.id.phoneImageView)
         myTutorsmsredirect = findViewById(R.id.smsImageView)
         myTutoremailredirect = findViewById(R.id.emailImageView)
+        backToDashboard=findViewById(R.id.goBackFromMyTutorProfile)
+        for (i in 0..StudentDashboard.tutors.count()-1){
+            myTutorname.text=StudentDashboard.tutors[i].name
+            myTutorage.text=StudentDashboard.tutors[i].age
+            myTutoremail.text=StudentDashboard.tutors[i].email
+            myTutorexperience.text=StudentDashboard.tutors[i].experience
+            myTutordegree.text=StudentDashboard.tutors[i].degree
+            myTutorphone.text=StudentDashboard.tutors[i].phone
+            myTutoraddress.text=StudentDashboard.tutors[i].address
+            myTutorgender.text=StudentDashboard.tutors[i].gender
+            myTutorgrade.text=StudentDashboard.tutors[i].grade
+        }
     }
 
     fun onRedirectBtnclick(view: View) {
@@ -79,6 +93,9 @@ class MyTutorProfileActivity : AppCompatActivity() {
                 }
 
 
+            }
+            R.id.goBackFromMyTutorProfile -> {
+                finish()
             }
         }
     }

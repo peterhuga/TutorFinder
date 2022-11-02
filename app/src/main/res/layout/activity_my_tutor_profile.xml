@@ -21,10 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorNameTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
     <TextView
@@ -33,10 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/age"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorAgeTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
@@ -45,10 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorAddressTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
@@ -57,10 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/degree"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutordegreeTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
@@ -69,10 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorEmailTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
@@ -81,10 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/experience"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorExperienceTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
@@ -93,21 +75,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorGenderTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/grade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myTutorGradeTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView32"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <TextView
@@ -116,9 +93,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/myTutorAgeTextView" />
 
     <TextView
         android:id="@+id/myTutorAgeTextView"
@@ -126,9 +102,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView8" />
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/myTutorAddressTextView" />
 
     <TextView
         android:id="@+id/myTutorAddressTextView"
@@ -136,9 +111,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView18" />
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintStart_toStartOf="@+id/myTutordegreeTextView" />
 
     <TextView
         android:id="@+id/myTutordegreeTextView"
@@ -146,9 +120,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView19" />
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/myTutorEmailTextView" />
 
     <TextView
         android:id="@+id/myTutorEmailTextView"
@@ -156,9 +129,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView20" />
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintStart_toStartOf="@+id/myTutorExperienceTextView" />
 
     <TextView
         android:id="@+id/myTutorExperienceTextView"
@@ -166,9 +138,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView21" />
+        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintStart_toStartOf="@+id/myTutorGenderTextView" />
 
     <TextView
         android:id="@+id/myTutorGenderTextView"
@@ -176,9 +147,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView22"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView22" />
+        app:layout_constraintStart_toEndOf="@+id/textView22"
+        app:layout_constraintStart_toStartOf="@+id/myTutorGradeTextView" />
 
     <TextView
         android:id="@+id/myTutorGradeTextView"
@@ -186,14 +156,14 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView23" />
+        app:layout_constraintStart_toEndOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/myTutorPhoneTextView" />
 
     <TextView
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/myTutorPhoneTextView"
@@ -223,8 +193,8 @@
 
     <ImageButton
         android:id="@+id/phoneImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="45dp"
+        android:layout_height="31dp"
         android:onClick="onRedirectBtnclick"
         app:layout_constraintBottom_toBottomOf="@+id/myTutorPhoneTextView"
         app:layout_constraintStart_toEndOf="@+id/myTutorPhoneTextView"
@@ -232,10 +202,12 @@
 
     <ImageButton
         android:id="@+id/smsImageView"
-        android:layout_width="60dp"
-        android:layout_height="42dp"
+        android:layout_width="52dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="8dp"
         android:onClick="onRedirectBtnclick"
         app:layout_constraintBottom_toBottomOf="@+id/phoneImageView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/phoneImageView"
         app:srcCompat="@drawable/messagesicon" />
 

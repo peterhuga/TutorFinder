@@ -1,54 +1,64 @@
 package jwang.example.tutorfinder.student
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.SeekBar
-import android.widget.Spinner
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.snapshot.Index
 import jwang.example.tutorfinder.R
+import kotlin.reflect.typeOf
 
 class FilterTutorActivity : AppCompatActivity() {
-        lateinit var genderQuery: Spinner
-        lateinit var courseQuery: EditText
+
+    lateinit var adapter: FilteredTutorRv
+    lateinit var recyclerView: RecyclerView
         lateinit var gradeQuery: EditText
-        lateinit var locationQueryTextView: TextView
-        lateinit var locationSeekBar: SeekBar
+        lateinit var degreeQuery: EditText
+        lateinit var experienceQuery:EditText
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_filter_tutor)
-            genderQuery = findViewById(R.id.GenderQuerySpinner)
-            courseQuery=findViewById(R.id.courseQueryEditText)
+            degreeQuery=findViewById(R.id.courseQueryEditText)
             gradeQuery=findViewById(R.id.gradeQueryEditText)
-            locationQueryTextView=findViewById(R.id.locationSliderTextView)
-            locationSeekBar=findViewById(R.id.LocationSeekBar)
-            locationQueryTextView.text="0KM"
+            experienceQuery=findViewById(R.id.experienceQueryEditText)
 
-            locationSeekBar?.setOnSeekBarChangeListener(object :
-                SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(seek: SeekBar,
-                                               progress: Int, fromUser: Boolean) {
-                    // write custom code for progress is changed
-                    locationQueryTextView.text=seek.progress.toString()+"KM"
-                }
+            recyclerView = findViewById<RecyclerView>(R.id.filturedTutorsRv)
+            adapter = FilteredTutorRv(this, StudentDashboard.tutors)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this)
 
-                override fun onStartTrackingTouch(seek: SeekBar) {
-                    // write custom code for progress is started
-                    locationQueryTextView.text=seek.progress.toString()+"KM"
 
-                }
-
-                override fun onStopTrackingTouch(seek: SeekBar) {
-                    // write custom code for progress is stopped
-
-                }
-            })
         }
 
 
 
-    fun onDoneClicked(view: View) {
-        finish()
+
+    fun onFilterClicked(view: View) {
+        val mutListIterator = StudentDashboard.tutors.listIterator()
+
+            for (people in StudentDashboard.tutors){
+                 var x=people
+if (people.degree == degreeQuery.text.toString()) {
+    // if (gradeQuery.text.toString() == people.grade && degreeQuery.text.toString() == people.degree && experienceQuery.text.toString() == people.experience){
+ FilteredTutorRv.ViewHolder.mk.degreeText = people.degree
+
+    FilteredTutorRv.ViewHolder.mk.experienceText = people.experience
+    FilteredTutorRv.ViewHolder.mk.gradeText = people.grade
+    FilteredTutorRv.ViewHolder.mk.nameText = people.name
+//StudentDashboard.tutors.clear()
+    //StudentDashboard.tutors.add(people)
+    //recyclerView.adapter?.bindViewHolder()
+
+
+    recyclerView.adapter?.notifyDataSetChanged()
+    Log.d("filtration", "$people")
+}
+               // }
+            }
+
     }
 }

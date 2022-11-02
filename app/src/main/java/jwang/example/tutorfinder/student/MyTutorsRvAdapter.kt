@@ -14,10 +14,10 @@ import jwang.example.tutorfinder.R
 class MyTutorsRvAdapter(val context: Context, private val dataset: MutableList<Tutor>): RecyclerView.Adapter<MyTutorsRvAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-            val nameTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemName)
-            val genderTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemGender)
-            val addressTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemAddress)
-            val experienceTextView = itemView.findViewById<TextView>(R.id.textViewMyTutorItemExperience)
+            val nameTextView = itemView.findViewById<TextView>(R.id.filteredtutorNameView)
+            val genderTextView = itemView.findViewById<TextView>(R.id.filteredtutorGradeView)
+            val addressTextView = itemView.findViewById<TextView>(R.id.filteredtutorDegreeView)
+            val experienceTextView = itemView.findViewById<TextView>(R.id.filteredtutorExperienceView)
 
     }
 
