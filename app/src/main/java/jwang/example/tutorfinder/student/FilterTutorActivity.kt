@@ -19,6 +19,9 @@ class FilterTutorActivity : AppCompatActivity() {
         lateinit var gradeQuery: EditText
         lateinit var degreeQuery: EditText
         lateinit var experienceQuery:EditText
+
+        //Jianwei
+        var filteredTutors: MutableList<Tutor> = mutableListOf()
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_filter_tutor)
@@ -27,7 +30,9 @@ class FilterTutorActivity : AppCompatActivity() {
             experienceQuery=findViewById(R.id.experienceQueryEditText)
 
             recyclerView = findViewById<RecyclerView>(R.id.filturedTutorsRv)
-            adapter = FilteredTutorRv(this, StudentDashboard.tutors)
+
+            //Jianwei
+            adapter = FilteredTutorRv(this, filteredTutors)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -44,11 +49,17 @@ class FilterTutorActivity : AppCompatActivity() {
                  var x=people
 if (people.degree == degreeQuery.text.toString()) {
     // if (gradeQuery.text.toString() == people.grade && degreeQuery.text.toString() == people.degree && experienceQuery.text.toString() == people.experience){
- FilteredTutorRv.ViewHolder.mk.degreeText = people.degree
 
-    FilteredTutorRv.ViewHolder.mk.experienceText = people.experience
-    FilteredTutorRv.ViewHolder.mk.gradeText = people.grade
-    FilteredTutorRv.ViewHolder.mk.nameText = people.name
+    //Jianwei
+    // FilteredTutorRv.ViewHolder.mk.degreeText = people.degree
+//
+//    FilteredTutorRv.ViewHolder.mk.experienceText = people.experience
+//    FilteredTutorRv.ViewHolder.mk.gradeText = people.grade
+//    FilteredTutorRv.ViewHolder.mk.nameText = people.name
+
+
+    //Jianwei
+    filteredTutors.add(people)
 //StudentDashboard.tutors.clear()
     //StudentDashboard.tutors.add(people)
     //recyclerView.adapter?.bindViewHolder()
