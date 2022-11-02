@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1058407535574",
+    "project_id": "tutorfinder-775b0",
+    "storage_bucket": "tutorfinder-775b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058407535574:android:a34b35eaf69973de5fca77",
+        "android_client_info": {
+          "package_name": "jwang.example.tutorfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058407535574-s2eihmtphao4t6e80vpoctrcfsnp7arg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgyWN1n_2s9ZSntHLfi_nFPI4jv7I4FjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058407535574-s2eihmtphao4t6e80vpoctrcfsnp7arg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
