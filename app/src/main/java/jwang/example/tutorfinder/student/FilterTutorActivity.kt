@@ -38,23 +38,10 @@ class FilterTutorActivity : AppCompatActivity() {
 
 
     fun onFilterClicked(view: View) {
-        val mutListIterator = StudentDashboard.tutors.listIterator()
 
             for (people in StudentDashboard.tutors){
-                 var x=people
 if (people.degree == degreeQuery.text.toString()) {
-    // if (gradeQuery.text.toString() == people.grade && degreeQuery.text.toString() == people.degree && experienceQuery.text.toString() == people.experience){
- FilteredTutorRv.ViewHolder.mk.degreeText = people.degree
-
-    FilteredTutorRv.ViewHolder.mk.experienceText = people.experience
-    FilteredTutorRv.ViewHolder.mk.gradeText = people.grade
-    FilteredTutorRv.ViewHolder.mk.nameText = people.name
-//StudentDashboard.tutors.clear()
-    //StudentDashboard.tutors.add(people)
-    //recyclerView.adapter?.bindViewHolder()
-
-
-    recyclerView.adapter?.notifyDataSetChanged()
+   
     Log.d("filtration", "$people")
 }
                // }
