@@ -2,6 +2,7 @@ package jwang.example.tutorfinder.tutor
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -19,6 +20,9 @@ class MyStudentProfileActivity : AppCompatActivity() {
     var position = -1
     lateinit var tvGrade: TextView
     lateinit var tvCourse: TextView
+    lateinit var tvPhoneNumber: TextView
+    lateinit var tvEmail:TextView
+    lateinit var tvPhone: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,9 @@ class MyStudentProfileActivity : AppCompatActivity() {
         supportActionBar?.title = "Student Profile"
         tvCourse = findViewById(R.id.textViewCourse)
         tvGrade = findViewById(R.id.textViewGrade)
+        tvPhoneNumber = findViewById(R.id.textViewPhoneNumber)
+        tvEmail = findViewById(R.id.textViewStudentEmail)
+        tvPhone = findViewById(R.id.textViewPhoneNumber)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,7 +54,7 @@ class MyStudentProfileActivity : AppCompatActivity() {
             R.id.action_bar -> {
                 Log.d("Student", "action bar clicked")
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Alert")
+
                 builder.setTitle("Are you sure to delete this student?")
                 builder.setCancelable(false)
                 builder.setPositiveButton("Confirm"){
@@ -73,6 +80,34 @@ class MyStudentProfileActivity : AppCompatActivity() {
         when(view.id){
             R.id.imageButtonGrade -> setDialog("Grade")
             R.id.imageButtonCourse -> setDialog("Course")
+            R.id.imageButtonSMS -> {
+                Log.d("Student", "sms clicked")
+                val intent = Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("smsto:")
+                    putExtra("address", tvPhoneNumber.text)
+
+                    }
+                val chooser = Intent.createChooser(intent, "Choose the application")
+                startActivity(chooser)
+            }
+            R.id.imageButtonEmail -> {
+
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf(tvEmail.text.toString()) )
+                    putExtra(Intent.EXTRA_SUBJECT, "Email subject")
+                }
+                val chooser = Intent.createChooser(intent, "Choose the application")
+                startActivity(chooser)
+            }
+            R.id.imageButtonPhone -> {
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:${tvPhone.text}")
+                }
+                val chooser = Intent.createChooser(intent, "Choose the application")
+                startActivity(chooser)
+            }
+
         }
     }
 
@@ -104,4 +139,6 @@ class MyStudentProfileActivity : AppCompatActivity() {
         }
         builder.show()
     }
+
+
 }
