@@ -41,7 +41,7 @@ class FilterTutorActivity : AppCompatActivity() {
 
             for (people in StudentDashboard.tutors){
 if (people.degree == degreeQuery.text.toString()) {
-   
+
     Log.d("filtration", "$people")
 }
                // }
