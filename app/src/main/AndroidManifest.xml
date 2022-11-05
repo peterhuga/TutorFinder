@@ -41,7 +41,11 @@
         </activity>
         <activity
             android:name=".tutor.EditTutorProfileActivity"
-            android:exported="false" />
+            android:exported="false" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".tutor.TutorScreenActivity" />
+        </activity>
         <activity
             android:name=".student.FilterTutorActivity"
             android:exported="false">
@@ -81,15 +85,20 @@
             android:name=".tutor.RequestedStudentProfileActivity"
             android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".tutor.StudentRequestActivity" />
         </activity>
+
         <activity
             android:name=".tutor.MyStudentProfileActivity"
             android:exported="false" />
         <activity
             android:name=".tutor.StudentRequestActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".tutor.TutorScreenActivity" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -102,11 +111,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
                 <data android:scheme="mailto" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:mimeType="text/plain" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
         </activity>
 
         <meta-data

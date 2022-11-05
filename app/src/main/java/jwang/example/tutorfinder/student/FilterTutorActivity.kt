@@ -19,6 +19,9 @@ class FilterTutorActivity : AppCompatActivity() {
         lateinit var gradeQuery: EditText
         lateinit var degreeQuery: EditText
         lateinit var experienceQuery:EditText
+
+        //Jianwei
+        var filteredTutors: MutableList<Tutor> = mutableListOf()
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_filter_tutor)
@@ -27,7 +30,9 @@ class FilterTutorActivity : AppCompatActivity() {
             experienceQuery=findViewById(R.id.experienceQueryEditText)
 
             recyclerView = findViewById<RecyclerView>(R.id.filturedTutorsRv)
-            adapter = FilteredTutorRv(this, StudentDashboard.tutors)
+
+            //Jianwei
+            adapter = FilteredTutorRv(this, filteredTutors)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -42,6 +47,10 @@ class FilterTutorActivity : AppCompatActivity() {
             for (people in StudentDashboard.tutors){
 if (people.degree == degreeQuery.text.toString()) {
 
+    //Jianwei
+    filteredTutors.add(people)
+
+    recyclerView.adapter?.notifyDataSetChanged()
     Log.d("filtration", "$people")
 }
                // }

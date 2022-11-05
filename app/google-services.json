@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1058407535574",
-    "project_id": "tutorfinder-775b0",
-    "storage_bucket": "tutorfinder-775b0.appspot.com"
+    "project_number": "63642217969",
+    "project_id": "info6134-capstone-project",
+    "storage_bucket": "info6134-capstone-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058407535574:android:a34b35eaf69973de5fca77",
+        "mobilesdk_app_id": "1:63642217969:android:76f7c8a5b7689016416850",
         "android_client_info": {
           "package_name": "jwang.example.tutorfinder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1058407535574-s2eihmtphao4t6e80vpoctrcfsnp7arg.apps.googleusercontent.com",
+          "client_id": "63642217969-r75ikide3apncar0ickvh1976shar4m4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDgyWN1n_2s9ZSntHLfi_nFPI4jv7I4FjU"
+          "current_key": "AIzaSyChuPf2NIhLD9rLJ79cPD4dvDYNof1XY2w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1058407535574-s2eihmtphao4t6e80vpoctrcfsnp7arg.apps.googleusercontent.com",
+              "client_id": "63642217969-r75ikide3apncar0ickvh1976shar4m4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

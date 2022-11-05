@@ -1,15 +1,18 @@
 package jwang.example.tutorfinder.tutor
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import jwang.example.tutorfinder.R
 
-class StudentRequestActivity : AppCompatActivity() , OnClickListener{
+class StudentRequestActivity : AppCompatActivity() {
 
     //Dummy data for populating UI
     companion object {
@@ -20,11 +23,9 @@ class StudentRequestActivity : AppCompatActivity() , OnClickListener{
         )
 
 
-        const val STUDENT_ID = "student id"
+        var STUDENT_ID: Int = 0
 
     }
-
-    lateinit var buttonBack: Button
     lateinit var adapter: StudentRequestsRvAdapter
     lateinit var recyclerView:RecyclerView
 
@@ -32,16 +33,51 @@ class StudentRequestActivity : AppCompatActivity() , OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_request)
 
-        buttonBack = findViewById(R.id.buttonBack)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerViewStudentRequests)
         adapter = StudentRequestsRvAdapter( this,requestedStudents)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        buttonBack.setOnClickListener(this)
-    }
+        supportActionBar?.title = "Tutor Portal"
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
 
-    override fun onClick(v: View?) {
-        finish()
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                when(direction) {
+                    ItemTouchHelper.LEFT -> {
+                        val rejectedStudent: Student =
+                            requestedStudents[viewHolder.adapterPosition]
+                        val position = viewHolder.adapterPosition
+                        requestedStudents.removeAt(viewHolder.adapterPosition)
+                        adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                        Snackbar.make(recyclerView, "${rejectedStudent.name} rejected" , Snackbar.LENGTH_LONG)
+                            .setAction("Undo") {
+                                requestedStudents.add(position, rejectedStudent)
+                                adapter.notifyItemInserted(position)
+                            }.show()
+                    }
+
+                    ItemTouchHelper.RIGHT -> {
+                        val acceptedStudent: Student =
+                            requestedStudents[viewHolder.adapterPosition]
+                        val position = viewHolder.adapterPosition
+                        requestedStudents.removeAt(viewHolder.adapterPosition)
+                        adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                        Snackbar.make(recyclerView, "${acceptedStudent.name} accepted" , Snackbar.LENGTH_LONG)
+                            .setAction("Undo") {
+                                requestedStudents.add(position, acceptedStudent)
+                                adapter.notifyItemInserted(position)
+                            }.show()
+                    }
+                }
+            }
+        }).attachToRecyclerView(recyclerView)
     }
 }

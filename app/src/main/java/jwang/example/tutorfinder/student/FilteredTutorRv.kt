@@ -15,14 +15,16 @@ import jwang.example.tutorfinder.student.StudentDashboard.Companion.executeMyFun
 class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tutor>): RecyclerView.Adapter<FilteredTutorRv.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-           companion object mk{
-                var nameText:String=""
-                var gradeText:String=""
-                var degreeText:String=""
-                var experienceText:String=""
 
-
-           }
+//        Jianwei
+//           companion object mk{
+//                var nameText:String=""
+//                var gradeText:String=""
+//                var degreeText:String=""
+//                var experienceText:String=""
+//
+//
+//           }
 
             val nameTextView: TextView = itemView.findViewById<TextView>(R.id.filteredtutorNameView)
 
@@ -48,6 +50,12 @@ class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tut
         var item = dataset[position]
       //  holder.bind(item)
         //holder.bind(dataset[position])
+
+//Jianwei
+//item.name = ViewHolder.nameText
+//        item.degree = ViewHolder.nameText
+//        item.grade = ViewHolder.nameText
+//        item.experience = ViewHolder.nameText
 
 
         holder.nameTextView.text = "Name: ${item.name}"
