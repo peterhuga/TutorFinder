@@ -1,4 +1,4 @@
-package jwang.example.tutorfinder.student
+package jwng.example.tutorfinder.student
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
