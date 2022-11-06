@@ -100,10 +100,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-//    fun signUpNewUser(view: View) {
-//
-//        startActivity(Intent(this, SignUpActivity::class.java))
-//    }
+    fun signUpNewUser(view: View) {
+
+        startActivity(Intent(this, SignUpActivity::class.java))
+    }
 
 
 }

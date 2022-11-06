@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
 
+
 class StudentDashboard : AppCompatActivity() {
     lateinit var adapter: MyTutorsRvAdapter
     lateinit var recyclerView: RecyclerView
@@ -16,10 +17,10 @@ class StudentDashboard : AppCompatActivity() {
     companion object {
         const val TUTOR_ID = "tutor id"
         var tutors: MutableList<Tutor> = mutableListOf(
-            Tutor(101, "John", "35","Male","London","5555555555","12","5", "John@gmail.com","Masters"),
-            Tutor(101, "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com","Post Graduate"),
-            Tutor(101, "Leo", "36","Male","Ottawa","2222222222","10","6", "Leo@gmail.com","Masters"),
-            Tutor(101, "Shyam", "35","Male","London","5555555555","11","7", "Shyam@gmail.com","Bachelor"),
+            Tutor( "John", "35","Male","London","5555555555","12","5", "John@gmail.com","Masters"),
+            Tutor( "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com","Post Graduate"),
+            Tutor( "Leo", "36","Male","Ottawa","2222222222","10","6", "Leo@gmail.com","Masters"),
+            Tutor( "Shyam", "35","Male","London","5555555555","11","7", "Shyam@gmail.com","Bachelor"),
 
             )
       fun executeMyFunc(holder: FilteredTutorRv.ViewHolder, position: Int) {}
@@ -69,11 +70,7 @@ class StudentDashboard : AppCompatActivity() {
         startActivity(Intent(this,EditStudentProfile::class.java))
     }
     fun onFilterBtnPressed(view: View) {
-        when(view.id){
-            R.id.filterTutorActivityBtn ->{
-                startActivity(Intent(this, TutorFilterActivity::class.java))
 
-            }
-        }
+        startActivity(Intent(this, TutorFilterActivity::class.java))
     }
 }
