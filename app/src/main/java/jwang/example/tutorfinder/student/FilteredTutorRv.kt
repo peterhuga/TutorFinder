@@ -59,9 +59,9 @@ class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tut
 
 
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.degreeTextView.text = "Address: ${item.degree}"
-        holder.gradeTextView.text = "Gender: ${item.grade}"
-        holder.experienceTextView.text = "Course: ${item.experience}"
+        holder.degreeTextView.text = "Academic Degree: ${item.degree}"
+        holder.gradeTextView.text = "Grade: ${item.grade}"
+        holder.experienceTextView.text = "Experience(#Years): ${item.experience}"
 //       // executeMyFunc(holder,position)
 
 //

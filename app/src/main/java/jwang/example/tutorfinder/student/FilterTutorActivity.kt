@@ -39,37 +39,23 @@ class FilterTutorActivity : AppCompatActivity() {
 
         }
 
+fun addfilteredTutorToRV(){
+    for (people in StudentDashboard.tutors){
+        if (people.degree == degreeQuery.text.toString() && people.experience == experienceQuery.text.toString() && people.grade == gradeQuery.text.toString()) {
 
+            //Jianwei
+            filteredTutors.add(people)
+
+            recyclerView.adapter?.notifyDataSetChanged()
+            Log.d("filtration", "$people")
+        }
+        // }
+    }
+}
 
 
     fun onFilterClicked(view: View) {
-        val mutListIterator = StudentDashboard.tutors.listIterator()
-
-            for (people in StudentDashboard.tutors){
-                 var x=people
-if (people.degree == degreeQuery.text.toString()) {
-    // if (gradeQuery.text.toString() == people.grade && degreeQuery.text.toString() == people.degree && experienceQuery.text.toString() == people.experience){
-
-    //Jianwei
-    // FilteredTutorRv.ViewHolder.mk.degreeText = people.degree
-//
-//    FilteredTutorRv.ViewHolder.mk.experienceText = people.experience
-//    FilteredTutorRv.ViewHolder.mk.gradeText = people.grade
-//    FilteredTutorRv.ViewHolder.mk.nameText = people.name
-
-
-    //Jianwei
-    filteredTutors.add(people)
-//StudentDashboard.tutors.clear()
-    //StudentDashboard.tutors.add(people)
-    //recyclerView.adapter?.bindViewHolder()
-
-
-    recyclerView.adapter?.notifyDataSetChanged()
-    Log.d("filtration", "$people")
-}
-               // }
-            }
-
+        filteredTutors.clear()
+        addfilteredTutorToRV()
     }
 }
