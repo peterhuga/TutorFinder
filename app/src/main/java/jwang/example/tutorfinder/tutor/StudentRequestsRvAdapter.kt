@@ -17,20 +17,12 @@ import jwang.example.tutorfinder.tutor.TutorScreenActivity.Companion.STUDENT_ID
 
 class StudentRequestsRvAdapter(val context: Context, private val dataset: List<Student>): RecyclerView.Adapter<StudentRequestsRvAdapter.ViewHolder>() {
 
-    val TAG = "Tutor"
-
-
-
-    //var onItemClick: ((Student)->Unit)? = null
-
-
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-            val nameTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemName)
-            val ageTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemAge)
-            val emailTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemEmail)
-            val imageView = itemView.findViewById<ImageView>(R.id.imageViewMyStudentItem)
+            val nameTextView: TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemName)
+            val ageTextView : TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemAge)
+            val emailTextView: TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemEmail)
+            val imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageViewMyStudentItem)
 
     }
 
@@ -54,16 +46,13 @@ class StudentRequestsRvAdapter(val context: Context, private val dataset: List<S
 
 //        onItemClick?.invoke(item)
 
-
         holder.itemView.setOnClickListener{
-            Log.d(TAG,"item clicked")
-
-                /*val studentID = item.id
-                val intent = Intent(it.context, RequestedStudentProfileActivity::class.java)
-                intent.putExtra(STUDENT_ID, studentID)
-                it.context.startActivity(intent)*/
 
             StudentRequestActivity.STUDENT_ID = item.id
+            StudentRequestActivity.POSITION = position
+
+            StudentRequestActivity.STUDENT_ID_DELETE = 0
+            StudentRequestActivity.POSITION_DELETE = 0
 
             val intent = Intent(context,RequestedStudentProfileActivity::class.java)
             (context as Activity).startActivity(intent)

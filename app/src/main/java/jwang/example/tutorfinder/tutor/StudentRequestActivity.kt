@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,18 +17,29 @@ class StudentRequestActivity : AppCompatActivity() {
 
     //Dummy data for populating UI
     companion object {
-        val requestedStudents: ArrayList<Student> = arrayListOf(
-            Student(101, "Sampath", 21, "sampath@email.com"),
-            Student(102, "Jianwei", 22, "jianwei@email.com"),
-            Student(103,"Sunny", 19, "Sunny@email.com")
-        )
-
 
         var STUDENT_ID: Int = 0
+        var STUDENT_ID_DELETE: Int = 0
+        var POSITION: Int = 0
+        var POSITION_DELETE = 0
 
     }
+
+    val requestedStudents: MutableList<Student> = mutableListOf(
+        Student(101, "Sampath", 21, "sampath@email.com"),
+        Student(102, "Jianwei", 22, "jianwei@email.com"),
+        Student(103,"Sunny", 19, "Sunny@email.com"),
+        Student(104,"Pradip", 20, "Pradip@email.com"),
+        Student(105, "Sampath1", 21, "sampath1@email.com"),
+        Student(106, "Jianwei1", 22, "jianwei1@email.com"),
+        Student(107,"Sunny1", 19, "Sunny1@email.com"),
+        Student(108,"Pradip1", 20, "Pradip1@email.com")
+    )
+
     lateinit var adapter: StudentRequestsRvAdapter
     lateinit var recyclerView:RecyclerView
+
+    var deleteNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +51,7 @@ class StudentRequestActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         supportActionBar?.title = "Tutor Portal"
+
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -79,5 +92,16 @@ class StudentRequestActivity : AppCompatActivity() {
                 }
             }
         }).attachToRecyclerView(recyclerView)
+    }
+
+    private fun loadRequests() {
+        adapter.notifyItemRemoved(POSITION_DELETE-(deleteNumber-1))
+        deleteNumber += 1
+    }
+
+    override fun onResume() {
+        loadRequests()
+
+        super.onResume()
     }
 }
