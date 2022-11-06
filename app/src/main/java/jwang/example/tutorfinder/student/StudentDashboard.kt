@@ -1,24 +1,18 @@
 package jwang.example.tutorfinder.student
 
-import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
-import jwang.example.tutorfinder.tutor.MyStudentsRvAdapter
-import jwang.example.tutorfinder.tutor.Student
-import jwang.example.tutorfinder.tutor.TutorScreenActivity
-import java.text.FieldPosition
 
 class StudentDashboard : AppCompatActivity() {
     lateinit var adapter: MyTutorsRvAdapter
     lateinit var recyclerView: RecyclerView
+    lateinit var filterTutorNavigateBtn:Button
     companion object {
         const val TUTOR_ID = "tutor id"
         var tutors: MutableList<Tutor> = mutableListOf(
@@ -39,6 +33,7 @@ class StudentDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard)
+    filterTutorNavigateBtn=findViewById(R.id.filterTutorActivityBtn)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMyTutor)
         adapter = MyTutorsRvAdapter(this, tutors)
         recyclerView.adapter = adapter
@@ -74,6 +69,11 @@ class StudentDashboard : AppCompatActivity() {
         startActivity(Intent(this,EditStudentProfile::class.java))
     }
     fun onFilterBtnPressed(view: View) {
-        startActivity(Intent(this,FilterTutorActivity::class.java))
+        when(view.id){
+            R.id.filterTutorActivityBtn ->{
+                startActivity(Intent(this, TutorFilterActivity::class.java))
+
+            }
+        }
     }
 }
