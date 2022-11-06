@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
 
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
-        if(email.isNotBlank() || password.isNotBlank()) {
+        if(email.isNotBlank() && password.isNotBlank()) {
 
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
@@ -54,16 +54,7 @@ class SignUpActivity : AppCompatActivity() {
                                 ).show()
                             }
                         }
-
-
-
-
-
         }
-
-
-
-
         else {
             Toast.makeText(baseContext, "Email and password cannot be blank",
                 Toast.LENGTH_SHORT).show()
