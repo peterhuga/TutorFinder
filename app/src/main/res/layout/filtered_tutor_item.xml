@@ -24,8 +24,8 @@
             android:foregroundGravity="center"
 
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/choose_choice"
-            tools:srcCompat="@drawable/choose_choice" />
+            app:srcCompat="@drawable/myteacher_trans"
+            tools:srcCompat="@drawable/myteacher_trans" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,14 +46,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/address" />
+                android:text="@string/degree" />
 
             <TextView
                 android:id="@+id/filteredtutorGradeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/gender" />
+                android:text="@string/grade" />
 
             <TextView
                 android:id="@+id/filteredtutorExperienceView"
