@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,15 @@ class TutorScreenActivity : AppCompatActivity() {
     //Dummy data for populating UI
     companion object {
         const val STUDENT_ID = "student id"
+
+        var nameTutor: String = ""
+        var ageTutor: String = ""
+        var addressTutor: String = ""
+        var phoneTutor: String = ""
+        var educationTutor: String = ""
+        var emailTutor: String = ""
+        var experienceTutor: String = ""
+
         var students: MutableList<Student> = mutableListOf(
             Student(101, "Sampath", 21, "sampath@email.com"),
             Student(102, "Jianwei", 22, "jianwei@email.com"),
@@ -31,6 +41,7 @@ class TutorScreenActivity : AppCompatActivity() {
             Student(105, "Jianwei", 24, "jianwei@email.com"),
             Student(106,"Sunny", 25, "Sunny@email.com")
         )
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

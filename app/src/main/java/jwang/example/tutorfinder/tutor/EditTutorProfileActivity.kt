@@ -1,9 +1,15 @@
 package jwang.example.tutorfinder.tutor
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import jwang.example.tutorfinder.R
 
 class EditTutorProfileActivity : AppCompatActivity() {
@@ -16,14 +22,6 @@ class EditTutorProfileActivity : AppCompatActivity() {
     lateinit var tutorsAgeTextView: TextView
     lateinit var tutorsExperienceTextView: TextView
 
-    var name: String = "Sampath"
-    var age: String = "28"
-    var address: String = "79 Main st."
-    var phone: String = "Sampath"
-    var education: String = "Graduate Level"
-    var email: String = "sampath@email.com"
-    var experience: String = "5 years"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edittutor_profile)
@@ -33,7 +31,41 @@ class EditTutorProfileActivity : AppCompatActivity() {
         initializeFields()
     }
 
-    fun onSAveButtonClick(view: View) {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_profile_save, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+
+            R.id.action_bar -> {
+                Log.d("Student", "action bar clicked")
+
+               if (tutorsNameTextView.text.isEmpty() || tutorsAgeTextView.text.isEmpty() || tutorsEmailTextView.text.isEmpty() || tutorsPhoneTextView.text.isEmpty()
+                   || tutorsAddressTextView.text.isEmpty() || tutorsEducationTextView.text.isEmpty() || tutorsExperienceTextView.text.isEmpty()) {
+                   Toast.makeText(this,"Fill the every field!", Toast.LENGTH_SHORT).show()
+               } else {
+                   onSAveButtonClick()
+               }
+
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun onSAveButtonClick() {
+
+        TutorScreenActivity.nameTutor = tutorsNameTextView.text.toString()
+        TutorScreenActivity.emailTutor = tutorsEmailTextView.text.toString()
+        TutorScreenActivity.phoneTutor = tutorsPhoneTextView.text.toString()
+        TutorScreenActivity.addressTutor = tutorsAddressTextView.text.toString()
+        TutorScreenActivity.educationTutor = tutorsEducationTextView.text.toString()
+        TutorScreenActivity.ageTutor = tutorsAgeTextView.text.toString()
+        TutorScreenActivity.experienceTutor = tutorsExperienceTextView.text.toString()
+
+        Toast.makeText(this,"Profile updated successfully!", Toast.LENGTH_SHORT).show()
 
         finish()
     }
@@ -47,13 +79,15 @@ class EditTutorProfileActivity : AppCompatActivity() {
         tutorsAgeTextView = findViewById(R.id.editTextTutorAge)
         tutorsExperienceTextView = findViewById(R.id.editTextTutorExperience)
 
-        tutorsNameTextView.text = name
-        tutorsEmailTextView.text = email
-        tutorsPhoneTextView.text = phone
-        tutorsAddressTextView.text = address
-        tutorsEducationTextView.text = education
-        tutorsAgeTextView.text = age
-        tutorsExperienceTextView.text = experience
+
+        tutorsNameTextView.text = TutorScreenActivity.nameTutor
+        tutorsEmailTextView.text = TutorScreenActivity.emailTutor
+        tutorsPhoneTextView.text = TutorScreenActivity.phoneTutor
+        tutorsAddressTextView.text = TutorScreenActivity.addressTutor
+        tutorsEducationTextView.text = TutorScreenActivity.educationTutor
+        tutorsAgeTextView.text = TutorScreenActivity.ageTutor
+        tutorsExperienceTextView.text = TutorScreenActivity.experienceTutor
+
 
     }
 }

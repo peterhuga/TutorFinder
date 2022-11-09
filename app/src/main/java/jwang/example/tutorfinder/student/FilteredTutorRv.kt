@@ -15,17 +15,6 @@ import jwang.example.tutorfinder.student.StudentDashboard.Companion.executeMyFun
 class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tutor>): RecyclerView.Adapter<FilteredTutorRv.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-
-//        Jianwei
-//           companion object mk{
-//                var nameText:String=""
-//                var gradeText:String=""
-//                var degreeText:String=""
-//                var experienceText:String=""
-//
-//
-//           }
-
             val nameTextView: TextView = itemView.findViewById<TextView>(R.id.filteredtutorNameView)
 
             val gradeTextView: TextView = itemView.findViewById<TextView>(R.id.filteredtutorGradeView)
@@ -48,20 +37,10 @@ class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tut
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         var item = dataset[position]
-      //  holder.bind(item)
-        //holder.bind(dataset[position])
-
-//Jianwei
-//item.name = ViewHolder.nameText
-//        item.degree = ViewHolder.nameText
-//        item.grade = ViewHolder.nameText
-//        item.experience = ViewHolder.nameText
-
-
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.degreeTextView.text = "Address: ${item.degree}"
-        holder.gradeTextView.text = "Gender: ${item.grade}"
-        holder.experienceTextView.text = "Course: ${item.experience}"
+        holder.degreeTextView.text = "Academic Degree: ${item.degree}"
+        holder.gradeTextView.text = "Grade: ${item.grade}"
+        holder.experienceTextView.text = "Experience(#Years): ${item.experience}"
 //       // executeMyFunc(holder,position)
 
 //
