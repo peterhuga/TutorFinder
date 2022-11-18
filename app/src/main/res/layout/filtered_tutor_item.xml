@@ -68,9 +68,10 @@
                     android:text="@string/experience" />
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/sendRequestToTutorBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onSendRequestTapped"
                     android:text="@string/sendrequest" />
 
             </LinearLayout>

@@ -17,7 +17,10 @@
     <string name="editProfile">Edit Profile</string>
     <string name="save">Save</string>
     <string name="name">Name</string>
+    <string name="notification">Subscribe Notification</string>
 
+    <string name="channel_name">PRadip</string>
+    <string name="channnel_desc">Testing for notification</string>
     <string name="address">Address</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
