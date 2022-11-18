@@ -193,23 +193,25 @@
 
     <ImageButton
         android:id="@+id/phoneImageView"
-        android:layout_width="45dp"
-        android:layout_height="31dp"
+        android:layout_width="42dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:onClick="onRedirectBtnclick"
         app:layout_constraintBottom_toBottomOf="@+id/myTutorPhoneTextView"
+        app:layout_constraintEnd_toStartOf="@+id/smsImageView"
         app:layout_constraintStart_toEndOf="@+id/myTutorPhoneTextView"
-        app:srcCompat="@android:drawable/stat_sys_phone_call_forward" />
+        app:srcCompat="@drawable/ic_phone" />
 
     <ImageButton
         android:id="@+id/smsImageView"
-        android:layout_width="52dp"
+        android:layout_width="40dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="8dp"
         android:onClick="onRedirectBtnclick"
         app:layout_constraintBottom_toBottomOf="@+id/phoneImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/phoneImageView"
-        app:srcCompat="@drawable/messagesicon" />
+        app:srcCompat="@drawable/ic_sms" />
 
     <ImageButton
         android:id="@+id/emailImageView"
@@ -218,7 +220,8 @@
         android:layout_marginStart="5dp"
         android:onClick="onRedirectBtnclick"
         app:layout_constraintBottom_toBottomOf="@+id/myTutorEmailTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/myTutorEmailTextView"
-        app:srcCompat="@drawable/mailicon" />
+        app:srcCompat="@drawable/ic_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

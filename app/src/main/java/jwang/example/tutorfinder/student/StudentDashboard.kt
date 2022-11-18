@@ -73,4 +73,9 @@ class StudentDashboard : AppCompatActivity() {
 
         startActivity(Intent(this, TutorFilterActivity::class.java))
     }
+
+    fun sentRequestTutor(view: View) {
+        startActivity(Intent(this, SentRequestToTutorActivity::class.java))
+
+    }
 }

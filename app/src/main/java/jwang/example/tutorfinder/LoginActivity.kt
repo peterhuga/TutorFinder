@@ -33,49 +33,30 @@ class LoginActivity : AppCompatActivity() {
 
     }
     fun onLoginClicked(view: View) {
-        val email = emailEditText.text.toString()
-        val password = passwordEditText.text.toString()
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    startActivity(Intent(this, StudentDashboard::class.java))
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
 //        val email = emailEditText.text.toString()
 //        val password = passwordEditText.text.toString()
-//        if (email.isNotBlank() || password.isNotBlank()) {
-//                auth.signInWithEmailAndPassword(email, password)
-//                    .addOnCompleteListener(this) { task ->
-//                        if (task.isSuccessful) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d("signin", "signInWithEmail:success")
-                            //finish()
-//
-//                       }
-//                        else{
-//                           // Log.w(TAG, "createUserWithEmail:failure", task.exception)
-//                            Toast.makeText(baseContext, "Authentication failed.",
-//                                Toast.LENGTH_SHORT).show()
-//                        }
+//        if (email.isNotBlank() && password.isNotBlank()){
+//            auth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this) { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d(TAG, "createUserWithEmail:success")
+//                        val user = auth.currentUser
+                        startActivity(Intent(this, StudentDashboard::class.java))
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+//                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+//                        Toast.makeText(baseContext, "Wrong email/password.",
+//                            Toast.LENGTH_SHORT).show()
 //                    }
-//        } else {
-//            Toast.makeText(
-//                baseContext, "Please enter valid email and password",
-//                Toast.LENGTH_SHORT
-//            ).show()
+//                }
+//        }
+//        else{
+//            Toast.makeText(baseContext, "Email/password cannot be blank",
+//                Toast.LENGTH_SHORT).show()
 //        }
 
-
-
+    }
 
     fun onToTutorClicked(view: View) {
         startActivity(Intent(this,TutorScreenActivity::class.java))

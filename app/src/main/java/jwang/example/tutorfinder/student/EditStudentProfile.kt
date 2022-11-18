@@ -77,6 +77,7 @@ class EditStudentProfile : AppCompatActivity() {
          val myProfile =  Student(studentName.text.toString(), studentAge.text.toString(), studentAddress.text.toString(), studentCourse.text.toString(), studentGender.text.toString(), studentEmail.text.toString(), studentGrade.text.toString(), studentPhone.text.toString())
         Log.d("mytag", "databaseCheck")
         myRef.setValue(myProfile)
+        database.goOffline()
 
         finish()
 
