@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
+import jwang.example.tutorfinder.tutor.EditTutorProfileActivity
 import jwang.example.tutorfinder.tutor.StudentRequestActivity
 
 
@@ -134,7 +135,7 @@ class StudentDashboard : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     fun onEditProfileBtnClicked(view: View) {
-        startActivity(Intent(this,EditStudentProfile::class.java))
+        startActivity(Intent(this,cameraTest::class.java))
     }
     fun onFilterBtnPressed(view: View) {
 

@@ -30,7 +30,7 @@ class TutorFilterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        createNotificationChannel()
+        //createNotificationChannel()
         setContentView(R.layout.activity_tutor_filter)
         degreeSpinner=findViewById(R.id.academicDegreeSpinner)
         gradeSpinner=findViewById(R.id.gradeSpinner)
@@ -84,22 +84,22 @@ class TutorFilterActivity : AppCompatActivity() {
 //    override fun onNothingSelected(p0: AdapterView<*>?) {
 //        Toast.makeText(this, "Nothing Selected", Toast.LENGTH_LONG).show()
 //    }
-fun createNotificationChannel() {
-    // Create the NotificationChannel, but only on API 26+ because
-    // the NotificationChannel class is new and not in the support library
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val name = getString(R.string.channel_name)
-        val descriptionText = getString(R.string.channnel_desc)
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-            description = descriptionText
-        }
-        // Register the channel with the system
-        val notificationManager: NotificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
-    }
-}
+//fun createNotificationChannel() {
+//    // Create the NotificationChannel, but only on API 26+ because
+//    // the NotificationChannel class is new and not in the support library
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//        val name = getString(R.string.channel_name)
+//        val descriptionText = getString(R.string.channnel_desc)
+//        val importance = NotificationManager.IMPORTANCE_DEFAULT
+//        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+//            description = descriptionText
+//        }
+//        // Register the channel with the system
+//        val notificationManager: NotificationManager =
+//            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//        notificationManager.createNotificationChannel(channel)
+//    }
+//}
     fun addfilteredTutorToRV(){
         for (people in StudentDashboard.tutors){
             if (people.degree == degreeSpinner.selectedItem.toString() ) {
@@ -120,6 +120,7 @@ fun createNotificationChannel() {
         addfilteredTutorToRV()
     }
     fun sendPhoneNotification() {
+        recyclerView.findViewHolderForLayoutPosition(0)
         //val mail = Uri.parse("mailto:xyz@gmail.com")
         val intent = Intent(this,EditStudentProfile::class.java).apply {
             type = "image/*"

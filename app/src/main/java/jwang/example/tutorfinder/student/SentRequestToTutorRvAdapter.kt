@@ -1,6 +1,8 @@
 package jwang.example.tutorfinder.student
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,14 +52,14 @@ class SentRequestToTutorRvAdapter(val context: Context, private val dataSet: Mut
         viewHolder.gradeTextView.text = "Grade Taught: "+dataSet[position].grade
         viewHolder.degreeTextView.text = "Academic Degree: "+dataSet[position].degree
 
-//viewHolder.itemView.setOnClickListener{
-//
-//    val intent = Intent(context, MyTutorProfileActivity::class.java)
-//    intent.putExtra("position", position)
-//
-//    (context as Activity).startActivityForResult (intent, 1)
-//
-//}
+viewHolder.itemView.setOnClickListener{
+
+    val intent = Intent(context, MyTutorProfileActivity::class.java)
+    intent.putExtra("position", position)
+
+    (context as Activity).startActivityForResult (intent, 1)
+
+}
     }
 
 

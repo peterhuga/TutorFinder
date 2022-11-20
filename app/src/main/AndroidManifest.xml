@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:dist="http://schemas.android.com/apk/distribution">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.CALL_BUTTON" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.SENDTO" />
-        </intent>
-    </queries>
-    <dist:module dist:instant="true" />
+<!--    <queries>-->
+<!--        <intent>-->
+<!--            <action android:name="android.intent.action.CALL_BUTTON" />-->
+<!--        </intent>-->
+
+<!--        <intent>-->
+<!--            <action android:name="android.intent.action.SENDTO" />-->
+<!--        </intent>-->
+<!--    </queries>-->
+
+<!--    <dist:module dist:instant="true" />-->
 
     <application
         android:allowBackup="true"
@@ -26,6 +29,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorFinder"
         tools:targetApi="31">
+        <activity
+            android:name=".student.cameraTest"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.EditProfileStudent"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".student.SentRequestToTutorActivity"
             android:exported="false">
@@ -118,22 +135,41 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SENDTO" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.SENDTO" />-->
 
-                <data android:scheme="mailto" />
+<!--                <data android:scheme="mailto" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.SEND" />-->
+
+<!--                <data android:scheme="sms" />-->
+<!--                <data android:scheme="sms to" />-->
+<!--                <data android:mimeType="text/plain" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.GET_CONTENT" />-->
+
+<!--                <data android:mimeType="image/*" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                &lt;!&ndash;-->
+<!--                     The OPENABLE category declares that the returned file is accessible-->
+<!--                     from a content provider that supports OpenableColumns-->
+<!--                     and ContentResolver.openFileDescriptor()-->
+<!--                &ndash;&gt;-->
+<!--                <category android:name="android.intent.category.OPENABLE" />-->
+<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
 
-                <data android:scheme="sms" />
-                <data android:scheme="smsto" />
-                <data android:mimeType="text/plain" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <meta-data
