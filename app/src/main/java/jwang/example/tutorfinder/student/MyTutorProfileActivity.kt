@@ -30,6 +30,9 @@ class MyTutorProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tutor_profile)
+
+        supportActionBar?.title = "Student Portal"
+
         myTutorname = findViewById(R.id.myTutorNameTextView)
         myTutorage = findViewById(R.id.myTutorAgeTextView)
         myTutoremail = findViewById(R.id.myTutorEmailTextView)
@@ -43,7 +46,6 @@ class MyTutorProfileActivity : AppCompatActivity() {
         myTutorphoneredirect = findViewById(R.id.phoneImageView)
         myTutorsmsredirect = findViewById(R.id.smsImageView)
         myTutoremailredirect = findViewById(R.id.emailImageView)
-        backToDashboard=findViewById(R.id.goBackFromMyTutorProfile)
         for (i in 0..StudentDashboard.tutors.count()-1){
             myTutorname.text=StudentDashboard.tutors[i].name
             myTutorage.text=StudentDashboard.tutors[i].age
@@ -93,9 +95,6 @@ class MyTutorProfileActivity : AppCompatActivity() {
                 }
 
 
-            }
-            R.id.goBackFromMyTutorProfile -> {
-                finish()
             }
         }
     }

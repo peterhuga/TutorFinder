@@ -21,6 +21,9 @@ class TutorFilterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutor_filter)
+
+        supportActionBar?.title = "Student Portal"
+
         degreeQuery=findViewById(R.id.courseQueryEditText)
         gradeQuery=findViewById(R.id.gradeQueryEditText)
         experienceQuery=findViewById(R.id.experienceQueryEditText)

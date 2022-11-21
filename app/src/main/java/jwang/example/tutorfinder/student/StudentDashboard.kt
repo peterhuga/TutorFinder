@@ -33,6 +33,9 @@ class StudentDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard)
+
+        supportActionBar?.title = "Student Portal"
+
     filterTutorNavigateBtn=findViewById(R.id.filterTutorActivityBtn)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMyTutor)
         adapter = MyTutorsRvAdapter(this, tutors)
