@@ -28,22 +28,22 @@
             android:name=".student.TutorFilterActivity"
             android:exported="false" >
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".student.StudentDashboard" />
         </activity>
         <activity
             android:name=".student.TutorProfileActivity"
             android:exported="false" >
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".student.StudentDashboard" />
         </activity>
         <activity
             android:name=".student.MyTutorProfileActivity"
             android:exported="false" >
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".student.StudentDashboard" />
         </activity>
         <activity
             android:name=".tutor.EditTutorProfileActivity"
@@ -56,8 +56,8 @@
             android:name=".student.EditStudentProfile"
             android:exported="false" >
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".student.StudentDashboard" />
         </activity>
         <activity
             android:name=".student.StudentDashboard"

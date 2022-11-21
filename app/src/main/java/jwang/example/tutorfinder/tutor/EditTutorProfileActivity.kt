@@ -10,6 +10,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
 
 class EditTutorProfileActivity : AppCompatActivity() {
@@ -42,17 +45,28 @@ class EditTutorProfileActivity : AppCompatActivity() {
             R.id.action_bar -> {
                 Log.d("Student", "action bar clicked")
 
-               if (tutorsNameTextView.text.isEmpty() || tutorsAgeTextView.text.isEmpty() || tutorsEmailTextView.text.isEmpty() || tutorsPhoneTextView.text.isEmpty()
-                   || tutorsAddressTextView.text.isEmpty() || tutorsEducationTextView.text.isEmpty() || tutorsExperienceTextView.text.isEmpty()) {
-                   Toast.makeText(this,"Fill the every field!", Toast.LENGTH_SHORT).show()
-               } else {
-                   onSAveButtonClick()
-               }
+                if (tutorsNameTextView.text.isEmpty() || tutorsAgeTextView.text.isEmpty() || tutorsEmailTextView.text.isEmpty() || tutorsPhoneTextView.text.isEmpty()
+                    || tutorsAddressTextView.text.isEmpty() || tutorsEducationTextView.text.isEmpty() || tutorsExperienceTextView.text.isEmpty()) {
+                    Toast.makeText(this,"Fill the every field!", Toast.LENGTH_SHORT).show()
+                } else {
+                    onSAveButtonClick()
+                }
 
                 return true
             }
+
+            R.id.log_out -> {
+                logOut()
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun logOut() {
+        Firebase.auth.signOut()
+        Toast.makeText(this,R.string.logged_out,Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this,LoginActivity::class.java))
+        finish()
     }
 
     private fun onSAveButtonClick() {

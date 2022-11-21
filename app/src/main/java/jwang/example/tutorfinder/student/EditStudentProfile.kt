@@ -1,92 +1,89 @@
 package jwang.example.tutorfinder.student
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
+import jwang.example.tutorfinder.tutor.TutorScreenActivity
 
 class EditStudentProfile : AppCompatActivity() {
-//    val database= Firebase.database
-//    val myRef = database.getReference("tutor/tutorDetails")
 
-    lateinit var goBack: Button
+    lateinit var studentsNameTextView: TextView
+    lateinit var studentsEmailTextView: TextView
+    lateinit var studentsPhoneTextView: TextView
+    lateinit var studentsAddressTextView: TextView
+    lateinit var studentsGradeTextView: TextView
+    lateinit var studentsAgeTextView: TextView
 
-    lateinit var tutorName: EditText
-    lateinit var tutorAge: EditText
-    lateinit var tutorAddress: EditText
-    lateinit var tutorGrade: EditText
-    lateinit var tutorCourse: EditText
-    lateinit var tutorGender: EditText
-    lateinit var tutorEmail: EditText
-    lateinit var tutorPhone: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_student_profile)
+
+        supportActionBar?.title = "Student Portal"
+
+        initializeFields()
     }
-//        tutorName=findViewById(R.id.tutorNameEditText)
-//        tutorAge=findViewById(R.id.tutorAgeEditText)
-//        tutorAddress=findViewById(R.id.tutorAddressEditText)
-//        tutorGrade=findViewById(R.id.tutorGradeEditText)
-//        tutorCourse=findViewById(R.id.tutorCourseEditText)
-//        tutorGender=findViewById(R.id.tutorGenderEditText)
-//        tutorEmail=findViewById(R.id.tutorEmailEditText)
-//        tutorPhone=findViewById(R.id.tutorPhoneEditText)
-
-        // goBack=findViewById(R.id.goBackViaEditProfile)
 
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_profile_save, menu)
+        return true
+    }
 
-        // My top posts by number of stars
-//        myRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                for (postSnapshot in dataSnapshot.children) {
-//                    val displayName = dataSnapshot.child("name").getValue(String::class.java)
-//                    val displayAge = dataSnapshot.child("age").getValue(String::class.java)
-//                    val displayAddress = dataSnapshot.child("address").getValue(String::class.java)
-//                    val displayGrade = dataSnapshot.child("grade").getValue(String::class.java)
-//                    val displayCourse = dataSnapshot.child("course").getValue(String::class.java)
-//                    val displayGender = dataSnapshot.child("gender").getValue(String::class.java)
-//                    val displayEmail = dataSnapshot.child("email").getValue(String::class.java)
-//                    val displayPhone = dataSnapshot.child("phone").getValue(String::class.java)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
 
-//                    // TODO: handle the post
-//                    tutorName.setText(displayName)
-//                    tutorAddress.setText(displayAddress)
-//                    tutorPhone.setText(displayPhone)
-//                    tutorEmail.setText(displayEmail)
-//                    tutorGender.setText(displayGender)
-//                    tutorAge.setText(displayAge)
-//                    tutorCourse.setText(displayCourse)
-//                    tutorGrade.setText(displayGrade)
+            R.id.action_bar -> {
+                Log.d("Student", "action bar clicked")
 
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-//                // ...
-//            }
-//        })
-//        database.goOffline()
-//
-//    }
+                if (studentsNameTextView.text.isEmpty() || studentsEmailTextView.text.isEmpty() || studentsPhoneTextView.text.isEmpty()
+                    || studentsAddressTextView.text.isEmpty() || studentsGradeTextView.text.isEmpty() || studentsAgeTextView.text.isEmpty()) {
+                    Toast.makeText(this,"Fill the every field!", Toast.LENGTH_SHORT).show()
+                } else {
+                    onSAveButtonClick()
+                }
 
-    fun onSaveClicked(view: View) {
-        //myRef.setValue("yes")
+                return true
+            }
 
-       // val tutor =  Tutor(tutorName.text.toString(), tutorAge.text.toString(), tutorGender.text.toString(), tutorAddress.text.toString(), tutorPhone.text.toString(), tutorGrade.text.toString(), tutorCourse.text.toString(), tutorEmail.text.toString())
-        Log.d("mytag", "databaseCheck")
+            R.id.log_out -> {
+                logOut()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun logOut() {
+        Firebase.auth.signOut()
+        Toast.makeText(this,R.string.logged_out, Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
-
-        //myRef.setValue(tutor)
-        //database.goOffline()
-
-
     }
 
+    private fun onSAveButtonClick() {
+
+        // ToDo: Save the students profile on firebase database
+
+        Toast.makeText(this,"Profile updated successfully!", Toast.LENGTH_SHORT).show()
+
+        finish()
+    }
+
+    private fun initializeFields() {
+        studentsNameTextView = findViewById(R.id.editTextStudentName)
+        studentsEmailTextView = findViewById(R.id.editTextStudentEmail)
+        studentsPhoneTextView = findViewById(R.id.editTextStudentPhone)
+        studentsAddressTextView = findViewById(R.id.editTextStudentAddress)
+        studentsGradeTextView = findViewById(R.id.editTextStudentGrade)
+        studentsAgeTextView = findViewById(R.id.editTextStudentAge)
+    }
 
 }
