@@ -14,10 +14,4 @@
         android:title="@string/tutor_logout"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/log_out"
-        android:icon="@drawable/ic_baseline_logout_24"
-        android:title="@string/tutor_logout"
-        app:showAsAction="ifRoom"/>
-
 </menu>
