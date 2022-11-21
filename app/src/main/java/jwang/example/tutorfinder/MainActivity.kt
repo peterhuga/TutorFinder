@@ -60,10 +60,11 @@ class MainActivity : AppCompatActivity() {
                         if(snapshot.exists()){
 
                             //Get object from snapshot. Here is only one object in the children array.
-
+                            //TODO: Student and Tutor classes should inherit UnknownUser class
                             var unknownUser: UnknownUser? = null
                             for (i in snapshot.children){
                                 unknownUser = i.getValue(UnknownUser::class.java)
+                               
                             }
                             when(unknownUser?.role){
                                 "student" -> {startActivity(Intent(applicationContext, StudentDashboard::class.java))

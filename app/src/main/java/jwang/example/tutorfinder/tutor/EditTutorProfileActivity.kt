@@ -66,6 +66,7 @@ class EditTutorProfileActivity : AppCompatActivity() {
         Firebase.auth.signOut()
         Toast.makeText(this,R.string.logged_out,Toast.LENGTH_SHORT).show()
         startActivity(Intent(this,LoginActivity::class.java))
+        //finishActivity(1)
         finish()
     }
 

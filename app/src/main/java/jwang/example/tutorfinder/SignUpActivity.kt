@@ -24,6 +24,7 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var passwordEditText : EditText
     lateinit var checkStudent: CheckBox
     lateinit var checkTutor: CheckBox
+    lateinit var passwordConfirm: EditText
 
     lateinit var signUpButton: Button
     private lateinit var database: DatabaseReference
@@ -39,6 +40,7 @@ class SignUpActivity : AppCompatActivity() {
         passwordEditText=findViewById(R.id.signinpasswordedittext)
         checkStudent = findViewById(R.id.checkBoxStudent)
         checkTutor = findViewById(R.id.checkBoxTutor)
+        passwordConfirm = findViewById(R.id.editTextConfirm)
         database = Firebase.database.reference
 
         checkTutor.setOnCheckedChangeListener{
@@ -57,17 +59,24 @@ class SignUpActivity : AppCompatActivity() {
             //Log.d("mytag", "key, $key")
             when {
                 TextUtils.isEmpty(emailEditText.text.toString().trim {it <= ' '}) -> {
-                    Toast.makeText(this,"Please enter email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Please enter email", Toast.LENGTH_LONG).show()
                 }
                 TextUtils.isEmpty(passwordEditText.text.toString().trim {it <= ' '}) -> {
-                    Toast.makeText(this,"Please enter password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Please enter password", Toast.LENGTH_LONG).show()
                 }
+                passwordConfirm.text.toString() != passwordEditText.text.toString() -> {
+                    Toast.makeText(this,"Passwords are not same", Toast.LENGTH_LONG).show()
+                }
+                !checkStudent.isChecked && !checkTutor.isChecked -> {
+                    Toast.makeText(this, "Please select a role", Toast.LENGTH_LONG).show()
+                }
+
                 else -> {
                     //Decide role
                     when(true){
                         checkStudent.isChecked -> role = "student"
                         checkTutor.isChecked -> role = "tutor"
-                        else -> Toast.makeText(this, "Please select a role", Toast.LENGTH_LONG).show()
+                        else -> (print("No role"))
                     }
                     val user:String = emailEditText.text.toString().trim {it <= ' '}
                     val pass:String = passwordEditText.text.toString().trim {it <= ' '}
@@ -116,7 +125,4 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
 }

@@ -7,78 +7,77 @@
     tools:context=".SignUpActivity">
 
 
-    <TextView
-        android:id="@+id/signupusernametextview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/signuppasswordtextview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/password"
-        app:layout_constraintStart_toStartOf="@+id/signupusernametextview"
-        app:layout_constraintTop_toBottomOf="@+id/signupusernametextview" />
-
     <EditText
         android:id="@+id/signinpasswordedittext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:autofillHints="Password"
+        android:hint="Password"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/signuppasswordtextview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/signuppasswordtextview"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinusernameedittext" />
 
     <EditText
         android:id="@+id/signinusernameedittext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:autofillHints="Email"
+        android:hint="Email"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/signupusernametextview"
-        app:layout_constraintEnd_toEndOf="@+id/signinpasswordedittext"
-        app:layout_constraintStart_toStartOf="@+id/signinpasswordedittext" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/newUserSignupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:onClick="signupNewUserBtn"
         android:text="@string/signupbtn"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signinpasswordedittext" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirm" />
 
     <CheckBox
         android:id="@+id/checkBoxTutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="Register As Tutor"
         app:layout_constraintEnd_toEndOf="@+id/signinpasswordedittext"
-        app:layout_constraintTop_toBottomOf="@+id/signinpasswordedittext" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirm" />
 
     <CheckBox
         android:id="@+id/checkBoxStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register As Student"
-        app:layout_constraintStart_toStartOf="@+id/signuppasswordtextview"
-        app:layout_constraintTop_toTopOf="@+id/checkBoxTutor" />
+        app:layout_constraintTop_toTopOf="@+id/checkBoxTutor"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/editTextConfirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/signinpasswordedittext"
+        app:layout_constraintStart_toStartOf="@+id/signinpasswordedittext"
+        app:layout_constraintTop_toBottomOf="@+id/signinpasswordedittext"
+        android:autofillHints="Confirm"
+        android:hint="Confirm"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

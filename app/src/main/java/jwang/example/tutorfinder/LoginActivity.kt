@@ -1,7 +1,7 @@
 package jwang.example.tutorfinder
 
+import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -10,8 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -23,12 +22,13 @@ import com.google.firebase.ktx.Firebase
 import jwang.example.tutorfinder.student.StudentDashboard
 import jwang.example.tutorfinder.tutor.TutorScreenActivity
 
+
 class LoginActivity : AppCompatActivity() {
     lateinit var loginBtn: Button
     lateinit var signupText: TextView
-    private lateinit var auth: FirebaseAuth
     lateinit var emailEditText: EditText
     lateinit var passwordEditText: EditText
+    lateinit var tvForgetPassword: TextView
     private val database = Firebase.database.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +38,35 @@ class LoginActivity : AppCompatActivity() {
         signupText = findViewById(R.id.textViewHere)
         emailEditText = findViewById(R.id.username)
         passwordEditText = findViewById(R.id.password)
+        tvForgetPassword = findViewById(R.id.textViewForgetPassword)
 
         signupText.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
+        tvForgetPassword.setOnClickListener {
 
+            val editTextDialog = EditText(this)
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Enter your email and click SUBMIT")
+            builder.setView(editTextDialog)
+            builder.setCancelable(false)
+            builder.setPositiveButton("SUBMIT") { dialog, which ->
+                run {
+                    Firebase.auth
+                        .sendPasswordResetEmail(editTextDialog.text.toString())
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d("reset", "Email sent")
+                            }
+                        }
+                    Toast.makeText(this, "Password reset link sent", Toast.LENGTH_SHORT).show()
+                }
+            }
+                builder.setNegativeButton("CANCEL") { dialog, which ->
+                    dialog.cancel()
+                }
+                builder.show()
+        }
     }
 
 //    override fun onStart() {
@@ -98,21 +122,21 @@ class LoginActivity : AppCompatActivity() {
     fun onLoginClicked(view: View) {
 
         when {
-            TextUtils.isEmpty(emailEditText.text.toString().trim {it <= ' '}) -> {
-                Toast.makeText(this,"Please enter email", Toast.LENGTH_SHORT).show()
+            TextUtils.isEmpty(emailEditText.text.toString().trim { it <= ' ' }) -> {
+                Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show()
             }
-            TextUtils.isEmpty(passwordEditText.text.toString().trim {it <= ' '}) -> {
-                Toast.makeText(this,"Please enter password", Toast.LENGTH_SHORT).show()
+            TextUtils.isEmpty(passwordEditText.text.toString().trim { it <= ' ' }) -> {
+                Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show()
             }
             else -> {
                 //Decide role
 
-                val user:String = emailEditText.text.toString().trim {it <= ' '}
-                val pass:String = passwordEditText.text.toString().trim {it <= ' '}
+                val user: String = emailEditText.text.toString().trim { it <= ' ' }
+                val pass: String = passwordEditText.text.toString().trim { it <= ' ' }
                 // signs in current user
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(user,pass)
-                // create a new user and password for registration
-                //Firebase.auth.createUserWithEmailAndPassword(user,pass)
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(user, pass)
+                    // create a new user and password for registration
+                    //Firebase.auth.createUserWithEmailAndPassword(user,pass)
                     .addOnCompleteListener { task ->
                         Log.d("mytag", task.isSuccessful.toString())
                         if (task.isSuccessful) {
@@ -121,17 +145,11 @@ class LoginActivity : AppCompatActivity() {
                             checkRole(firebaseUser)
                             finish()
                         } else {
-                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
             }
         }
     }
-
-    fun onToTutorClicked(view: View) {
-        startActivity(Intent(this,TutorScreenActivity::class.java))
-    }
-
-
-
 }
