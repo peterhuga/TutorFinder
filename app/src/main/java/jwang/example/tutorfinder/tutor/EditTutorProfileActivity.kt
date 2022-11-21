@@ -10,6 +10,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
 
 class EditTutorProfileActivity : AppCompatActivity() {
@@ -51,8 +54,20 @@ class EditTutorProfileActivity : AppCompatActivity() {
 
                 return true
             }
+
+            R.id.log_out -> {
+                logOut()
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun logOut() {
+        Firebase.auth.signOut()
+        Toast.makeText(this,R.string.logged_out,Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this,LoginActivity::class.java))
+        //finishActivity(1)
+        finish()
     }
 
     private fun onSAveButtonClick() {
