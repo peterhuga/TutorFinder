@@ -119,32 +119,7 @@ fun createNotificationChannel() {
 
         }
 }
-//            if(!degreeSpinner.isSelected) {
-//                filteredTutors.add(people)
-//                recyclerView.adapter?.notifyDataSetChanged()
-//                    if (degreeSpinner.selectedItem.toString() == people.degree) {
-//                        filteredTutors.add(people)
-//                        recyclerView.adapter?.notifyDataSetChanged()
-//                    } else {
-//                        Toast.makeText(
-//                            baseContext, "No degree result found",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//            }
-//                    else {
-//                    Toast.makeText(
-//                        baseContext, "Academic degree can't be blank",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//                }
-//
-//}
 
-//                filteredTutors.add(people)
-//                recyclerView.adapter?.notifyDataSetChanged()
-//
 
 
 //                if(gradeSpinner.isSelected && gradeSpinner.selectedItem.toString()==people.grade){
