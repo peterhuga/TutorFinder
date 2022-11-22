@@ -45,6 +45,8 @@
     <string name="gallery">Gallery</string>
 
     <string-array name="academicDegreeSpinner">
+        <item></item>
+
         <item>Masters</item>
         <item>Bachelors</item>
         <item>Phd</item>
@@ -53,6 +55,8 @@
 
     </string-array>
     <string-array name="ExpereienceSpinner">
+        <item></item>
+
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -88,9 +92,11 @@
     </string-array>
 
     <string-array name="gradeSpinner">
+        <item></item>
+
         <item>Primary</item>
         <item>Lower Secondary</item>
-        <item>Secondary/High School</item>
+        <item>Secondary</item>
         <item>Diploma</item>
         <item>Bachelor</item>
         <item>Master</item>

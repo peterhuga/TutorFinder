@@ -66,27 +66,27 @@ val sendRequestToTutor:Button = itemView.findViewById(R.id.sendRequestToTutorBtn
 //        }
 
     }
-    fun sendPhoneNotification() {
-        //val mail = Uri.parse("mailto:xyz@gmail.com")
-        val NOTIFICATION_ID = 111
-        val CHANNEL_ID = "101"
-        val intent = Intent(context,EditStudentProfile::class.java)
-
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.phone_12)
-        // The line below is equivalent to the line above.  You may build up the Builder either way
-        //       builder.setSmallIcon(R.drawable.android);
-        builder.setContentIntent(pendingIntent)
-        builder.setAutoCancel(true)
-      //  builder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.phone_icon))
-        builder.setContentTitle("Express is waiting for your response")
-        builder.setContentText("Press to mail Pradip!")
-       // val notificationManager = getSystemService(
-            //AppCompatActivity.NOTIFICATION_SERVICE
-        //) as NotificationManager
-        //notificationManager.notify(NOTIFICATION_ID, builder.build())
-    }
+//    fun sendPhoneNotification() {
+//        //val mail = Uri.parse("mailto:xyz@gmail.com")
+//        val NOTIFICATION_ID = 111
+//        val CHANNEL_ID = "101"
+//        val intent = Intent(context,EditStudentProfile::class.java)
+//
+//        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+//        val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, CHANNEL_ID)
+//            .setSmallIcon(R.drawable.phone_12)
+//        // The line below is equivalent to the line above.  You may build up the Builder either way
+//        //       builder.setSmallIcon(R.drawable.android);
+//        builder.setContentIntent(pendingIntent)
+//        builder.setAutoCancel(true)
+//      //  builder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.phone_icon))
+//        builder.setContentTitle("Express is waiting for your response")
+//        builder.setContentText("Press to mail Pradip!")
+//       // val notificationManager = getSystemService(
+//            //AppCompatActivity.NOTIFICATION_SERVICE
+//        //) as NotificationManager
+//        //notificationManager.notify(NOTIFICATION_ID, builder.build())
+//    }
 
 
 }

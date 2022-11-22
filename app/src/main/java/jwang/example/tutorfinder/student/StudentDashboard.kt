@@ -31,10 +31,10 @@ class StudentDashboard : AppCompatActivity() {
     companion object {
         const val TUTOR_ID = "tutor id"
         var tutors: MutableList<Tutor> = mutableListOf(
-            Tutor( "John", "35","Male","London","5555555555","12","5", "John@gmail.com","Masters"),
+            Tutor( "John", "35","Male","London","5555555555","Secondary","5", "John@gmail.com","Masters"),
             Tutor( "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com","Post Graduate"),
-            Tutor( "Leo", "36","Male","Ottawa","2222222222","10","6", "Leo@gmail.com","Masters"),
-            Tutor( "Shyam", "35","Male","London","5555555555","11","7", "Shyam@gmail.com","Bachelor"),
+            Tutor( "Leo", "36","Male","Ottawa","2222222222","Primary","6", "Leo@gmail.com","Masters"),
+            Tutor( "Shyam", "35","Male","London","5555555555","11","7", "Shyam@gmail.com","Bachelors"),
 
             )
 
@@ -97,26 +97,26 @@ class StudentDashboard : AppCompatActivity() {
         }
     }
 
-    fun sendPhoneNotification() {
-        //val mail = Uri.parse("mailto:xyz@gmail.com")
-        val intent = Intent(this,EditStudentProfile::class.java).apply {
-            type = "image/*"
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.phone_12)
-        // The line below is equivalent to the line above.  You may build up the Builder either way
-        //       builder.setSmallIcon(R.drawable.android);
-        builder.setContentIntent(pendingIntent)
-        builder.setAutoCancel(true)
-        builder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.phone_icon))
-        builder.setContentTitle("Express is waiting for your response")
-        builder.setContentText("Press to mail Pradip!")
-        val notificationManager = getSystemService(
-            NOTIFICATION_SERVICE
-        ) as NotificationManager
-        notificationManager.notify(1, builder.build())
-    }
+//    fun sendPhoneNotification() {
+//        //val mail = Uri.parse("mailto:xyz@gmail.com")
+//        val intent = Intent(this,EditStudentProfile::class.java).apply {
+//            type = "image/*"
+//        }
+//        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+//        val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, CHANNEL_ID)
+//            .setSmallIcon(R.drawable.phone_12)
+//        // The line below is equivalent to the line above.  You may build up the Builder either way
+//        //       builder.setSmallIcon(R.drawable.android);
+//        builder.setContentIntent(pendingIntent)
+//        builder.setAutoCancel(true)
+//        builder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.phone_icon))
+//        builder.setContentTitle("Express is waiting for your response")
+//        builder.setContentText("Press to mail Pradip!")
+//        val notificationManager = getSystemService(
+//            NOTIFICATION_SERVICE
+//        ) as NotificationManager
+//        notificationManager.notify(1, builder.build())
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -129,14 +129,14 @@ class StudentDashboard : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
-            R.id.action_settings -> {sendPhoneNotification()
+            R.id.action_settings -> {
                 return true}
         }
         return super.onOptionsItemSelected(item)
     }
-    fun onEditProfileBtnClicked(view: View) {
-        startActivity(Intent(this,cameraTest::class.java))
-    }
+//    fun onEditProfileBtnClicked(view: View) {
+//        startActivity(Intent(this,EditMyProfile::class.java))
+//    }
     fun onFilterBtnPressed(view: View) {
 
         startActivity(Intent(this, TutorFilterActivity::class.java))

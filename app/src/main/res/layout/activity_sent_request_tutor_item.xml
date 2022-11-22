@@ -48,9 +48,10 @@
                 android:text="TextView" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/cancelRequestButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="cancelRequestButtonClicked"
                 android:text="@string/cancelRequest" />
 
         </LinearLayout>

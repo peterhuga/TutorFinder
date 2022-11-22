@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.app.NotificationCompat
+import androidx.core.view.isNotEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
@@ -30,7 +31,7 @@ class TutorFilterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //createNotificationChannel()
+        createNotificationChannel()
         setContentView(R.layout.activity_tutor_filter)
         degreeSpinner=findViewById(R.id.academicDegreeSpinner)
         gradeSpinner=findViewById(R.id.gradeSpinner)
@@ -84,35 +85,114 @@ class TutorFilterActivity : AppCompatActivity() {
 //    override fun onNothingSelected(p0: AdapterView<*>?) {
 //        Toast.makeText(this, "Nothing Selected", Toast.LENGTH_LONG).show()
 //    }
-//fun createNotificationChannel() {
-//    // Create the NotificationChannel, but only on API 26+ because
-//    // the NotificationChannel class is new and not in the support library
-//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//        val name = getString(R.string.channel_name)
-//        val descriptionText = getString(R.string.channnel_desc)
-//        val importance = NotificationManager.IMPORTANCE_DEFAULT
-//        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-//            description = descriptionText
-//        }
-//        // Register the channel with the system
-//        val notificationManager: NotificationManager =
-//            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//        notificationManager.createNotificationChannel(channel)
-//    }
-//}
-    fun addfilteredTutorToRV(){
-        for (people in StudentDashboard.tutors){
-            if (people.degree == degreeSpinner.selectedItem.toString() ) {
-//                && people.experience == experienceSpinner.selectedItem.toString() && people.grade == gradeSpinner.selectedItem.toString()
-                //Jianwei
-                filteredTutors.add(people)
-
-                recyclerView.adapter?.notifyDataSetChanged()
-                Log.d("filtration", "$people")
-            }
-            // }
+fun createNotificationChannel() {
+    // Create the NotificationChannel, but only on API 26+ because
+    // the NotificationChannel class is new and not in the support library
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val name = getString(R.string.channel_name)
+        val descriptionText = getString(R.string.channnel_desc)
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+            description = descriptionText
         }
+        // Register the channel with the system
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
+}
+    fun addfilteredTutorToRV(){
+
+        for (people in StudentDashboard.tutors){
+//            if (people.degree == degreeSpinner.selectedItem.toString()){
+//               // && people.experience == experienceSpinner.selectedItem.toString() && people.grade == gradeSpinner.selectedItem.toString()){
+//        //Jianwei
+//                filteredTutors.add(people)
+//                recyclerView.adapter?.notifyDataSetChanged()
+//            }
+            if(people.degree == degreeSpinner.selectedItem.toString() && people.experience == experienceSpinner.selectedItem.toString() && people.grade==gradeSpinner.selectedItem.toString()){
+               // filteredTutors.clear()
+                filteredTutors.add(people)
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+
+
+        }
+}
+//            if(!degreeSpinner.isSelected) {
+//                filteredTutors.add(people)
+//                recyclerView.adapter?.notifyDataSetChanged()
+//                    if (degreeSpinner.selectedItem.toString() == people.degree) {
+//                        filteredTutors.add(people)
+//                        recyclerView.adapter?.notifyDataSetChanged()
+//                    } else {
+//                        Toast.makeText(
+//                            baseContext, "No degree result found",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+//            }
+//                    else {
+//                    Toast.makeText(
+//                        baseContext, "Academic degree can't be blank",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//                }
+//
+//}
+
+//                filteredTutors.add(people)
+//                recyclerView.adapter?.notifyDataSetChanged()
+//
+
+
+//                if(gradeSpinner.isSelected && gradeSpinner.selectedItem.toString()==people.grade){
+//                    filteredTutors.add(people)
+//                    recyclerView.adapter?.notifyDataSetChanged()
+//                    if(experienceSpinner.isSelected && experienceSpinner.selectedItem.toString()==people.experience){
+//                        filteredTutors.add(people)
+//                        recyclerView.adapter?.notifyDataSetChanged()
+//
+//
+//                    }
+//                    else{
+//                        //filteredTutors.clear()
+//                        recyclerView.adapter?.notifyDataSetChanged()
+//                        Toast.makeText(baseContext, "No exp Result found",
+//                     Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//                else{
+//                    recyclerView.adapter?.notifyDataSetChanged()
+//                    Toast.makeText(baseContext, "No grade Result found",
+//                        Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//            else if(degreeSpinner.isNotEmpty() && degreeSpinner.selectedItem.toString() !=people.degree){
+//                recyclerView.adapter?.notifyDataSetChanged()
+//                Toast.makeText(baseContext, "Nodeg  Result found",
+//                    Toast.LENGTH_SHORT).show()
+//            }
+//             if(degreeSpinner.selectedItem.toString() ==people.degree &&  gradeSpinner.selectedItem.toString()==people.grade){
+//                filteredTutors.add(people)
+//                recyclerView.adapter?.notifyDataSetChanged()
+//                 Toast.makeText(baseContext, "sgs",
+//                     Toast.LENGTH_SHORT).show()
+//
+//            }
+//             else if(degreeSpinner.selectedItem.toString() !=people.degree ||  gradeSpinner.selectedItem.toString()!=people.grade ){
+//                //filteredTutors.add(people)
+//                //recyclerView.adapter?.notifyDataSetChanged()
+//
+//                 Toast.makeText(baseContext, "",
+//                Toast.LENGTH_SHORT).show()
+//
+//            }
+
+
+
+
 
 
     fun onFilterClicked(view: View) {
@@ -122,7 +202,7 @@ class TutorFilterActivity : AppCompatActivity() {
     fun sendPhoneNotification() {
         recyclerView.findViewHolderForLayoutPosition(0)
         //val mail = Uri.parse("mailto:xyz@gmail.com")
-        val intent = Intent(this,EditStudentProfile::class.java).apply {
+        val intent = Intent(this,SentRequestToTutorActivity::class.java).apply {
             type = "image/*"
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
@@ -133,19 +213,15 @@ class TutorFilterActivity : AppCompatActivity() {
         builder.setContentIntent(pendingIntent)
         builder.setAutoCancel(true)
         builder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.phone_icon))
-        builder.setContentTitle("Express is waiting for your response")
-        builder.setContentText("Press to mail Pradip!")
+        builder.setContentTitle("Notification for Friend Request Sent")
+        builder.setContentText("Press to View List of Sent Request")
         val notificationManager = getSystemService(
             NOTIFICATION_SERVICE
         ) as NotificationManager
         notificationManager.notify(NOTIFICATION_ID, builder.build())
     }
     fun onSendRequestTapped(view: View) {
-        Log.d("notify","notificatio")
-        Toast.makeText(
-            baseContext, "Authentication failed.",
-            Toast.LENGTH_SHORT
-        ).show()
+     findViewById<Button>(R.id.sendRequestToTutorBtn).text="Request Sent"
         sendPhoneNotification()
     }
 }
