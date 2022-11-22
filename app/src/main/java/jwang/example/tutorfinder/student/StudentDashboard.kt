@@ -134,9 +134,9 @@ class StudentDashboard : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-//    fun onEditProfileBtnClicked(view: View) {
-//        startActivity(Intent(this,EditMyProfile::class.java))
-//    }
+    fun onEditProfileBtnClicked(view: View) {
+        startActivity(Intent(this,EditProfile::class.java))
+    }
     fun onFilterBtnPressed(view: View) {
 
         startActivity(Intent(this, TutorFilterActivity::class.java))

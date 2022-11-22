@@ -27,8 +27,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorFinder"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".student.EditProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".student.SentRequestToTutorActivity"
             android:exported="false">
@@ -64,7 +69,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".tutor.TutorScreenActivity" />
         </activity>
-
         <activity
             android:name=".student.StudentDashboard"
             android:exported="false">
@@ -147,6 +151,10 @@
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
