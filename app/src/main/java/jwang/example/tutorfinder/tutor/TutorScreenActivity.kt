@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -20,6 +21,7 @@ class TutorScreenActivity : AppCompatActivity() {
     var deletedId = 0
     lateinit var adapter: MyStudentsRvAdapter
     lateinit var recyclerView:RecyclerView
+    lateinit var tvStudentAmount: TextView
 
     //Dummy data for populating UI
     companion object {
@@ -51,6 +53,8 @@ class TutorScreenActivity : AppCompatActivity() {
         adapter = MyStudentsRvAdapter(this, students)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+        tvStudentAmount = findViewById(R.id.textViewStudentAmount)
+        tvStudentAmount.text = "You have ${students.size} students"
 //        adapter.onItemClick = {
 //            val intent = Intent(this, MyStudentProfileActivity::class.java)
 //            intent.putExtra(MyStudentsRvAdapter.STUDENT_ID, it.id)
@@ -73,10 +77,12 @@ class TutorScreenActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 students.removeAt(viewHolder.adapterPosition)
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                tvStudentAmount.text = "You have ${students.size} students"
                 Snackbar.make(recyclerView, "${deletedStudent.name} deleted" , Snackbar.LENGTH_LONG)
                     .setAction("Undo") {
                         students.add(position, deletedStudent)
                         adapter.notifyItemInserted(position)
+                        tvStudentAmount.text = "You have ${students.size} students"
                     }.show()
             }
         }).attachToRecyclerView(recyclerView)

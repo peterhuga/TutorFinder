@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:autofillHints="Password"
         android:hint="Password"
         android:minHeight="48dp"
@@ -54,9 +54,8 @@
         android:id="@+id/checkBoxTutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:text="Register As Tutor"
-        app:layout_constraintEnd_toEndOf="@+id/signinpasswordedittext"
+        app:layout_constraintEnd_toEndOf="@+id/editTextConfirm"
         app:layout_constraintTop_toBottomOf="@+id/editTextConfirm" />
 
     <CheckBox
@@ -64,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register As Student"
-        app:layout_constraintTop_toTopOf="@+id/checkBoxTutor"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="@+id/editTextConfirm"
+        app:layout_constraintTop_toTopOf="@+id/checkBoxTutor" />
 
     <EditText
         android:id="@+id/editTextConfirm"
