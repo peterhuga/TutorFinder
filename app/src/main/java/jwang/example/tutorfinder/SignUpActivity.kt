@@ -17,6 +17,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.student.Tutor
+import jwang.example.tutorfinder.tutor.Student
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -109,9 +111,9 @@ class SignUpActivity : AppCompatActivity() {
 //                                                    else -> Student(email!!, role)
 //                                                }
                                     var newUser = if (role == "student")
-                                        Student(email!!, role)
+                                        SignInStudent(email!!, role)
                                         else
-                                        Tutor(email!!, role)
+                                        SignInTutor(email!!, role)
                                     ref.child(uId).setValue(newUser)
                                     //finish()
                                     onBackPressed()
