@@ -51,7 +51,7 @@ class MyStudentsRvAdapter(val context: Context, private val dataset: List<Studen
 
         val item = dataset[position]
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.ageTextView.text = "Age: ${item.age}"
+        holder.ageTextView.text = "Age: ${item.age.toString()}"
         holder.emailTextView.text = "Email: ${item.email}"
         //Hardcoded for now. Include image resource id property in data model later.
         //holder.imageView.setImageResource(R.drawable.ic_launcher_foreground)
@@ -62,11 +62,11 @@ class MyStudentsRvAdapter(val context: Context, private val dataset: List<Studen
         holder.itemView.setOnClickListener{
             Log.d(TAG,"item clicked")
 
-                val studentID = item.id
+                //val studentID:String = item.id
 
                 val intent = Intent(context, MyStudentProfileActivity::class.java)
-                intent.putExtra(STUDENT_ID, studentID)
-                intent.putExtra("position", position)
+                intent.putExtra(STUDENT_ID, item)
+                //intent.putExtra("position", position)
 
             (context as Activity).startActivityForResult (intent, 1)
 

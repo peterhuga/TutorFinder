@@ -26,14 +26,14 @@ class StudentRequestActivity : AppCompatActivity() {
     }
 
     val requestedStudents: MutableList<Student> = mutableListOf(
-        Student(101, "Sampath", 21, "sampath@email.com"),
-        Student(102, "Jianwei", 22, "jianwei@email.com"),
-        Student(103,"Sunny", 19, "Sunny@email.com"),
-        Student(104,"Pradip", 20, "Pradip@email.com"),
-        Student(105, "Sampath1", 21, "sampath1@email.com"),
-        Student(106, "Jianwei1", 22, "jianwei1@email.com"),
-        Student(107,"Sunny1", 19, "Sunny1@email.com"),
-        Student(108,"Pradip1", 20, "Pradip1@email.com")
+//        Student(101, "Sampath", 21, "sampath@email.com"),
+//        Student(102, "Jianwei", 22, "jianwei@email.com"),
+//        Student(103,"Sunny", 19, "Sunny@email.com"),
+//        Student(104,"Pradip", 20, "Pradip@email.com"),
+//        Student(105, "Sampath1", 21, "sampath1@email.com"),
+//        Student(106, "Jianwei1", 22, "jianwei1@email.com"),
+//        Student(107,"Sunny1", 19, "Sunny1@email.com"),
+//        Student(108,"Pradip1", 20, "Pradip1@email.com")
     )
 
     lateinit var adapter: StudentRequestsRvAdapter

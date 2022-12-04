@@ -7,12 +7,13 @@
         android:id="@+id/action_bar"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/edit_tutor_profile"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="@string/student_requests"
-        app:showAsAction="ifRoom"/>
+        app:actionLayout="@layout/custom_action_item_layout"
+        app:showAsAction="always"/>
 
 </menu>

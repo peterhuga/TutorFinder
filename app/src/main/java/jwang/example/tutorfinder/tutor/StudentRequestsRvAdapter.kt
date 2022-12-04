@@ -48,7 +48,7 @@ class StudentRequestsRvAdapter(val context: Context, private val dataset: List<S
 
         holder.itemView.setOnClickListener{
 
-            StudentRequestActivity.STUDENT_ID = item.id
+            //StudentRequestActivity.STUDENT_ID = item.id
             StudentRequestActivity.POSITION = position
 
             StudentRequestActivity.STUDENT_ID_DELETE = 0
