@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -48,6 +49,8 @@ class StudentRequestActivity : AppCompatActivity() {
     lateinit var adapter: StudentRequestsRvAdapter
     lateinit var recyclerView: RecyclerView
     private val database = Firebase.database.reference
+
+    private var currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
     var deleteNumber: Int = 0
 
@@ -85,11 +88,11 @@ class StudentRequestActivity : AppCompatActivity() {
                         //Log.d("accept", "Reject")
 
                         // update the tutors requested students node by removing the students rejected
-                        val databaseReferenceRemove: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests/${rejectedStudent.id}")
+                        val databaseReferenceRemove: DatabaseReference = database.child("users/${currentUserId}/students_requests/${rejectedStudent.id}")
                         databaseReferenceRemove.removeValue()
 
                         // update the students requested tutors node by removing the tutor rejected
-                        val databaseReferenceRemoveForStudent: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${TutorScreenActivity.currentUser?.uid}")
+                        val databaseReferenceRemoveForStudent: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${currentUserId}")
                         databaseReferenceRemoveForStudent.removeValue()
 
                         Snackbar.make(
@@ -102,13 +105,13 @@ class StudentRequestActivity : AppCompatActivity() {
                                 adapter.notifyItemInserted(position)
 
                                 // update the tutors requested students node by undoing the students rejected
-                                val databaseReferenceUndoRejectedStudent: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests/${rejectedStudent.id}")
+                                val databaseReferenceUndoRejectedStudent: DatabaseReference = database.child("users/${currentUserId}/students_requests/${rejectedStudent.id}")
                                 val undoRejectedStudent = HashMap<String, Any>()
                                 undoRejectedStudent[rejectedStudent.id] = ""
                                 databaseReferenceUndoRejectedStudent.updateChildren(undoRejectedStudent)
 
                                 // update the students requested tutors node by undoing the tutors accepted
-                                val databaseReferenceUndoRejectedTutor: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${TutorScreenActivity.currentUser?.uid}")
+                                val databaseReferenceUndoRejectedTutor: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${currentUserId}")
                                 val undoRejectedTutor = HashMap<String, Any>()
                                 undoRejectedTutor[rejectedStudent.id] = ""
                                 databaseReferenceUndoRejectedTutor.updateChildren(undoRejectedTutor)
@@ -126,7 +129,7 @@ class StudentRequestActivity : AppCompatActivity() {
                         //Log.d("accept", "Accept")
 
                         // update the tutors current students node
-                        val databaseReferenceAccept: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/current_students")
+                        val databaseReferenceAccept: DatabaseReference = database.child("users/${currentUserId}/current_students")
                         val updateStudent = HashMap<String, Any>()
                         updateStudent[acceptedStudent.id] = ""
                         databaseReferenceAccept.updateChildren(updateStudent)
@@ -138,11 +141,11 @@ class StudentRequestActivity : AppCompatActivity() {
                         databaseReferenceAcceptForStudent.updateChildren(updateTutor)
 
                         // update the tutors requested students node by removing the students accepted
-                        val databaseReferenceRemove: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests/${acceptedStudent.id}")
+                        val databaseReferenceRemove: DatabaseReference = database.child("users/${currentUserId}/students_requests/${acceptedStudent.id}")
                         databaseReferenceRemove.removeValue()
 
                         // update the students requested tutors node by removing the tutor accepted
-                        val databaseReferenceRemoveTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${TutorScreenActivity.currentUser?.uid}")
+                        val databaseReferenceRemoveTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${currentUserId}")
                         databaseReferenceRemoveTutor.removeValue()
 
                         Snackbar.make(
@@ -155,23 +158,23 @@ class StudentRequestActivity : AppCompatActivity() {
                                 adapter.notifyItemInserted(position)
 
                                 // update the tutors requested students node by removing the students accepted
-                                val databaseReferenceUndoAcceptedStudent: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests/${acceptedStudent.id}")
+                                val databaseReferenceUndoAcceptedStudent: DatabaseReference = database.child("users/${currentUserId}/students_requests/${acceptedStudent.id}")
                                 val undoAcceptedStudent = HashMap<String, Any>()
                                 undoAcceptedStudent[acceptedStudent.id] = ""
                                 databaseReferenceUndoAcceptedStudent.updateChildren(undoAcceptedStudent)
 
                                 // update the students requested tutors node by removing the tutors accepted
-                                val databaseReferenceUndoAcceptedTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${TutorScreenActivity.currentUser?.uid}")
+                                val databaseReferenceUndoAcceptedTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${currentUserId}")
                                 val undoAcceptedTutor = HashMap<String, Any>()
                                 undoAcceptedStudent[acceptedStudent.id] = ""
                                 databaseReferenceUndoAcceptedTutor.updateChildren(undoAcceptedTutor)
 
                                 // update the tutors current students node by undoing the students accepted
-                                val databaseReferenceUndoAcceptedStudentRemove: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/current_students/${acceptedStudent.id}")
+                                val databaseReferenceUndoAcceptedStudentRemove: DatabaseReference = database.child("users/${currentUserId}/current_students/${acceptedStudent.id}")
                                 databaseReferenceUndoAcceptedStudentRemove.removeValue()
 
                                 // update the students accepted tutors node by undoing the students accepted
-                                val databaseReferenceUndoAcceptedStudentRemoveForStudent: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_accepted/${TutorScreenActivity.currentUser?.uid}")
+                                val databaseReferenceUndoAcceptedStudentRemoveForStudent: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_accepted/${currentUserId}")
                                 databaseReferenceUndoAcceptedStudentRemoveForStudent.removeValue()
 
 
@@ -185,7 +188,7 @@ class StudentRequestActivity : AppCompatActivity() {
 
         if (TutorScreenActivity.currentUser != null) {
 
-            database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests")
+            database.child("users/${currentUserId}/students_requests")
                 .addValueEventListener(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {

@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,6 +32,8 @@ class EditTutorProfileActivity : AppCompatActivity() {
     lateinit var tutorsGradesTextView: TextView
 
     private val database = Firebase.database.reference
+
+    private var currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,14 +84,23 @@ class EditTutorProfileActivity : AppCompatActivity() {
 
     private fun onSAveButtonClick() {
 
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/firstName").setValue(tutorsNameTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/age").setValue(tutorsAgeTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/phone").setValue(tutorsPhoneTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/email").setValue(tutorsEmailTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/address").setValue(tutorsAddressTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/education").setValue(tutorsEducationTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/experience").setValue(tutorsExperienceTextView.text.toString())
-        database.child("users/${TutorScreenActivity.currentUser?.uid}/grades").setValue(tutorsGradesTextView.text.toString())
+        database.child("users/${currentUserId}/firstName").setValue(tutorsNameTextView.text.toString())
+        database.child("users/${currentUserId}/age").setValue(tutorsAgeTextView.text.toString())
+        database.child("users/${currentUserId}/phone").setValue(tutorsPhoneTextView.text.toString())
+        database.child("users/${currentUserId}/email").setValue(tutorsEmailTextView.text.toString())
+        database.child("users/${currentUserId}/address").setValue(tutorsAddressTextView.text.toString())
+        database.child("users/${currentUserId}/education").setValue(tutorsEducationTextView.text.toString())
+        database.child("users/${currentUserId}/experience").setValue(tutorsExperienceTextView.text.toString())
+        database.child("users/${currentUserId}/grades").setValue(tutorsGradesTextView.text.toString())
+
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/firstName").setValue(tutorsNameTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/age").setValue(tutorsAgeTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/phone").setValue(tutorsPhoneTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/email").setValue(tutorsEmailTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/address").setValue(tutorsAddressTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/education").setValue(tutorsEducationTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/experience").setValue(tutorsExperienceTextView.text.toString())
+//        database.child("users/${TutorScreenActivity.currentUser?.uid}/grades").setValue(tutorsGradesTextView.text.toString())
 
 //        TutorScreenActivity.nameTutor = tutorsNameTextView.text.toString()
 //        TutorScreenActivity.emailTutor = tutorsEmailTextView.text.toString()
@@ -122,14 +134,14 @@ class EditTutorProfileActivity : AppCompatActivity() {
 //        tutorsAgeTextView.text = TutorScreenActivity.ageTutor
 //        tutorsExperienceTextView.text = TutorScreenActivity.experienceTutor
 
-        database.child("users/${TutorScreenActivity.currentUser?.uid}").addValueEventListener(object:
+        database.child("users/${currentUserId}").addValueEventListener(object:
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
 
                     //Log.d("IfExists", snapshot.toString())
 
-                    tutorsNameTextView.text = snapshot.child("firstName").value.toString()
+                    tutorsNameTextView.text = snapshot.child("name").value.toString()
                     tutorsEmailTextView.text = snapshot.child("email").value.toString()
                     tutorsPhoneTextView.text = snapshot.child("phone").value.toString()
                     tutorsAddressTextView.text = snapshot.child("address").value.toString()

@@ -67,6 +67,7 @@ class TutorScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_tutor_screen)
 
+
         recyclerView = findViewById<RecyclerView>(id.recyclerViewMyStudents)
         tvStudentAmount = findViewById(R.id.textViewStudentAmount)
         adapter = MyStudentsRvAdapter(this, students)
@@ -250,7 +251,7 @@ class TutorScreenActivity : AppCompatActivity() {
 
     // If profile not updated, will be directed to the profile activity
     override fun onStart() {
-        database.child("users/${currentUser?.uid}/firstName").addValueEventListener(object: ValueEventListener {
+        database.child("users/${currentUser?.uid}/name").addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.value?.equals("") == true){
 
