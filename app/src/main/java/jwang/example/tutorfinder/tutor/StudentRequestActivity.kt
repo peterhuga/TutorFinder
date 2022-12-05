@@ -81,104 +81,113 @@ class StudentRequestActivity : AppCompatActivity() {
                     ItemTouchHelper.LEFT -> {
                         val rejectedStudent: Student =
                             requestedStudents[viewHolder.adapterPosition]
-                        val position = viewHolder.adapterPosition
-                        requestedStudents.removeAt(viewHolder.adapterPosition)
-                        adapter.notifyItemRemoved(viewHolder.adapterPosition)
+//
+                        val builder = AlertDialog.Builder(viewHolder.itemView.context)
 
-                        //Log.d("accept", "Reject")
+                        builder.setTitle("Are you sure to reject this student?")
+                        builder.setCancelable(false)
+                        builder.setPositiveButton("Confirm"){
+                            //send student id back to parent to delete it
+                                dialog, which ->
+                            requestedStudents.removeAt(viewHolder.adapterPosition)
+                            adapter.notifyItemRemoved(viewHolder.adapterPosition)
 
-                        // update the tutors requested students node by removing the students rejected
-                        val databaseReferenceRemove: DatabaseReference = database.child("users/${currentUserId}/students_requests/${rejectedStudent.id}")
-                        databaseReferenceRemove.removeValue()
+                            //Log.d("accept", "Reject")
 
-                        // update the students requested tutors node by removing the tutor rejected
-                        val databaseReferenceRemoveForStudent: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${currentUserId}")
-                        databaseReferenceRemoveForStudent.removeValue()
+                            // update the tutors requested students node by removing the students rejected
+                            val databaseReferenceRemove: DatabaseReference = database.child("users/${currentUserId}/students_requests/${rejectedStudent.id}")
+                            databaseReferenceRemove.removeValue()
 
-                        Snackbar.make(
-                            recyclerView,
-                            "${rejectedStudent.name} rejected",
-                            Snackbar.LENGTH_LONG
-                        )
-                            .setAction("Undo") {
-                                requestedStudents.add(position, rejectedStudent)
-                                adapter.notifyItemInserted(position)
+                            // update the students requested tutors node by removing the tutor rejected
+                            val databaseReferenceRemoveForStudent: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${currentUserId}")
+                            databaseReferenceRemoveForStudent.removeValue()
+                        }
+                        builder.setNegativeButton("Cancel"){
+                                dialog, which ->
+                            recyclerView.adapter = adapter
+                            dialog.cancel()
+                        }
+                        builder.show()
 
-                                // update the tutors requested students node by undoing the students rejected
-                                val databaseReferenceUndoRejectedStudent: DatabaseReference = database.child("users/${currentUserId}/students_requests/${rejectedStudent.id}")
-                                val undoRejectedStudent = HashMap<String, Any>()
-                                undoRejectedStudent[rejectedStudent.id] = ""
-                                databaseReferenceUndoRejectedStudent.updateChildren(undoRejectedStudent)
-
-                                // update the students requested tutors node by undoing the tutors accepted
-                                val databaseReferenceUndoRejectedTutor: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${currentUserId}")
-                                val undoRejectedTutor = HashMap<String, Any>()
-                                undoRejectedTutor[rejectedStudent.id] = ""
-                                databaseReferenceUndoRejectedTutor.updateChildren(undoRejectedTutor)
-
-                            }.show()
+                            // Used for snack-bar
+//                                // update the tutors requested students node by undoing the students rejected
+//                                val databaseReferenceUndoRejectedStudent: DatabaseReference = database.child("users/${currentUserId}/students_requests/${rejectedStudent.id}")
+//                                val undoRejectedStudent = HashMap<String, Any>()
+//                                undoRejectedStudent[rejectedStudent.id] = ""
+//                                databaseReferenceUndoRejectedStudent.updateChildren(undoRejectedStudent)
+//
+//                                // update the students requested tutors node by undoing the tutors accepted
+//                                val databaseReferenceUndoRejectedTutor: DatabaseReference = database.child("users/${rejectedStudent.id}/tutors_requested/${currentUserId}")
+//                                val undoRejectedTutor = HashMap<String, Any>()
+//                                undoRejectedTutor[rejectedStudent.id] = ""
+//                                databaseReferenceUndoRejectedTutor.updateChildren(undoRejectedTutor)
+//
                     }
 
                     ItemTouchHelper.RIGHT -> {
                         val acceptedStudent: Student =
                             requestedStudents[viewHolder.adapterPosition]
-                        val position = viewHolder.adapterPosition
-                        requestedStudents.removeAt(viewHolder.adapterPosition)
-                        adapter.notifyItemRemoved(viewHolder.adapterPosition)
 
-                        //Log.d("accept", "Accept")
+                        val builder = AlertDialog.Builder(viewHolder.itemView.context)
 
-                        // update the tutors current students node
-                        val databaseReferenceAccept: DatabaseReference = database.child("users/${currentUserId}/current_students")
-                        val updateStudent = HashMap<String, Any>()
-                        updateStudent[acceptedStudent.id] = ""
-                        databaseReferenceAccept.updateChildren(updateStudent)
+                        builder.setTitle("Are you sure to accept this student?")
+                        builder.setCancelable(false)
+                        builder.setPositiveButton("Confirm"){
+                            //send student id back to parent to delete it
+                                dialog, which ->
+                            requestedStudents.removeAt(viewHolder.adapterPosition)
+                            adapter.notifyItemRemoved(viewHolder.adapterPosition)
 
-                        // update the students accepted tutors node
-                        val databaseReferenceAcceptForStudent: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_accepted")
-                        val updateTutor = HashMap<String, Any>()
-                        updateTutor[TutorScreenActivity.currentUser?.uid.toString()] = ""
-                        databaseReferenceAcceptForStudent.updateChildren(updateTutor)
+                            //Log.d("accept", "Accept")
 
-                        // update the tutors requested students node by removing the students accepted
-                        val databaseReferenceRemove: DatabaseReference = database.child("users/${currentUserId}/students_requests/${acceptedStudent.id}")
-                        databaseReferenceRemove.removeValue()
+                            // update the tutors current students node
+                            val databaseReferenceAccept: DatabaseReference = database.child("users/${currentUserId}/current_students")
+                            val updateStudent = HashMap<String, Any>()
+                            updateStudent[acceptedStudent.id] = ""
+                            databaseReferenceAccept.updateChildren(updateStudent)
 
-                        // update the students requested tutors node by removing the tutor accepted
-                        val databaseReferenceRemoveTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${currentUserId}")
-                        databaseReferenceRemoveTutor.removeValue()
+                            // update the students accepted tutors node
+                            val databaseReferenceAcceptForStudent: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_accepted")
+                            val updateTutor = HashMap<String, Any>()
+                            updateTutor[TutorScreenActivity.currentUser?.uid.toString()] = ""
+                            databaseReferenceAcceptForStudent.updateChildren(updateTutor)
 
-                        Snackbar.make(
-                            recyclerView,
-                            "${acceptedStudent.name} accepted",
-                            Snackbar.LENGTH_LONG
-                        )
-                            .setAction("Undo") {
-                                requestedStudents.add(position, acceptedStudent)
-                                adapter.notifyItemInserted(position)
+                            // update the tutors requested students node by removing the students accepted
+                            val databaseReferenceRemove: DatabaseReference = database.child("users/${currentUserId}/students_requests/${acceptedStudent.id}")
+                            databaseReferenceRemove.removeValue()
 
+                            // update the students requested tutors node by removing the tutor accepted
+                            val databaseReferenceRemoveTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${currentUserId}")
+                            databaseReferenceRemoveTutor.removeValue()
+                        }
+                        builder.setNegativeButton("Cancel"){
+                                dialog, which ->
+                            recyclerView.adapter = adapter
+                            dialog.cancel()
+                        }
+                        builder.show()
+
+                            // Used for snack-bar
                                 // update the tutors requested students node by removing the students accepted
-                                val databaseReferenceUndoAcceptedStudent: DatabaseReference = database.child("users/${currentUserId}/students_requests/${acceptedStudent.id}")
-                                val undoAcceptedStudent = HashMap<String, Any>()
-                                undoAcceptedStudent[acceptedStudent.id] = ""
-                                databaseReferenceUndoAcceptedStudent.updateChildren(undoAcceptedStudent)
+//                                val databaseReferenceUndoAcceptedStudent: DatabaseReference = database.child("users/${currentUserId}/students_requests/${acceptedStudent.id}")
+//                                val undoAcceptedStudent = HashMap<String, Any>()
+//                                undoAcceptedStudent[acceptedStudent.id] = ""
+//                                databaseReferenceUndoAcceptedStudent.updateChildren(undoAcceptedStudent)
+//
+//                                // update the students requested tutors node by removing the tutors accepted
+//                                val databaseReferenceUndoAcceptedTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${currentUserId}")
+//                                val undoAcceptedTutor = HashMap<String, Any>()
+//                                undoAcceptedStudent[acceptedStudent.id] = ""
+//                                databaseReferenceUndoAcceptedTutor.updateChildren(undoAcceptedTutor)
+//
+//                                // update the tutors current students node by undoing the students accepted
+//                                val databaseReferenceUndoAcceptedStudentRemove: DatabaseReference = database.child("users/${currentUserId}/current_students/${acceptedStudent.id}")
+//                                databaseReferenceUndoAcceptedStudentRemove.removeValue()
+//
+//                                // update the students accepted tutors node by undoing the students accepted
+//                                val databaseReferenceUndoAcceptedStudentRemoveForStudent: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_accepted/${currentUserId}")
+//                                databaseReferenceUndoAcceptedStudentRemoveForStudent.removeValue()
 
-                                // update the students requested tutors node by removing the tutors accepted
-                                val databaseReferenceUndoAcceptedTutor: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_requested/${currentUserId}")
-                                val undoAcceptedTutor = HashMap<String, Any>()
-                                undoAcceptedStudent[acceptedStudent.id] = ""
-                                databaseReferenceUndoAcceptedTutor.updateChildren(undoAcceptedTutor)
-
-                                // update the tutors current students node by undoing the students accepted
-                                val databaseReferenceUndoAcceptedStudentRemove: DatabaseReference = database.child("users/${currentUserId}/current_students/${acceptedStudent.id}")
-                                databaseReferenceUndoAcceptedStudentRemove.removeValue()
-
-                                // update the students accepted tutors node by undoing the students accepted
-                                val databaseReferenceUndoAcceptedStudentRemoveForStudent: DatabaseReference = database.child("users/${acceptedStudent.id}/tutors_accepted/${currentUserId}")
-                                databaseReferenceUndoAcceptedStudentRemoveForStudent.removeValue()
-
-
-                            }.show()
                     }
                 }
             }
