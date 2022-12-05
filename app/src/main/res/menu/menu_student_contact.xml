@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_bar"
         android:icon="@drawable/ic_baseline_contact_mail_24"
-        android:title="@string/delete_my_student"
+        android:title="@string/contact_student"
         app:showAsAction="ifRoom"/>
 
 </menu>

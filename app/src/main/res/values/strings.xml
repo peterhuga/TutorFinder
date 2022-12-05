@@ -17,6 +17,8 @@
     <string name="editProfile">Edit Profile</string>
     <string name="save">Save</string>
     <string name="name">Name</string>
+    <string name="contact_student">Contact Student</string>
+    <string name="log_out">Log Out</string>
 
     <string name="address">Address</string>
     <string name="age">Age</string>
