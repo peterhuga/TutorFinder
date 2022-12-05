@@ -248,6 +248,7 @@ class TutorScreenActivity : AppCompatActivity() {
     }
 
 
+    // If profile not updated, will be directed to the profile activity
     override fun onStart() {
         database.child("users/${currentUser?.uid}/firstName").addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
