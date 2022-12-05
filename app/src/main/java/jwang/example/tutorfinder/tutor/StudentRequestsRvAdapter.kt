@@ -20,8 +20,8 @@ class StudentRequestsRvAdapter(val context: Context, private val dataset: List<S
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
             val nameTextView: TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemName)
-            val ageTextView : TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemAge)
-            val emailTextView: TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemEmail)
+            val gradeTextView : TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemGrade)
+//            val emailTextView: TextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemEmail)
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageViewMyStudentItem)
 
     }
@@ -39,8 +39,8 @@ class StudentRequestsRvAdapter(val context: Context, private val dataset: List<S
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataset[position]
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.ageTextView.text = "Age: ${item.age}"
-        holder.emailTextView.text = "Email: ${item.email}"
+        holder.gradeTextView.text = "Grade: ${item.grade}"
+//        holder.emailTextView.text = "Email: ${item.email}"
         //Hardcoded for now. Include image resource id property in data model later.
         holder.imageView.setImageResource(R.drawable.student_male)
 
@@ -55,6 +55,7 @@ class StudentRequestsRvAdapter(val context: Context, private val dataset: List<S
             StudentRequestActivity.POSITION_DELETE = 0
 
             val intent = Intent(context,RequestedStudentProfileActivity::class.java)
+            intent.putExtra("student_id", item)
             (context as Activity).startActivity(intent)
 
         }

@@ -16,7 +16,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import jwang.example.tutorfinder.R
+import java.util.Objects
 
 class RequestedStudentProfileActivity : AppCompatActivity() , OnClickListener{
 
@@ -25,6 +29,10 @@ class RequestedStudentProfileActivity : AppCompatActivity() , OnClickListener{
     lateinit var requestedStudentsNameTextView: TextView
     lateinit var requestedStudentsAgeTextView: TextView
     lateinit var requestedStudentsGradeTextView: TextView
+
+    lateinit var studentId: Student
+
+    private val database = Firebase.database.reference
 
     var name: String = "Sampath"
     var age: String = "21"
@@ -35,10 +43,12 @@ class RequestedStudentProfileActivity : AppCompatActivity() , OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_requested_student_profile)
 
+        studentId = intent.getSerializableExtra("student_id") as Student
+
         initializeFields()
         supportActionBar?.title = "Tutor Portal"
 
-        var id: String = StudentRequestActivity.STUDENT_ID.toString()
+        //var id: String = StudentRequestActivity.STUDENT_ID.toString()
 
     }
 
@@ -56,7 +66,7 @@ class RequestedStudentProfileActivity : AppCompatActivity() , OnClickListener{
                 val intent = Intent(Intent.ACTION_SENDTO).apply {
                     //type = "text/plain"
                     data = Uri.parse("mailto:")
-                    putExtra(Intent.EXTRA_EMAIL, arrayOf(email) )
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf(studentId.email) )
                     putExtra(Intent.EXTRA_SUBJECT, "Email subject")
                 }
                 val chooser = Intent.createChooser(intent, "Choose the application")
@@ -91,9 +101,9 @@ class RequestedStudentProfileActivity : AppCompatActivity() , OnClickListener{
         buttonAccept.setOnClickListener(this)
         buttonReject.setOnClickListener(this)
 
-        requestedStudentsNameTextView.text = name
-        requestedStudentsAgeTextView.text = age
-        requestedStudentsGradeTextView.text = grade
+        requestedStudentsNameTextView.text = studentId.name
+        requestedStudentsAgeTextView.text = studentId.age.toString()
+        requestedStudentsGradeTextView.text = studentId.grade.toString()
     }
 
     private fun showAlert(title: String) {
@@ -104,6 +114,40 @@ class RequestedStudentProfileActivity : AppCompatActivity() , OnClickListener{
         builder.setPositiveButton("Confirm"){
             //send student id back to parent to delete it
                 dialog, which ->
+            if (title == "Are you sure to accept this student?") {
+                //Log.d("accept", "Accept")
+
+                // update the tutors current students node
+                val databaseReferenceAccept: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/current_students")
+                val updateStudent = HashMap<String, Any>()
+                updateStudent[studentId.id] = ""
+                databaseReferenceAccept.updateChildren(updateStudent)
+
+                // update the students accepted tutors node
+                val databaseReferenceAcceptForStudent: DatabaseReference = database.child("users/${studentId.id}/tutors_accepted")
+                val updateTutor = HashMap<String, Any>()
+                updateTutor[TutorScreenActivity.currentUser?.uid.toString()] = ""
+                databaseReferenceAcceptForStudent.updateChildren(updateTutor)
+
+                // update the tutors requested students node by removing the students accepted
+                val databaseReferenceRemove: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests/${studentId.id}")
+                databaseReferenceRemove.removeValue()
+
+                // update the students requested tutors node by removing the tutor accepted
+                val databaseReferenceRemoveTutor: DatabaseReference = database.child("users/${studentId.id}/tutors_requested/${TutorScreenActivity.currentUser?.uid}")
+                databaseReferenceRemoveTutor.removeValue()
+
+            } else {
+                //Log.d("accept", "Reject")
+
+                // update the tutors requested students node by removing the students rejected
+                val databaseReferenceRemove: DatabaseReference = database.child("users/${TutorScreenActivity.currentUser?.uid}/students_requests/${studentId.id}")
+                databaseReferenceRemove.removeValue()
+
+                // update the tutors requested tutors node by removing the tutor rejected
+                val databaseReferenceRemoveForStudent: DatabaseReference = database.child("users/${studentId.id}/tutors_requested/${TutorScreenActivity.currentUser?.uid}")
+                databaseReferenceRemoveForStudent.removeValue()
+            }
             StudentRequestActivity.STUDENT_ID_DELETE = StudentRequestActivity.STUDENT_ID
             StudentRequestActivity.POSITION_DELETE = StudentRequestActivity.POSITION
             finish()
