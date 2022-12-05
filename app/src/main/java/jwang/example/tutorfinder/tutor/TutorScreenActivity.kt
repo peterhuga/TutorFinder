@@ -1,8 +1,10 @@
 package jwang.example.tutorfinder.tutor
 
 import android.app.ActivityOptions
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -93,16 +95,48 @@ class TutorScreenActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedStudent: Student =
                     students[viewHolder.adapterPosition]
-                val position = viewHolder.adapterPosition
-                students.removeAt(viewHolder.adapterPosition)
-                adapter.notifyItemRemoved(viewHolder.adapterPosition)
-                tvStudentAmount.text = "You have ${students.size} students"
-                Snackbar.make(recyclerView, "${deletedStudent.name} deleted" , Snackbar.LENGTH_LONG)
-                    .setAction("Undo") {
-                        students.add(position, deletedStudent)
-                        adapter.notifyItemInserted(position)
-                        tvStudentAmount.text = "You have ${students.size} students"
-                    }.show()
+
+                val builder = AlertDialog.Builder(viewHolder.itemView.context)
+
+                builder.setTitle("Are you sure to delete this student?")
+                builder.setCancelable(false)
+                builder.setPositiveButton("Confirm"){
+                    //send student id back to parent to delete it
+                        dialog, which ->
+                    students.removeAt(viewHolder.adapterPosition)
+                    adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                    Log.d("myTag", "notify1: ${students.size}")
+                    acceptedStudentsUids.clear()
+
+                    tvStudentAmount.text = "You have ${students.size} students"
+                    database.child("users/${currentUser?.uid}/current_students").child(deletedStudent.id).removeValue()
+                }
+                builder.setNegativeButton("Cancel"){
+                        dialog, which ->
+                    recyclerView.adapter = adapter
+                    dialog.cancel()
+                }
+                builder.show()
+
+
+//                Snackbar.make(recyclerView, "${deletedStudent.name} deleted" , Snackbar.LENGTH_LONG)
+//                    .setAction("Undo") {
+//                        students.add(position, deletedStudent)
+//                        adapter.notifyItemInserted(position)
+//                        tvStudentAmount.text = "You have ${students.size} students"
+//
+//                    }
+//                    .addCallback(object: Snackbar.Callback() {
+//                        override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+//                            super.onDismissed(transientBottomBar, event)
+//
+//                        }
+//                    })
+//                    .show()
+
+
+
+
             }
         }).attachToRecyclerView(recyclerView)
 
@@ -112,6 +146,8 @@ class TutorScreenActivity : AppCompatActivity() {
             database.child("users/${currentUser.uid}/current_students").addValueEventListener(object:
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    students.clear()
+                    Log.d("myTag", "final: ${students.size}")
 
                     for (i in snapshot.children){
                         if (!acceptedStudentsUids.contains(i.key)) {
@@ -162,7 +198,8 @@ class TutorScreenActivity : AppCompatActivity() {
             if(requestCode==1){
                 if (data != null) {
                     val deleteId = data.getStringExtra(STUDENT_ID)
-                    val position = data.getIntExtra("position", -1)
+
+                    //val position = data.getIntExtra("position", -1)
                     Log.d("Student", "DltID, $deleteId")
                     val students2 = students.filter { student -> student.id != deleteId } as MutableList<Student>
                     students.clear()
@@ -170,6 +207,12 @@ class TutorScreenActivity : AppCompatActivity() {
                     Log.d("Student", "size: ${students.size}")
                     adapter.notifyDataSetChanged()
                     tvStudentAmount.text = "You have ${students.size} students"
+                    acceptedStudentsUids.clear()
+                    if (deleteId != null) {
+                        database.child("users/${currentUser?.uid}/current_students").child(deleteId).removeValue()
+                    }
+
+
                 }
             }
         }
@@ -212,38 +255,33 @@ class TutorScreenActivity : AppCompatActivity() {
 
     fun fetchAcceptedStudents() {
 
+
         for (uid in acceptedStudentsUids) {
+
             database.child("users").orderByKey().equalTo(uid).addValueEventListener(object:
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-//                    if(snapshot.exists()){
-//                        Log.d("myTag", "snapcount: ${snapshot.childrenCount}")
-
-                        //Get object from snapshot. Here is only one object in the children array.
-                        //TODO: Student and Tutor classes should inherit UnknownUser class
                     for (i in snapshot.children){
-//                            Log.d("myTag", "uid: ${i.key}")
                         var student = i.getValue(Student::class.java)
                         student?.let { it.id = uid
 
                             if (!students.contains(student)){
                                 students.add(it)
 
-                            }
 
-//                                Log.d("myTag", "st id: ${student.id}")
-//                                Log.d("myTag", "st count: ${students.count()}")
+                            }
                         }
                     }
                     recyclerView.adapter?.notifyDataSetChanged()
+                    Log.d("myTag", "notify2: ${students.size}")
                     tvStudentAmount.text = "You have ${students.size} students"
-//                    } else{
-//                        Toast.makeText(applicationContext, "Data is not found", Toast.LENGTH_SHORT).show()
-//                    }
+
                 }
                 override fun onCancelled(error: DatabaseError) {
                 }
             })
         }
+
+
     }
 }
