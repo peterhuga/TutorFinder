@@ -246,4 +246,26 @@ class TutorScreenActivity : AppCompatActivity() {
             })
         }
     }
+
+
+    override fun onStart() {
+        database.child("users/${currentUser?.uid}/firstName").addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.value?.equals("") == true){
+
+                    //Log.d("IfExists", snapshot.toString())
+                    startActivity(
+                        Intent(
+                            applicationContext,
+                            EditTutorProfileActivity::class.java
+                        )
+                    )
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+        super.onStart()
+    }
 }

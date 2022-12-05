@@ -83,15 +83,15 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/textViewTutorEmail"
+                android:id="@+id/textViewTutorPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="EMAIL:"
+                android:text="PHONE:"
                 android:layout_weight="1"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTutorEmail"
+                android:id="@+id/editTextTutorPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -106,15 +106,15 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/textViewTutorPhone"
+                android:id="@+id/textViewTutorEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="PHONE:"
+                android:text="EMAIL:"
                 android:layout_weight="1"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTutorPhone"
+                android:id="@+id/editTextTutorEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -184,6 +184,29 @@
 
             <EditText
                 android:id="@+id/editTextTutorExperience"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="2"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/textViewTutorGrades"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="GRADES:"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextTutorGrades"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
