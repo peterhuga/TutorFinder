@@ -111,6 +111,7 @@ class TutorScreenActivity : AppCompatActivity() {
 
                     tvStudentAmount.text = "You have ${students.size} students"
                     database.child("users/${currentUser?.uid}/current_students").child(deletedStudent.id).removeValue()
+                    database.child("users/${deletedStudent.id}/tutors_accepted/${currentUser?.uid}").removeValue()
                 }
                 builder.setNegativeButton("Cancel"){
                         dialog, which ->
@@ -211,6 +212,7 @@ class TutorScreenActivity : AppCompatActivity() {
                     acceptedStudentsUids.clear()
                     if (deleteId != null) {
                         database.child("users/${currentUser?.uid}/current_students").child(deleteId).removeValue()
+                        database.child("users/${deleteId}/tutors_accepted/${currentUser?.uid}").removeValue()
                     }
 
 
