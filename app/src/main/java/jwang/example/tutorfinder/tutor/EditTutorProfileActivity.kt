@@ -84,7 +84,7 @@ class EditTutorProfileActivity : AppCompatActivity() {
 
     private fun onSAveButtonClick() {
 
-        database.child("users/${currentUserId}/firstName").setValue(tutorsNameTextView.text.toString())
+        database.child("users/${currentUserId}/name").setValue(tutorsNameTextView.text.toString())
         database.child("users/${currentUserId}/age").setValue(tutorsAgeTextView.text.toString())
         database.child("users/${currentUserId}/phone").setValue(tutorsPhoneTextView.text.toString())
         database.child("users/${currentUserId}/email").setValue(tutorsEmailTextView.text.toString())
@@ -137,7 +137,7 @@ class EditTutorProfileActivity : AppCompatActivity() {
         database.child("users/${currentUserId}").addValueEventListener(object:
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
+                if (snapshot.child("name").exists()){
 
                     //Log.d("IfExists", snapshot.toString())
 
@@ -149,6 +149,8 @@ class EditTutorProfileActivity : AppCompatActivity() {
                     tutorsAgeTextView.text = snapshot.child("age").value.toString()
                     tutorsExperienceTextView.text = snapshot.child("experience").value.toString()
                     tutorsGradesTextView.text = snapshot.child("grades").value.toString()
+                } else {
+                    tutorsEmailTextView.text = snapshot.child("email").value.toString()
                 }
             }
 
