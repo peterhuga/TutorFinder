@@ -253,7 +253,7 @@ class TutorScreenActivity : AppCompatActivity() {
     override fun onStart() {
         database.child("users/${currentUser?.uid}/name").addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.value?.equals("") == true){
+                if (!snapshot.exists()){
 
                     //Log.d("IfExists", snapshot.toString())
                     startActivity(
