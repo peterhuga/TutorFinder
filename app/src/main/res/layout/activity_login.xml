@@ -45,10 +45,9 @@
         android:id="@+id/textViewRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:text="@string/no_account"
-        app:layout_constraintEnd_toStartOf="@id/textViewHere"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
@@ -56,12 +55,12 @@
         android:id="@+id/textViewHere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="16dp"
         android:text="@string/here"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewRegister"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewRegister" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegister" />
 
     <Button
         android:id="@+id/buttonLogin"

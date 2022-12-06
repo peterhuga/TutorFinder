@@ -111,6 +111,7 @@ class TutorScreenActivity : AppCompatActivity() {
 
                     tvStudentAmount.text = "You have ${students.size} students"
                     database.child("users/${currentUser?.uid}/current_students").child(deletedStudent.id).removeValue()
+                    database.child("users/${deletedStudent.id}/tutors_accepted/${currentUser?.uid}").removeValue()
                 }
                 builder.setNegativeButton("Cancel"){
                         dialog, which ->
@@ -118,22 +119,6 @@ class TutorScreenActivity : AppCompatActivity() {
                     dialog.cancel()
                 }
                 builder.show()
-
-
-//                Snackbar.make(recyclerView, "${deletedStudent.name} deleted" , Snackbar.LENGTH_LONG)
-//                    .setAction("Undo") {
-//                        students.add(position, deletedStudent)
-//                        adapter.notifyItemInserted(position)
-//                        tvStudentAmount.text = "You have ${students.size} students"
-//
-//                    }
-//                    .addCallback(object: Snackbar.Callback() {
-//                        override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-//                            super.onDismissed(transientBottomBar, event)
-//
-//                        }
-//                    })
-//                    .show()
 
 
 
@@ -207,10 +192,11 @@ class TutorScreenActivity : AppCompatActivity() {
                     students.addAll(students2)
                     Log.d("Student", "size: ${students.size}")
                     adapter.notifyDataSetChanged()
-                    tvStudentAmount.text = "You have ${students.size} students"
+                    tvStudentAmount.text = "You have ${students.size} student(s)"
                     acceptedStudentsUids.clear()
                     if (deleteId != null) {
                         database.child("users/${currentUser?.uid}/current_students").child(deleteId).removeValue()
+                        database.child("users/${deleteId}/tutors_accepted/${currentUser?.uid}").removeValue()
                     }
 
 
@@ -275,7 +261,7 @@ class TutorScreenActivity : AppCompatActivity() {
                     }
                     recyclerView.adapter?.notifyDataSetChanged()
                     Log.d("myTag", "notify2: ${students.size}")
-                    tvStudentAmount.text = "You have ${students.size} students"
+                    tvStudentAmount.text = "You have ${students.size} student(s)"
 
                 }
                 override fun onCancelled(error: DatabaseError) {

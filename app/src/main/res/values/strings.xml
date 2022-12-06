@@ -46,8 +46,8 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="no_account">Do not have an account, Register </string>
-    <string name="here">Here</string>
+    <string name="no_account">Do not have an account</string>
+    <string name="here">Register here</string>
     <string name="welcome_user">Welcome new user</string>
     <string name="problem">Problem creating account</string>
     <string name="tutor_logout">Log out</string>
