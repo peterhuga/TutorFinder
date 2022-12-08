@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
 
             // if the button is checked, i.e., towards the right or enabled
             // enable dark mode, change the text to disable dark mode
-            // else keep the switch text to enable dark mode
             if (themeBtn.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 themeBtn.text = "Disable dark mode"
