@@ -41,9 +41,6 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.password)
         tvForgetPassword = findViewById(R.id.textViewForgetPassword)
 
-        themeBtn = findViewById<Switch>(R.id.switch1)
-
-        // set the switch to listen on checked change
         themeBtn.setOnCheckedChangeListener { _, isChecked ->
 
             // if the button is checked, i.e., towards the right or enabled
