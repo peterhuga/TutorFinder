@@ -46,7 +46,7 @@ class MyTutorProfileActivity : AppCompatActivity() {
         backToDashboard=findViewById(R.id.goBackFromMyTutorProfile)
         for (i in 0..StudentDashboard.tutors.count()-1){
             myTutorname.text=StudentDashboard.tutors[i].name
-            myTutorage.text=StudentDashboard.tutors[i].age
+            myTutorage.text=StudentDashboard.tutors[i].age.toString()
             myTutoremail.text=StudentDashboard.tutors[i].email
             myTutorexperience.text=StudentDashboard.tutors[i].experience
             myTutordegree.text=StudentDashboard.tutors[i].degree

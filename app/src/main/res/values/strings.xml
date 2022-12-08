@@ -5,40 +5,12 @@
     <string name="edit_tutor_profile">Edit Profile</string>
     <string name="delete_my_student">Delete Student</string>
     <string name="accountTypeinfo">How do you want to continue....</string>
-    <string name="studentBtn">Student</string>
-    <string name="tutorSelectBtn">Tutor</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="signup">Signup</string>
-    <string name="alreadyAccount">Login to already registered account</string>
-    <string name="signupmsg">Don\'t have an account?</string>
-    <string name="hint">enter the name to search</string>
-    <string name="editProfile">Edit Profile</string>
-    <string name="save">Save</string>
-    <string name="name">Name</string>
+
 
     <string name="channel_name">PRadip</string>
     <string name="channnel_desc">Testing for notification</string>
-    <string name="address">Address</string>
-    <string name="age">Age</string>
-    <string name="gender">Gender</string>
-    <string name="avatar">Avatar</string>
-    <string name="emailStudent">Email</string>
-    <string name="grade">Grade</string>
-    <string name="course">Course</string>
-    <string name="phone">Phone</string>
-    <string name="degree">Academic Degree</string>
-    <string name="teachingCourse">Courses taught</string>
-    <string name="experience">Experience(Years)</string>
-    <string name="back">Back</string>
-    <string name="sendrequest">Send Request</string>
-    <string name="cancelRequest">Cancel Request</string>
-    <string name="msgSendReq">Your request has been sent</string>
-    <string name="msgCancelReq">Your request has been canceled</string>
-    <string name="filter">Click to filter tutors</string>
-    <string name="location">Location</string>
-    <string name="done">Done</string>
+
+
     <string name="sentRequest">Sent Request</string>
     <string name="notification">Subscribe Notification</string>
     <string name="camera">Camera</string>
@@ -102,6 +74,57 @@
         <item>Master</item>
 
     </string-array>
-
     <string name="signupbtn">Sign Up</string>
+
+        <string name="studentBtn">Student</string>
+        <string name="tutorSelectBtn">Tutor</string>
+        <string name="email">Email</string>
+        <string name="password">Password</string>
+        <string name="login">Login</string>
+        <string name="signup">Signup</string>
+        <string name="alreadyAccount">Login to already registered account</string>
+        <string name="signupmsg">Don\'t have an account?</string>
+        <string name="hint">enter the name to search</string>
+        <string name="editProfile">Edit Profile</string>
+        <string name="save">Save</string>
+        <string name="name">Name</string>
+        <string name="contact_student">Contact Student</string>
+        <string name="log_out">Log Out</string>
+
+        <string name="address">Address</string>
+        <string name="age">Age</string>
+        <string name="gender">Gender</string>
+        <string name="avatar">Avatar</string>
+        <string name="emailStudent">Email</string>
+        <string name="grade">Grade</string>
+        <string name="course">Course</string>
+        <string name="phone">Phone</string>
+        <string name="degree">Academic Degree</string>
+        <string name="teachingCourse">Courses taught</string>
+        <string name="experience">Experience(Years)</string>
+        <string name="back">Back</string>
+        <string name="sendrequest">Send Request</string>
+        <string name="cancelRequest">Cancel Request</string>
+        <string name="msgSendReq">Your request has been sent</string>
+        <string name="msgCancelReq">Your request has been canceled</string>
+        <string name="filter">Click to filter tutors</string>
+        <string name="location">Location</string>
+        <string name="done">Done</string>
+        <string-array name="genderQuery">
+            <item>Male</item>
+            <item>Female</item>
+        </string-array>
+        <string name="prompt_email">Email</string>
+        <string name="prompt_password">Password</string>
+        <string name="action_sign_in_short">Sign in</string>
+        <string name="no_account">Do not have an account</string>
+        <string name="here">Register here</string>
+        <string name="welcome_user">Welcome new user</string>
+        <string name="problem">Problem creating account</string>
+        <string name="tutor_logout">Log out</string>
+        <string name="logged_out">You are now logged out</string>
+        <string name="welcome">"Welcome !"</string>
+
+
+
 </resources>

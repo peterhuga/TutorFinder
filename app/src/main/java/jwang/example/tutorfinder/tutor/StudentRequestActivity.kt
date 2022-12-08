@@ -1,11 +1,7 @@
 package jwang.example.tutorfinder.tutor
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.View.OnClickListener
-import android.widget.Button
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +13,6 @@ class StudentRequestActivity : AppCompatActivity() {
     //Dummy data for populating UI
     companion object {
         val requestedStudents: ArrayList<Student> = arrayListOf(
-            Student(101, "Sampath", 21, "sampath@email.com"),
-            Student(102, "Jianwei", 22, "jianwei@email.com"),
-            Student(103,"Sunny", 19, "Sunny@email.com")
         )
 
 

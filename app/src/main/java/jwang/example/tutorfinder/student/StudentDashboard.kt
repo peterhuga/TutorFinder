@@ -10,16 +10,28 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
 import jwang.example.tutorfinder.tutor.EditTutorProfileActivity
+import jwang.example.tutorfinder.tutor.Student
 import jwang.example.tutorfinder.tutor.StudentRequestActivity
+import jwang.example.tutorfinder.tutor.TutorScreenActivity
 
 
 class StudentDashboard : AppCompatActivity() {
@@ -28,35 +40,126 @@ class StudentDashboard : AppCompatActivity() {
     lateinit var filterTutorNavigateBtn:Button
     val NOTIFICATION_ID = 111
     val CHANNEL_ID = "101"
-    companion object {
-        const val TUTOR_ID = "tutor id"
-        var tutors: MutableList<Tutor> = mutableListOf(
-            Tutor( "John", "35","Male","London","5555555555","Secondary","5", "John@gmail.com","Masters"),
-            Tutor( "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com","Post Graduate"),
-            Tutor( "Leo", "36","Male","Ottawa","2222222222","Primary","6", "Leo@gmail.com","Masters"),
-            Tutor( "Shyam", "35","Male","London","5555555555","11","7", "Shyam@gmail.com","Bachelors"),
+    var requestCount = 0
 
-            )
+    companion object {
+        private val database = Firebase.database.reference
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        var acceptedTutorsUids = mutableListOf<String>()
+        var requestTutorssUids = mutableListOf<String>()
+
+        const val TUTOR_ID = "tutor id"
+        var tutors: MutableList<Tutor> = mutableListOf()
 
 
     }
 
-//    var tutors: MutableList<Tutor> = mutableListOf(
-//        Tutor(101, "John", "35","Male","London","5555555555","12","5", "John@gmail.com"),
-//        Tutor(101, "Ted", "40","Male","Toronto","1111111111","Bachelor","10", "Ted@gmail.com"),
-//    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard)
+
+
+
+
+
+
+
+
+
+//        if(LoginActivity.themeBtn.isChecked){
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//
+//        }
     filterTutorNavigateBtn=findViewById(R.id.filterTutorActivityBtn)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMyTutor)
         adapter = MyTutorsRvAdapter(this, tutors)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         createNotificationChannel()
+
+
+        if ( currentUser != null) {
+            database.child("users/${currentUser.uid}/current_tutors").addValueEventListener(object:
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    tutors.clear()
+                    Log.d("myTag", "final: ${tutors.size}")
+
+                    for (i in snapshot.children){
+                        if (!acceptedTutorsUids.contains(i.key)) {
+                            i.key?.let { acceptedTutorsUids.add(it) }
+                        }
+                    }
+                    fetchAcceptedTutors()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w("myTag", "postComments:onCancelled", error.toException())
+                    Toast.makeText(applicationContext, "Failed to load comments.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            })
+
+//            database.child("users/${currentUser.uid}/students_requests").addValueEventListener(object:
+//                ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    requestTutorssUids.clear()
+//                    for (i in snapshot.children){
+//                        if (!requestTutorssUids.contains(i.key)) {
+//                            i.key?.let { requestTutorssUids.add(it) }
+//                        }
+//                    }
+//
+//                    requestCount = requestTutorssUids.size
+//
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    Log.w("myTag", "postComments:onCancelled", error.toException())
+//                    Toast.makeText(applicationContext, "Failed to load comments.",
+//                        Toast.LENGTH_SHORT).show()
+//                }
+//            })
+        }
+
     }
 
+
+    fun fetchAcceptedTutors() {
+
+
+        for (uid in acceptedTutorsUids) {
+
+            database.child("users").orderByKey().equalTo(uid).addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (i in snapshot.children) {
+                        var tutor = i.getValue(Tutor::class.java)
+                        tutor?.let {
+                            it.id = uid
+
+                            if (!tutors.contains(tutor)) {
+                                tutors.add(it)
+
+
+                            }
+                        }
+                    }
+                    recyclerView.adapter?.notifyDataSetChanged()
+                    Log.d("myTag", "notify2: ${tutors.size}")
+                    // tvStudentAmount.text = "You have ${TutorScreenActivity.students.size} student(s)"
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        }
+
+
+    }
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //
