@@ -96,7 +96,7 @@ lateinit var sendRequestToTutorButton:Button
         database.child("users").orderByChild("role").equalTo("tutor").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-             
+
                 //recyclerView.adapter?.notifyDataSetChanged()
                 // Log.d("myTag", "notify2: ${TutorDatabaseKeys}")
                 // tvStudentAmount.text = "You have ${TutorScreenActivity.students.size} student(s)"
