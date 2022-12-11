@@ -27,7 +27,7 @@ class TutorFilterActivity : AppCompatActivity() {
     lateinit var adapter: FilteredTutorRv
     lateinit var myObj:String
     lateinit var recyclerView: RecyclerView
-    lateinit var gradeSpinner: Spinner
+    //lateinit var gradeSpinner: Spinner
     lateinit var degreeSpinner: Spinner
     lateinit var experienceSpinner: Spinner
 
@@ -48,7 +48,7 @@ class TutorFilterActivity : AppCompatActivity() {
         supportActionBar?.title = "Student Portal"
 
         degreeSpinner=findViewById(R.id.academicDegreeSpinner)
-        gradeSpinner=findViewById(R.id.gradeSpinner)
+        //gradeSpinner=findViewById(R.id.gradeSpinner)
         experienceSpinner=findViewById(R.id.experienceSpinner)
 
         val degreespinneradapter = ArrayAdapter.createFromResource(
@@ -61,14 +61,14 @@ class TutorFilterActivity : AppCompatActivity() {
         // degreeSpinner.onItemSelectedListener = this
 
 
-        val gradepinneradapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.gradeSpinner,
-            android.R.layout.simple_spinner_item
-        )
-        gradepinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        gradeSpinner.adapter = gradepinneradapter
-        // gradeSpinner.onItemSelectedListener = this
+//        val gradepinneradapter = ArrayAdapter.createFromResource(
+//            this,
+//            R.array.gradeSpinner,
+//            android.R.layout.simple_spinner_item
+//        )
+//        gradepinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        gradeSpinner.adapter = gradepinneradapter
+//        // gradeSpinner.onItemSelectedListener = this
 
 
         val experiencepinneradapter = ArrayAdapter.createFromResource(
@@ -167,9 +167,9 @@ class TutorFilterActivity : AppCompatActivity() {
 
         for (tutor in filteredTutors) {
             Log.d("test", experienceSpinner.selectedItem.toString())
-            Log.d("test", gradeSpinner.selectedItem.toString())
-            Log.d("test", degreeSpinner.selectedItem.toString())
-            if (tutor.education == degreeSpinner.selectedItem && tutor.experience == experienceSpinner.selectedItem && tutor.grades == gradeSpinner.selectedItem) {
+            //Log.d("test", gradeSpinner.selectedItem.toString())
+            //Log.d("test", degreeSpinner.selectedItem.toString())
+            if (tutor.education == degreeSpinner.selectedItem && tutor.experience == experienceSpinner.selectedItem) {
                 tutor?.let { it.id = tutor.id
 
                     if (!finalFilteredTutors.contains(tutor)) {

@@ -41,7 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name"
+                android:text="Name:"
                 android:textSize="20sp" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Age"
+                android:text="Age:"
                 android:textSize="20sp" />
 
             <TextView
@@ -85,7 +85,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Email"
+                android:text="Email:"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -124,7 +124,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Phone"
+                android:text="Phone:"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -171,7 +171,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Address"
+                android:text="Address:"
                 android:textSize="20sp" />
 
             <TextView
@@ -193,7 +193,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Grade"
+                android:text="Grade:"
                 android:textSize="20sp" />
 
             <LinearLayout

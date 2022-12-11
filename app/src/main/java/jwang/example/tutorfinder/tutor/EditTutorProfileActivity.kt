@@ -12,10 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -44,9 +41,9 @@ class EditTutorProfileActivity : AppCompatActivity() {
     lateinit var tutorsEmailTextView: TextView
     lateinit var tutorsPhoneTextView: TextView
     lateinit var tutorsAddressTextView: TextView
-    lateinit var tutorsEducationTextView: TextView
+    lateinit var tutorsEducationSpinner: Spinner
     lateinit var tutorsAgeTextView: TextView
-    lateinit var tutorsExperienceTextView: TextView
+    lateinit var tutorsExperienceSpinner: Spinner
     lateinit var tutorsGradesTextView: TextView
 
     private val database = Firebase.database.reference
@@ -60,6 +57,24 @@ class EditTutorProfileActivity : AppCompatActivity() {
         supportActionBar?.title = "Tutor Portal"
 
         initializeFields()
+
+        val educationSpinnerAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.academicDegreeSpinner,
+            android.R.layout.simple_spinner_item
+        )
+        educationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        tutorsEducationSpinner.adapter = educationSpinnerAdapter
+
+
+        val experienceSpinnerAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.ExpereienceSpinner,
+            android.R.layout.simple_spinner_item
+        )
+        experienceSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        tutorsExperienceSpinner.adapter = experienceSpinnerAdapter
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -74,7 +89,8 @@ class EditTutorProfileActivity : AppCompatActivity() {
                 Log.d("Student", "action bar clicked")
 
                 if (tutorsNameTextView.text.isEmpty() || tutorsAgeTextView.text.isEmpty() || tutorsEmailTextView.text.isEmpty() || tutorsPhoneTextView.text.isEmpty()
-                    || tutorsAddressTextView.text.isEmpty() || tutorsEducationTextView.text.isEmpty() || tutorsExperienceTextView.text.isEmpty()) {
+                    || tutorsAddressTextView.text.isEmpty() || tutorsEducationSpinner.selectedItem.equals("--No Selection--") || tutorsExperienceSpinner.selectedItem.equals("--No Selection--")
+                    || tutorsGradesTextView.text.isEmpty()) {
                     Toast.makeText(this,"Fill the every field!", Toast.LENGTH_SHORT).show()
                 } else {
                     onSAveButtonClick()
@@ -103,12 +119,12 @@ class EditTutorProfileActivity : AppCompatActivity() {
     private fun onSAveButtonClick() {
 
         database.child("users/${currentUserId}/name").setValue(tutorsNameTextView.text.toString())
-        database.child("users/${currentUserId}/age").setValue(tutorsAgeTextView.text.toString())
+        database.child("users/${currentUserId}/age").setValue(tutorsAgeTextView.text.toString().toInt())
         database.child("users/${currentUserId}/phone").setValue(tutorsPhoneTextView.text.toString())
         database.child("users/${currentUserId}/email").setValue(tutorsEmailTextView.text.toString())
         database.child("users/${currentUserId}/address").setValue(tutorsAddressTextView.text.toString())
-        database.child("users/${currentUserId}/education").setValue(tutorsEducationTextView.text.toString())
-        database.child("users/${currentUserId}/experience").setValue(tutorsExperienceTextView.text.toString())
+        database.child("users/${currentUserId}/education").setValue(tutorsEducationSpinner.selectedItem.toString())
+        database.child("users/${currentUserId}/experience").setValue(tutorsExperienceSpinner.selectedItem.toString())
         database.child("users/${currentUserId}/grades").setValue(tutorsGradesTextView.text.toString())
 
 //        database.child("users/${TutorScreenActivity.currentUser?.uid}/firstName").setValue(tutorsNameTextView.text.toString())
@@ -138,9 +154,9 @@ class EditTutorProfileActivity : AppCompatActivity() {
         tutorsEmailTextView = findViewById(R.id.editTextTutorEmail)
         tutorsPhoneTextView = findViewById(R.id.editTextTutorPhone)
         tutorsAddressTextView = findViewById(R.id.editTextTutorAddress)
-        tutorsEducationTextView = findViewById(R.id.editTextTutorEducation)
+        tutorsEducationSpinner = findViewById(R.id.spinnerTutorEducation)
         tutorsAgeTextView = findViewById(R.id.editTextTutorAge)
-        tutorsExperienceTextView = findViewById(R.id.editTextTutorExperience)
+        tutorsExperienceSpinner = findViewById(R.id.spinnerTutorExperience)
         tutorsGradesTextView = findViewById(R.id.editTextTutorGrades)
 
 
@@ -158,14 +174,34 @@ class EditTutorProfileActivity : AppCompatActivity() {
                 if (snapshot.child("name").exists()){
 
                     //Log.d("IfExists", snapshot.toString())
+                    var educationFromDatabase: String = snapshot.child("education").value.toString()
+                    var experienceFromDatabase: String = snapshot.child("experience").value.toString()
+
+                    var selectionEducation: Int = 0
+                    var selectionExperience: Int = 0
+
+                    when (educationFromDatabase) {
+                        "Masters" -> selectionEducation = 1
+                        "Bachelors" -> selectionEducation = 2
+                        "PhD" -> selectionEducation = 3
+                        "Diploma" -> selectionEducation = 4
+                        "Post Graduate" -> selectionEducation = 5
+                    }
+
+                    when (experienceFromDatabase) {
+                        "1 to 5" -> selectionExperience = 1
+                        "6 to 10" -> selectionExperience = 2
+                        "More than 10" -> selectionExperience = 3
+                    }
+
 
                     tutorsNameTextView.text = snapshot.child("name").value.toString()
                     tutorsEmailTextView.text = snapshot.child("email").value.toString()
                     tutorsPhoneTextView.text = snapshot.child("phone").value.toString()
                     tutorsAddressTextView.text = snapshot.child("address").value.toString()
-                    tutorsEducationTextView.text = snapshot.child("education").value.toString()
+                    tutorsEducationSpinner.setSelection(selectionEducation)
                     tutorsAgeTextView.text = snapshot.child("age").value.toString()
-                    tutorsExperienceTextView.text = snapshot.child("experience").value.toString()
+                    tutorsExperienceSpinner.setSelection(selectionExperience)
                     tutorsGradesTextView.text = snapshot.child("grades").value.toString()
                 } else {
                     tutorsEmailTextView.text = snapshot.child("email").value.toString()

@@ -56,7 +56,7 @@ class MyTutorProfileActivity : AppCompatActivity() {
         myTutorEmailRedirect = findViewById(R.id.imageButtonEmail)
 
         myTutorName.text = tutorId.name
-        myTutorAge.text = tutorId.age
+        myTutorAge.text = tutorId.age.toString()
         myTutorEmail.text = tutorId.email
         myTutorExperience.text = tutorId.experience + " years"
         myTutorDegree.text = tutorId.education

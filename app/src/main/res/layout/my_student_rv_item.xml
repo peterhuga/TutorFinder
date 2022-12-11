@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="110dp"
 
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="4dp"
@@ -38,22 +38,25 @@
                 android:id="@+id/textViewMyStudentItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="Name" />
+                android:text="Name:" />
 
             <TextView
-                android:id="@+id/textViewMyStudentItemAge"
+                android:id="@+id/textViewMyStudentItemGrade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="Age" />
+                android:text="Grade:" />
 
             <TextView
                 android:id="@+id/textViewMyStudentItemEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="Email" />
+                android:text="Email:" />
         </LinearLayout>
     </LinearLayout>
 

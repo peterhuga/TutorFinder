@@ -36,8 +36,8 @@ class MyTutorsRvAdapter(val context: Context, private val dataset: MutableList<T
 
         val item = dataset[position]
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.addressTextView.text = "Address: ${item.address}"
-        holder.genderTextView.text = "Age: ${item.age}"
+        holder.addressTextView.text = "Education: ${item.education}"
+        holder.genderTextView.text = "Grades: ${item.grades}"
         holder.experienceTextView.text = "Experience: ${item.experience} years"
 
 

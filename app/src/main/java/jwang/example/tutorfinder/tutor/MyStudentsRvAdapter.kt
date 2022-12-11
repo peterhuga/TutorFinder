@@ -30,7 +30,7 @@ class MyStudentsRvAdapter(val context: Context, private val dataset: List<Studen
 
             var mId: UUID? = null
             val nameTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemName)
-            val ageTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemAge)
+            val gradeTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemGrade)
             val emailTextView = itemView.findViewById<TextView>(R.id.textViewMyStudentItemEmail)
             val imageView = itemView.findViewById<ImageView>(R.id.imageViewMyStudentItem)
 
@@ -51,7 +51,7 @@ class MyStudentsRvAdapter(val context: Context, private val dataset: List<Studen
 
         val item = dataset[position]
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.ageTextView.text = "Age: ${item.age.toString()}"
+        holder.gradeTextView.text = "Grade: ${item.grade.toString()}"
         holder.emailTextView.text = "Email: ${item.email}"
         //Hardcoded for now. Include image resource id property in data model later.
         //holder.imageView.setImageResource(R.drawable.ic_launcher_foreground)

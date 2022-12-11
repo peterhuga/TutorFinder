@@ -7,11 +7,11 @@ data class Student (
     var name: String = "",
     var age: Int = 0,
     var email: String = "",
-    var phone: Int = 0,
+    var phone: String = "",
     var address: String = "",
     var grade: Int = 0,
     var role: String = ""
     ) : Serializable{
-    constructor(name:String, age:Int, email: String, phone:Int, address:String, grade: Int, role: String) : this(id = "1111", name,
+    constructor(name:String, age:Int, email: String, phone:String, address:String, grade: Int, role: String) : this(id = "1111", name,
     age, email, phone, address, grade, role)
 }
