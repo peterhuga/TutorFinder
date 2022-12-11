@@ -50,7 +50,7 @@ class StudentDashboard : AppCompatActivity() {
     companion object {
         const val TUTOR_ID = "tutor id"
         var tutors: MutableList<Tutor> = mutableListOf()
-        var firstTimeOpenedStudent: Boolean = true
+        var isDarkModeEnabled: Boolean = true
 
     }
 
@@ -66,11 +66,17 @@ class StudentDashboard : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         //createNotificationChannel()
+        
+    }
+
+    //Read student's data from firebase
+    override fun onResume() {
 
         if (currentUser != null) {
             database.child("users/${currentUser.uid}/tutors_accepted").addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    acceptedTutorsUids.clear()
                     tutors.clear()
                     Log.d("myTag", "final: ${tutors.size}")
 
@@ -96,6 +102,7 @@ class StudentDashboard : AppCompatActivity() {
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
+                    requestCount = 0
                     requestTutorsUids.clear()
                     for (i in snapshot.children){
                         if (!requestTutorsUids.contains(i.key)) {
@@ -114,6 +121,8 @@ class StudentDashboard : AppCompatActivity() {
                 }
             })
         }
+
+        super.onResume()
     }
 
     fun onFilterBtnPressed(view: View) {
@@ -190,12 +199,12 @@ class StudentDashboard : AppCompatActivity() {
             class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
             R.id.action_dark_mode -> {
-                if (TutorScreenActivity.isDarkModeEnabled) {
+                if (isDarkModeEnabled) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    TutorScreenActivity.isDarkModeEnabled = false
+                    isDarkModeEnabled = false
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    TutorScreenActivity.isDarkModeEnabled = true
+                    isDarkModeEnabled = true
                 }
 
             }

@@ -130,13 +130,18 @@ class TutorScreenActivity : AppCompatActivity() {
             }
         }).attachToRecyclerView(recyclerView)
 
-        //Read tutor's data from firebase
+    }
+
+    //Read tutor's data from firebase
+
+    override fun onResume() {
 
         if ( currentUser != null) {
             database.child("users/${currentUser.uid}/current_students").addValueEventListener(object:
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     students.clear()
+                    acceptedStudentsUids.clear()
                     Log.d("myTag", "final: ${students.size}")
 
                     for (i in snapshot.children){
@@ -158,6 +163,7 @@ class TutorScreenActivity : AppCompatActivity() {
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     requestStudentsUids.clear()
+                    requestCount = 0
                     for (i in snapshot.children){
                         if (!requestStudentsUids.contains(i.key)) {
                             i.key?.let { requestStudentsUids.add(it) }
@@ -175,6 +181,8 @@ class TutorScreenActivity : AppCompatActivity() {
                 }
             })
         }
+
+        super.onResume()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

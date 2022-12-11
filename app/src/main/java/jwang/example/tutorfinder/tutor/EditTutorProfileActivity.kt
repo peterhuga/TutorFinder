@@ -215,53 +215,53 @@ class EditTutorProfileActivity : AppCompatActivity() {
 
     }
 
-    private fun dispatchTakePictureIntent() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        try {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-        } catch (e: ActivityNotFoundException) {
-            // display error state to the user
-        }
-    }
-    fun onPictureEvent(view: View) {
-        when (view.id) {
-
-            R.id.imageViewStudentProfileImage -> {
-                cameraBtn.isVisible = true
-                // galleryBtn.isVisible=true
-            }
-            R.id.cameraBtn -> {
-
-                dispatchTakePictureIntent()
-                cameraBtn.isVisible = false
-                // galleryBtn.isVisible=false
-
-            }
-            R.id.galleryBtn-> {
-                selectImage()
-                cameraBtn.isVisible=false
-                // galleryBtn.isVisible=false
-            }
-        }
-    }
-
-    fun selectImage() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "image/*"
-        }
-        Log.d("gallery","successful")
-        // if (intent.resolveActivity(packageManager) != null) {
-        startActivityForResult(intent, REQUEST_IMAGE_GET)
-        // }
-    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-
-            val thumbnail: Bitmap? = data?.getParcelableExtra("data")
-            myProfileImage.setImageBitmap(thumbnail)
-            //locationForPhotos   = data?.data!!
-            //myProfileImage.setImageURI(locationForPhotos)
-        }
-    }
+//    private fun dispatchTakePictureIntent() {
+//        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        try {
+//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+//        } catch (e: ActivityNotFoundException) {
+//            // display error state to the user
+//        }
+//    }
+//    fun onPictureEvent(view: View) {
+//        when (view.id) {
+//
+//            R.id.imageViewStudentProfileImage -> {
+//                cameraBtn.isVisible = true
+//                // galleryBtn.isVisible=true
+//            }
+//            R.id.cameraBtn -> {
+//
+//                dispatchTakePictureIntent()
+//                cameraBtn.isVisible = false
+//                // galleryBtn.isVisible=false
+//
+//            }
+//            R.id.galleryBtn-> {
+//                selectImage()
+//                cameraBtn.isVisible=false
+//                // galleryBtn.isVisible=false
+//            }
+//        }
+//    }
+//
+//    fun selectImage() {
+//        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+//            type = "image/*"
+//        }
+//        Log.d("gallery","successful")
+//        // if (intent.resolveActivity(packageManager) != null) {
+//        startActivityForResult(intent, REQUEST_IMAGE_GET)
+//        // }
+//    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+//
+//            val thumbnail: Bitmap? = data?.getParcelableExtra("data")
+//            myProfileImage.setImageBitmap(thumbnail)
+//            //locationForPhotos   = data?.data!!
+//            //myProfileImage.setImageURI(locationForPhotos)
+//        }
+//    }
 }
