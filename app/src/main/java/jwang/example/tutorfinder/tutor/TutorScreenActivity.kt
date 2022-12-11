@@ -1,10 +1,10 @@
 package jwang.example.tutorfinder.tutor
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -14,19 +14,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
-import jwang.example.tutorfinder.R.*
-import jwang.example.tutorfinder.UnknownUser
-import jwang.example.tutorfinder.student.StudentDashboard
+import jwang.example.tutorfinder.R.id
+import jwang.example.tutorfinder.R.layout
+
 
 class TutorScreenActivity : AppCompatActivity() {
 
@@ -41,13 +40,13 @@ class TutorScreenActivity : AppCompatActivity() {
     companion object {
         const val STUDENT_ID = "student id"
 
-        var nameTutor: String = ""
-        var ageTutor: String = ""
-        var addressTutor: String = ""
-        var phoneTutor: String = ""
-        var educationTutor: String = ""
-        var emailTutor: String = ""
-        var experienceTutor: String = ""
+//        var nameTutor: String = ""
+//        var ageTutor: String = ""
+//        var addressTutor: String = ""
+//        var phoneTutor: String = ""
+//        var educationTutor: String = ""
+//        var emailTutor: String = ""
+//        var experienceTutor: String = ""
         private val database = Firebase.database.reference
         val currentUser = FirebaseAuth.getInstance().currentUser
 
@@ -68,7 +67,6 @@ class TutorScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_tutor_screen)
-
 
         recyclerView = findViewById<RecyclerView>(id.recyclerViewMyStudents)
         tvStudentAmount = findViewById(R.id.textViewStudentAmount)
