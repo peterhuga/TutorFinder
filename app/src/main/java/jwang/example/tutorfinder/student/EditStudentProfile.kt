@@ -75,19 +75,19 @@ class EditStudentProfile : AppCompatActivity() {
                 return true
             }
 
-            R.id.log_out -> {
-                logOut()
-            }
+//            R.id.log_out -> {
+//                logOut()
+//            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun logOut() {
-        Firebase.auth.signOut()
-        Toast.makeText(this,R.string.logged_out, Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, LoginActivity::class.java))
-        finish()
-    }
+//    private fun logOut() {
+//        Firebase.auth.signOut()
+//        Toast.makeText(this,R.string.logged_out, Toast.LENGTH_SHORT).show()
+//        startActivity(Intent(this, LoginActivity::class.java))
+//        finish()
+//    }
 
     private fun onSAveButtonClick() {
 

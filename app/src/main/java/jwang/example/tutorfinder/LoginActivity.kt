@@ -33,22 +33,22 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val btn = findViewById<Switch>(R.id.switch1)
+        //val btn = findViewById<Switch>(R.id.switch1)
 
         // set the switch to listen on checked change
-        btn.setOnCheckedChangeListener { _, isChecked ->
-
-            // if the button is checked, i.e., towards the right or enabled
-            // enable dark mode, change the text to disable dark mode
-            // else keep the switch text to enable dark mode
-            if (btn.isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                btn.text = "Disable dark mode"
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                btn.text = "Enable dark mode"
-            }
-        }
+//        btn.setOnCheckedChangeListener { _, isChecked ->
+//
+//            // if the button is checked, i.e., towards the right or enabled
+//            // enable dark mode, change the text to disable dark mode
+//            // else keep the switch text to enable dark mode
+//            if (btn.isChecked) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                btn.text = "Disable dark mode"
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                btn.text = "Enable dark mode"
+//            }
+//        }
 
 
         loginBtn = findViewById(R.id.buttonLogin)

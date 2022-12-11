@@ -3,14 +3,18 @@ package jwang.example.tutorfinder.tutor
 import android.app.Activity
 import android.app.ActivityOptions
 import android.app.AlertDialog
+import android.content.ClipData.Item
 import android.content.Intent
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,6 +56,8 @@ class TutorScreenActivity : AppCompatActivity() {
 
         var acceptedStudentsUids = mutableListOf<String>()
         var requestStudentsUids = mutableListOf<String>()
+
+        var isDarkModeEnabled: Boolean = false
 
         var students: MutableList<Student> = mutableListOf(
 //            Student(101, "Sampath", 21, "sampath@email.com"),
@@ -222,6 +228,7 @@ class TutorScreenActivity : AppCompatActivity() {
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when (item.itemId) {
             id.action_bar -> {startActivity(Intent(this, EditTutorProfileActivity::class.
             java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
@@ -229,8 +236,27 @@ class TutorScreenActivity : AppCompatActivity() {
             id.action_settings -> {startActivity(Intent(this, StudentRequestActivity::
             class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
+            id.action_dark_mode -> {
+                if (isDarkModeEnabled) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    isDarkModeEnabled = false
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    isDarkModeEnabled = true
+                }
+
+            }
+            id.action_log_out -> {logOut()}
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun logOut() {
+        Firebase.auth.signOut()
+        Toast.makeText(this,R.string.logged_out,Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this,LoginActivity::class.java))
+
+        finish()
     }
 
     fun fetchAcceptedStudents() {
@@ -284,6 +310,7 @@ class TutorScreenActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+
         super.onStart()
     }
 }

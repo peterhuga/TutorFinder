@@ -1,6 +1,7 @@
 package jwang.example.tutorfinder.student
 
 import android.app.ActivityOptions
+import android.app.AlertDialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -16,14 +17,17 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
 import jwang.example.tutorfinder.tutor.EditTutorProfileActivity
 import jwang.example.tutorfinder.tutor.StudentRequestActivity
@@ -46,6 +50,7 @@ class StudentDashboard : AppCompatActivity() {
     companion object {
         const val TUTOR_ID = "tutor id"
         var tutors: MutableList<Tutor> = mutableListOf()
+        var firstTimeOpenedStudent: Boolean = true
 
     }
 
@@ -184,8 +189,27 @@ class StudentDashboard : AppCompatActivity() {
             R.id.action_settings -> {startActivity(Intent(this, TutorRequestsActivity::
             class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 return true}
+            R.id.action_dark_mode -> {
+                if (TutorScreenActivity.isDarkModeEnabled) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    TutorScreenActivity.isDarkModeEnabled = false
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    TutorScreenActivity.isDarkModeEnabled = true
+                }
+
+            }
+            R.id.action_log_out -> {logOut()}
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun logOut() {
+        Firebase.auth.signOut()
+        Toast.makeText(this,R.string.logged_out,Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, LoginActivity::class.java))
+
+        finish()
     }
 
 //    private fun createNotificationChannel() {
@@ -225,6 +249,7 @@ class StudentDashboard : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+
         super.onStart()
     }
 }
