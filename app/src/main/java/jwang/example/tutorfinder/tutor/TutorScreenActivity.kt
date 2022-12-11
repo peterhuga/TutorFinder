@@ -108,10 +108,11 @@ class TutorScreenActivity : AppCompatActivity() {
                 builder.setPositiveButton("Confirm"){
                     //send student id back to parent to delete it
                         dialog, which ->
-                    students.removeAt(viewHolder.adapterPosition)
-                    adapter.notifyItemRemoved(viewHolder.adapterPosition)
-                    Log.d("myTag", "notify1: ${students.size}")
-                    acceptedStudentsUids.clear()
+                    val students2 = students.filter { student -> student.id != deletedStudent.id } as MutableList<Student>
+                    students.clear()
+                    students.addAll(students2)
+                    Log.d("Student", "size: ${students.size}")
+                    adapter.notifyDataSetChanged()
 
                     tvStudentAmount.text = "You have ${students.size} students"
                     database.child("users/${currentUser?.uid}/current_students").child(deletedStudent.id).removeValue()
