@@ -37,14 +37,14 @@ class MyTutorsRvAdapter(val context: Context, private val dataset: MutableList<T
         val item = dataset[position]
         holder.nameTextView.text = "Name: ${item.name}"
         holder.addressTextView.text = "Address: ${item.address}"
-        holder.genderTextView.text = "Gender: ${item.gender}"
-        holder.experienceTextView.text = "Course: ${item.experience}"
+        holder.genderTextView.text = "Age: ${item.age}"
+        holder.experienceTextView.text = "Experience: ${item.experience} years"
 
 
         holder.itemView.setOnClickListener{
 
                 val intent = Intent(context, MyTutorProfileActivity::class.java)
-                intent.putExtra("position", position)
+                intent.putExtra("tutor_id", item)
 
             (context as Activity).startActivityForResult (intent, 1)
 

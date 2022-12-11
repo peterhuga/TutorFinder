@@ -1,15 +1,17 @@
 package jwang.example.tutorfinder.student
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import jwang.example.tutorfinder.R
-import jwang.example.tutorfinder.student.StudentDashboard.Companion.executeMyFunc
+import jwang.example.tutorfinder.tutor.TutorScreenActivity
 
 
 class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tutor>): RecyclerView.Adapter<FilteredTutorRv.ViewHolder>() {
@@ -38,21 +40,31 @@ class FilteredTutorRv(val context: Context, private val dataset: MutableList<Tut
 
         var item = dataset[position]
         holder.nameTextView.text = "Name: ${item.name}"
-        holder.degreeTextView.text = "Academic Degree: ${item.degree}"
-        holder.gradeTextView.text = "Grade: ${item.grade}"
+        holder.degreeTextView.text = "Academic Degree: ${item.education}"
+        holder.gradeTextView.text = "Grade: ${item.grades}"
         holder.experienceTextView.text = "Experience(#Years): ${item.experience}"
 //       // executeMyFunc(holder,position)
 
 //
-//        holder.itemView.setOnClickListener{
+//        holder.itemView.setOnClickListener {
 //
-//                val intent = Intent(context, FilterTutorActivity::class.java)
-//                intent.putExtra("position", position)
+//            val builder = AlertDialog.Builder(holder.itemView.context)
 //
-//            (context as Activity).startActivityForResult (intent, 1)
+//            builder.setTitle("Are you sure to delete this student?")
+//            builder.setCancelable(false)
+//            builder.setPositiveButton("Confirm") {
+//                //send student id back to parent to delete it
+//                    dialog, which ->
 //
+//
+//                builder.setNegativeButton("Cancel") { dialog, which ->
+//                    dialog.cancel()
+//                }
+//                builder.show()
+//
+//
+//            }
 //
 //        }
-
     }
 }

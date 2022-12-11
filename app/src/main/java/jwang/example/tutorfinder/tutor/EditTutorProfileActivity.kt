@@ -1,15 +1,22 @@
 package jwang.example.tutorfinder.tutor
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -21,6 +28,17 @@ import jwang.example.tutorfinder.LoginActivity
 import jwang.example.tutorfinder.R
 
 class EditTutorProfileActivity : AppCompatActivity() {
+
+    val REQUEST_IMAGE_CAPTURE = 1
+    val REQUEST_IMAGE_GET=1
+    lateinit var galleryBtn: Button
+    companion object{
+        lateinit var myIdentity:Student
+    }
+
+    lateinit var cameraBtn: Button
+    lateinit var locationForPhotos: Uri
+    lateinit var myProfileImage: ImageView
 
     lateinit var tutorsNameTextView: TextView
     lateinit var tutorsEmailTextView: TextView
@@ -159,5 +177,55 @@ class EditTutorProfileActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        } catch (e: ActivityNotFoundException) {
+            // display error state to the user
+        }
+    }
+    fun onPictureEvent(view: View) {
+        when (view.id) {
+
+            R.id.imageViewStudentProfileImage -> {
+                cameraBtn.isVisible = true
+                // galleryBtn.isVisible=true
+            }
+            R.id.cameraBtn -> {
+
+                dispatchTakePictureIntent()
+                cameraBtn.isVisible = false
+                // galleryBtn.isVisible=false
+
+            }
+            R.id.galleryBtn-> {
+                selectImage()
+                cameraBtn.isVisible=false
+                // galleryBtn.isVisible=false
+            }
+        }
+    }
+
+    fun selectImage() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+        }
+        Log.d("gallery","successful")
+        // if (intent.resolveActivity(packageManager) != null) {
+        startActivityForResult(intent, REQUEST_IMAGE_GET)
+        // }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+
+            val thumbnail: Bitmap? = data?.getParcelableExtra("data")
+            myProfileImage.setImageBitmap(thumbnail)
+            //locationForPhotos   = data?.data!!
+            //myProfileImage.setImageURI(locationForPhotos)
+        }
     }
 }

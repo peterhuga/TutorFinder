@@ -10,21 +10,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import jwang.example.tutorfinder.R
+import jwang.example.tutorfinder.tutor.Student
 
 class MyTutorProfileActivity : AppCompatActivity() {
-    lateinit var myTutorname: TextView
-    lateinit var myTutorage: TextView
-    lateinit var myTutoremail: TextView
-    lateinit var myTutorexperience: TextView
-    lateinit var myTutordegree: TextView
-    lateinit var myTutorphone: TextView
-    lateinit var myTutoraddress: TextView
-    lateinit var myTutorgender: TextView
-    lateinit var myTutorgrade: TextView
-    lateinit var myTutorphoneredirect: ImageButton
-    lateinit var myTutorsmsredirect: ImageButton
-    lateinit var myTutoremailredirect: ImageButton
-    lateinit var backToDashboard:Button
+    lateinit var myTutorName: TextView
+    lateinit var myTutorAge: TextView
+    lateinit var myTutorEmail: TextView
+    lateinit var myTutorExperience: TextView
+    lateinit var myTutorDegree: TextView
+    lateinit var myTutorPhone: TextView
+    lateinit var myTutorAddress: TextView
+    lateinit var myTutorGrades: TextView
+    lateinit var myTutorPhoneRedirect: ImageButton
+    lateinit var myTutorSmsRedirect: ImageButton
+    lateinit var myTutorEmailRedirect: ImageButton
+
+    lateinit var tutorId: Tutor
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,38 +34,43 @@ class MyTutorProfileActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Student Portal"
 
-        myTutorname = findViewById(R.id.myTutorNameTextView)
-        myTutorage = findViewById(R.id.myTutorAgeTextView)
-        myTutoremail = findViewById(R.id.myTutorEmailTextView)
-        myTutorexperience = findViewById(R.id.myTutorExperienceTextView)
-        myTutordegree = findViewById(R.id.myTutordegreeTextView)
-        myTutorphone = findViewById(R.id.myTutordegreeTextView)
-        myTutoraddress = findViewById(R.id.myTutorAddressTextView)
-        myTutorgender = findViewById(R.id.myTutorGenderTextView)
-        myTutorgrade = findViewById(R.id.myTutorGradeTextView)
-        myTutorphone = findViewById(R.id.myTutorPhoneTextView)
-        myTutorphoneredirect = findViewById(R.id.phoneImageView)
-        myTutorsmsredirect = findViewById(R.id.smsImageView)
-        myTutoremailredirect = findViewById(R.id.emailImageView)
-        for (i in 0..StudentDashboard.tutors.count()-1){
-            myTutorname.text=StudentDashboard.tutors[i].name
-            myTutorage.text=StudentDashboard.tutors[i].age
-            myTutoremail.text=StudentDashboard.tutors[i].email
-            myTutorexperience.text=StudentDashboard.tutors[i].experience
-            myTutordegree.text=StudentDashboard.tutors[i].degree
-            myTutorphone.text=StudentDashboard.tutors[i].phone
-            myTutoraddress.text=StudentDashboard.tutors[i].address
-            myTutorgender.text=StudentDashboard.tutors[i].gender
-            myTutorgrade.text=StudentDashboard.tutors[i].grade
-        }
+        tutorId = intent.getSerializableExtra("tutor_id") as Tutor
+
+        initializeFields()
+
     }
 
-    fun onRedirectBtnclick(view: View) {
-        var phoneNumber = StudentDashboard.tutors[1].phone
-        var addresses = StudentDashboard.tutors[1].email
+    private fun initializeFields() {
+
+        myTutorName = findViewById(R.id.textViewTutorName)
+        myTutorAge = findViewById(R.id.textViewTutorAge)
+        myTutorEmail = findViewById(R.id.textViewTutorEmail)
+        myTutorExperience = findViewById(R.id.textViewTutorExperience)
+        myTutorDegree = findViewById(R.id.textViewTutorEducation)
+        myTutorPhone = findViewById(R.id.textViewTutorPhoneNumber)
+        myTutorAddress = findViewById(R.id.textViewTutorAddress)
+        myTutorGrades = findViewById(R.id.textViewTutorGrades)
+
+        myTutorPhoneRedirect = findViewById(R.id.imageButtonPhone)
+        myTutorSmsRedirect = findViewById(R.id.imageButtonSMS)
+        myTutorEmailRedirect = findViewById(R.id.imageButtonEmail)
+
+        myTutorName.text = tutorId.name
+        myTutorAge.text = tutorId.age
+        myTutorEmail.text = tutorId.email
+        myTutorExperience.text = tutorId.experience + " years"
+        myTutorDegree.text = tutorId.education
+        myTutorPhone.text = tutorId.phone
+        myTutorAddress.text = tutorId.address
+        myTutorGrades.text = tutorId.grades
+    }
+
+    fun onButtonClick(view: View) {
+        var phoneNumber = tutorId.phone
+        var emailAddresses = tutorId.email
         print(phoneNumber)
         when (view.id) {
-            R.id.phoneImageView -> {
+            R.id.imageButtonPhone -> {
                 //Log.d("phonenumber",phoneNumber)
 
                 val intent = Intent(Intent.ACTION_DIAL).apply {
@@ -76,7 +82,7 @@ class MyTutorProfileActivity : AppCompatActivity() {
                 }
 
             }
-            R.id.smsImageView -> {
+            R.id.imageButtonSMS -> {
                 val smsIntent = Intent(Intent.ACTION_SENDTO)
                 smsIntent.addCategory(Intent.CATEGORY_DEFAULT)
                 smsIntent.type = "vnd.android-dir/mms-sms"
@@ -84,10 +90,10 @@ class MyTutorProfileActivity : AppCompatActivity() {
                 startActivity(smsIntent)
 
             }
-            R.id.emailImageView -> {
+            R.id.imageButtonEmail -> {
                 val intent = Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("mailto:") // only email apps should handle this
-                    putExtra(Intent.EXTRA_EMAIL, addresses)
+                    putExtra(Intent.EXTRA_EMAIL, emailAddresses)
                    // putExtra(Intent.EXTRA_SUBJECT, "hello")
                 }
                 if (intent.resolveActivity(packageManager) != null) {

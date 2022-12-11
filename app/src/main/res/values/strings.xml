@@ -54,4 +54,83 @@
     <string name="logged_out">You are now logged out</string>
     <string name="welcome">"Welcome !"</string>
     <string name="signupbtn">Sign Up</string>
+
+    <string name="channel_name">PRadip</string>
+    <string name="channnel_desc">Testing for notification</string>
+
+
+    <string name="sentRequest">Sent Request</string>
+    <string name="notification">Subscribe Notification</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+    <string-array name="academicDegreeSpinner">
+        <item>--No Selection--</item>
+
+        <item>Masters</item>
+        <item>Bachelors</item>
+        <item>Phd</item>
+        <item>Diploma</item>
+        <item>Post Graduate</item>
+
+    </string-array>
+    <string-array name="ExpereienceSpinner">
+        <item>--No Selection--</item>
+        // This is a suggestion
+        <item>Less than 1</item>
+        <item>1 to 5</item>
+        <item>5 to 10</item>
+        <item>More than 10</item>
+
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+
+    </string-array>
+
+    <string-array name="gradeSpinner">
+        <item>--No Selection--</item>
+
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+
+    </string-array>
 </resources>

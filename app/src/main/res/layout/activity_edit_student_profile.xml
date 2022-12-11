@@ -28,7 +28,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewTutorProfileImage">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewStudentProfileImage">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,7 +171,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageViewTutorProfileImage"
+        android:id="@+id/imageViewStudentProfileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
@@ -180,5 +180,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewStudentProfile"
         app:srcCompat="@drawable/student_male" />
+
+    <Button
+        android:id="@+id/cameraBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onPictureEvent"
+        android:text="Camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/galleryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onPictureEvent"
+        android:text="Gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

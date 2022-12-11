@@ -1,7 +1,20 @@
 package jwang.example.tutorfinder.student
 
-data class Tutor (val id:Int,
-                  var name:String, val age:String, val gender: String, val address:String, val phone:String, var grade:String, var experience:String, val email: String, var degree:String){
+import java.io.Serializable
 
+data class Tutor (
+    var id:String = "",
+    var name:String = "",
+    val age:String = "",
+    val address:String = "",
+    val phone:String = "",
+    var grades:String = "",
+    var experience:String = "",
+    val email: String = "",
+    var education: String = "",
+    var role: String = ""
+    ) : Serializable {
+    constructor(name: String, age: String, address: String, phone: String, grades: String, experience: String, email: String, education: String, role: String) : this(id = "2222",
+    name, age, address, phone, grades, experience, email, education, role)
 
 }

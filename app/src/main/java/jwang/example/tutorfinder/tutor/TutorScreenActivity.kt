@@ -255,7 +255,6 @@ class TutorScreenActivity : AppCompatActivity() {
                             if (!students.contains(student)){
                                 students.add(it)
 
-
                             }
                         }
                     }
