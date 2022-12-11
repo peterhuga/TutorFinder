@@ -252,9 +252,13 @@ class TutorScreenActivity : AppCompatActivity() {
     }
 
     private fun logOut() {
+        Log.d("test", currentUser.toString())
         Firebase.auth.signOut()
+        //currentUser = null
         Toast.makeText(this,R.string.logged_out,Toast.LENGTH_SHORT).show()
         startActivity(Intent(this,LoginActivity::class.java))
+
+        Log.d("test", currentUser.toString())
 
         finish()
     }
