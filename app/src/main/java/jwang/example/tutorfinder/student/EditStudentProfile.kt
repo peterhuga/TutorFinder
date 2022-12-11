@@ -92,11 +92,11 @@ class EditStudentProfile : AppCompatActivity() {
     private fun onSAveButtonClick() {
 
         database.child("users/${currentUserId}/name").setValue(studentsNameEditText.text.toString())
-        database.child("users/${currentUserId}/age").setValue(studentsAgeEditText.text.toString())
-        database.child("users/${currentUserId}/phone").setValue(studentsPhoneEditText.text.toString())
+        database.child("users/${currentUserId}/age").setValue(studentsAgeEditText.text.toString().toInt())
+        database.child("users/${currentUserId}/phone").setValue(studentsPhoneEditText.text.toString().toInt())
         database.child("users/${currentUserId}/email").setValue(studentsEmailEditText.text.toString())
         database.child("users/${currentUserId}/address").setValue(studentsAddressEditText.text.toString())
-        database.child("users/${currentUserId}/grade").setValue(studentsGradeEditText.text.toString())
+        database.child("users/${currentUserId}/grade").setValue(studentsGradeEditText.text.toString().toInt())
 
         Toast.makeText(this,"Profile updated successfully!", Toast.LENGTH_SHORT).show()
 
