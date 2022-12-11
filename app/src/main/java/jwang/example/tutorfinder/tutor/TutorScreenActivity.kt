@@ -112,11 +112,14 @@ class TutorScreenActivity : AppCompatActivity() {
                     students.clear()
                     students.addAll(students2)
                     Log.d("Student", "size: ${students.size}")
-                    adapter.notifyDataSetChanged()
 
                     tvStudentAmount.text = "You have ${students.size} students"
                     database.child("users/${currentUser?.uid}/current_students").child(deletedStudent.id).removeValue()
                     database.child("users/${deletedStudent.id}/tutors_accepted/${currentUser?.uid}").removeValue()
+
+                    //adapter.notifyDataSetChanged()
+                    updateTutorData()
+
                 }
                 builder.setNegativeButton("Cancel"){
                         dialog, which ->
@@ -124,9 +127,6 @@ class TutorScreenActivity : AppCompatActivity() {
                     dialog.cancel()
                 }
                 builder.show()
-
-
-
 
             }
         }).attachToRecyclerView(recyclerView)
@@ -136,7 +136,12 @@ class TutorScreenActivity : AppCompatActivity() {
     //Read tutor's data from firebase
 
     override fun onResume() {
+        updateTutorData()
 
+        super.onResume()
+    }
+
+    fun updateTutorData() {
         if ( currentUser != null) {
             database.child("users/${currentUser.uid}/current_students").addValueEventListener(object:
                 ValueEventListener {
@@ -182,8 +187,6 @@ class TutorScreenActivity : AppCompatActivity() {
                 }
             })
         }
-
-        super.onResume()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -199,7 +202,8 @@ class TutorScreenActivity : AppCompatActivity() {
                     students.clear()
                     students.addAll(students2)
                     Log.d("Student", "size: ${students.size}")
-                    adapter.notifyDataSetChanged()
+                    //adapter.notifyDataSetChanged()
+                    updateTutorData()
                     tvStudentAmount.text = "You have ${students.size} student(s)"
                     acceptedStudentsUids.clear()
                     if (deleteId != null) {
@@ -273,7 +277,6 @@ class TutorScreenActivity : AppCompatActivity() {
     }
 
     fun fetchAcceptedStudents() {
-
 
         for (uid in acceptedStudentsUids) {
 

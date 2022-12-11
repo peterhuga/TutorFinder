@@ -72,11 +72,19 @@ class StudentDashboard : AppCompatActivity() {
     //Read student's data from firebase
     override fun onResume() {
 
+        updateStudentData()
+
+        super.onResume()
+    }
+
+    private fun updateStudentData() {
+
         if (currentUser != null) {
             database.child("users/${currentUser.uid}/tutors_accepted").addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     acceptedTutorsUids.clear()
+                    requestTutorsUids.clear()
                     tutors.clear()
                     Log.d("myTag", "final: ${tutors.size}")
 
@@ -121,8 +129,6 @@ class StudentDashboard : AppCompatActivity() {
                 }
             })
         }
-
-        super.onResume()
     }
 
     fun onFilterBtnPressed(view: View) {

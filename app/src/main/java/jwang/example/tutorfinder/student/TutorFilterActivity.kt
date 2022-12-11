@@ -122,7 +122,7 @@ class TutorFilterActivity : AppCompatActivity() {
                     updateTutorRequests[currentUser?.uid.toString()] = ""
                     databaseReferenceUpdateRequestsTutor.updateChildren(updateTutorRequests)
 
-                    finish()
+                    //finish()
                 }
                 builder.setNegativeButton("Cancel"){
                         dialog, which ->
