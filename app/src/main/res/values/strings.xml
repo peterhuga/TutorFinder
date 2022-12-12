@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tutor Finder</string>
+    <string name="app_name">Learn Math</string>
     <string name="student_requests">Student Requests</string>
     <string name="my_students_headline">MY STUDENTS</string>
     <string name="edit_tutor_profile">Edit Profile</string>
