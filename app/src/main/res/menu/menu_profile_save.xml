@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_bar"
         android:icon="@drawable/ic_baseline_save_24"
-        android:title="@string/delete_my_student"
+        android:title="Save Profile"
         app:showAsAction="ifRoom"/>
 
 <!--    <item-->
