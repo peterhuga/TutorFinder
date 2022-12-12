@@ -22,10 +22,12 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewTutorProfileImage">
@@ -33,8 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorName"
@@ -48,139 +50,139 @@
                 android:id="@+id/editTextTutorName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:layout_weight="2"/>
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorAge"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="AGE:"
                 android:layout_weight="1"
+                android:text="AGE:"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextTutorAge"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_weight="2"
+                android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="PHONE:"
                 android:layout_weight="1"
+                android:text="PHONE:"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextTutorPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_weight="2"
+                android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="EMAIL:"
                 android:layout_weight="1"
+                android:text="EMAIL:"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextTutorEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_weight="2"
+                android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="ADDRESS:"
                 android:layout_weight="1"
+                android:text="ADDRESS:"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextTutorAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_weight="2"
+                android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorGrades"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="GRADES:"
                 android:layout_weight="1"
+                android:text="GRADES:"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextTutorGrades"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_weight="2"
+                android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorEducation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="EDUCATION:"
                 android:layout_weight="1"
-                android:textSize="18sp" />
+                android:text="EDUCATION:"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinnerTutorEducation"
@@ -195,16 +197,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTutorExperience"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="EXPERIENCE:"
                 android:layout_weight="1"
-                android:textSize="18sp" />
+                android:text="EXPERIENCE:"
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinnerTutorExperience"
